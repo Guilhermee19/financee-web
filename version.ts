@@ -13,7 +13,7 @@ const updatedEnvironmentFileContent = environmentFileContent.replace(
 
 fs.writeFileSync(environmentFilePath, updatedEnvironmentFileContent, 'utf-8');
 
-const environmentFilePathProd = 'src/environments/environment.production.ts';
+const environmentFilePathProd = 'src/environments/environment.prod.ts';
 
 const environmentFileContentProd = fs.readFileSync(
   environmentFilePathProd,
