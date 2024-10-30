@@ -1,0 +1,27 @@
+{
+  "explorer.compactFolders": false,
+  "editor.formatOnSave": true,
+  "eslint.packageManager": "npm",
+  "[javascript]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    }
+  },
+  "[typescript]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    }
+  },
+  "files.associations": {
+    ".sequelizerc": "javascript",
+    ".stylelintrc": "json",
+    ".prettierrc": "json"
+  },
+  "editor.tabSize": 2,
+  "git.enableSmartCommit": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "window.zoomLevel": -1,
+  "eslint.validate": ["javascript", "typescript"]
+}
