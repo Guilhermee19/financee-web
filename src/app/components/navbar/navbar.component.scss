@@ -1,0 +1,23 @@
+nav {
+  position: fixed;
+  width: 100%;
+  height: 80px;
+}
+
+div#financee {
+  position: relative;
+  width: 100%;
+  padding-top: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  aside {
+    width: 250px;
+  }
+
+  .screen {
+    width: calc(100% - 250px);
+    background-color: white;
+  }
+}
