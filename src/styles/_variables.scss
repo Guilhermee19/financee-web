@@ -1,0 +1,42 @@
+:root {
+  font-size: calc(12px + 0.3125vw);
+  --ts: all 0.3s linear;
+  --elastic: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --br: 12px;
+
+  --primary-bg: #ffffff;
+  --secund-bg: #edf3fb;
+
+  --label: #757575;
+  --text-primary: #1f1f20;
+  --main-color: #0071ff;
+
+  --input-bg: #282d37;
+  --shadow: 0 4px 26px rgba(25, 25, 25, 0.25);
+
+  --color-shadow: rgba(50, 55, 65, 0.25);
+
+  --red_text: rgb(172, 31, 31);
+  --red_br: rgb(255, 196, 196);
+  --green: #05ac78;
+  --pink: #f33167;
+
+  --white: #ffffff;
+
+  --text-white: #ffffff;
+  --text-black: #474747;
+
+  // ? Scrollbar
+  --scroll-track: var(--input-bg);
+  --scroll-thumb: var(--label);
+
+  // ? size width
+  --width-screen: 95%;
+  --max-width: 1440px;
+
+  // ? avatar
+  --avatar-dark-color: #000000;
+  --avatar-light-color: #ffffff;
+  --avatar-br: 50%;
+  --avatar-ratio: 1/1;
+}

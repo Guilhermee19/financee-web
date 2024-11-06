@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+nav {
+  @apply border border-x-0 border-t-0 border-solid border-grey;
+
+  /* @apply fixed w-full py-4 px-6 bg-tertiary
+    z-50 flex justify-between items-center
+    border border-x-0 border-t-0 border-solid border-grey; */
+
+  ul{
+    /* @apply flex justify-start items-center gap-6; */
+
+    li{
+      a{
+        @apply text-grey text-sm font-semibold;
+
+        &.active{
+          @apply text-primary;
+        }
+      }
+    }
+
+    /* &.mobile{
+      @apply absolute flex-col;
+    } */
+  }
+
+  avatar {
+    @apply w-full flex max-w-6 h-6 rounded-full;
+    box-shadow: 0px 2px 8px #0000003b;
+  }
+}

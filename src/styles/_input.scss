@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import './_animations.scss';
+
+.form-input{
+  @apply w-full flex flex-col gap-2;
+
+  label{
+    @apply text-white text-sm;
+  }
+
+  .input_icon{
+    @apply relative w-full flex justify-center items-center;
+
+    input{
+      @apply relative w-full rounded-xl py-2 px-3 bg-transparent border-2 border-solid border-grey text-white;
+
+      &:placeholder{
+        @apply text-grey;
+      }
+    }
+
+    i{
+      @apply absolute right-3 text-white text-base cursor-pointer p-1;
+    }
+  }
+
+  .ng-invalid {
+    &.ng-dirty,
+    &.ng-touched {
+      @apply border-red-500;
+      @include shake;
+    }
+
+    [formInput]{
+      @apply border-red-500;
+
+      &:placeholder{
+        @apply border-red-300;
+      }
+    }
+  }
+}
+
+form-field {
+  @apply block;
+  label {
+    @apply text-label block;
+  }
+
+  input,
+  mat-select,
+  textarea {
+    border: none;
+    @apply border-grey bg-grey text-label mt-1 block w-full rounded-md border border-solid px-4 py-2 text-base outline-none focus:ring-2;
+
+    &::placeholder {
+      @apply text-grey opacity-40;
+    }
+  }
+
+  mat-select {
+    @apply p-0;
+    .mat-mdc-select-trigger {
+      @apply px-4 py-2;
+    }
+  }
+
+  .has-prefix {
+    input,
+    mat-select,
+    textarea {
+      @apply pl-12;
+    }
+  }
+
+  .has-suffix {
+    input,
+    mat-select,
+    textarea {
+      @apply pr-12;
+    }
+  }
+
+  .prefix {
+    @apply absolute left-0 top-1/2 flex h-full w-11 -translate-y-1/2 items-center justify-center text-center;
+    & + input,
+    mat-select,
+    textarea {
+      @apply pl-14;
+    }
+  }
+
+  .suffix {
+    @apply absolute right-0 top-1/2 flex h-full w-11 -translate-y-1/2 items-center justify-center text-center;
+    & + input,
+    mat-select,
+    textarea {
+      @apply pl-14;
+    }
+  }
+
+  .prefix,
+  .suffix {
+    @apply text-base;
+    &.mat-mdc-icon-button.mat-mdc-button-base {
+      @apply h-full w-11 p-0;
+      .mat-mdc-button-touch-target {
+        @apply h-full w-11 p-0;
+      }
+    }
+  }
+
+  .ng-invalid {
+    &.ng-dirty,
+    &.ng-touched {
+      @apply border-red-500;
+      @include shake;
+    }
+  }
+}
