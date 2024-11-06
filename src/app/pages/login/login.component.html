@@ -1,1 +1,51 @@
-<p>login works!</p>
+<main class="w-full min-h-dvh grid grid-cols-1 md:grid-cols-2 bg-secondary">
+  <figure class="w-full h-dvh overflow-hidden hidden md:block">
+    <img class="w-full h-dvh object-cover rotate-12 scale-125" src="../../../assets/images/realistic-blur-background-store-department-store-supermarket-grocery-store-ai-generated-image 2.png" alt="">
+  </figure>
+
+  <form class="w-full flex flex-col justify-center items-center"
+    (ngSubmit)="handleFormSubmit()" [formGroup]="form"
+  >
+    <div class="w-full max-w-80">
+      <!-- <h1 class="text-label text-2xl font-bold mb-4"> financee.me </h1> -->
+      <h1 class="w-full text-label text-center text-4xl font-bold mb-4"> Login </h1>
+      <!-- <p class="text-label text-sm opacity-40"> A Finance AI é uma plataforma de gestão financeira que utiliza IA para monitorar suas movimentações, e oferecer insights personalizados, facilitando o controle do seu orçamento. </p> -->
+
+      <div class="form-input">
+        <label> E-mail </label>
+        <div class="input_icon">
+          <input type="text" placeholder="E-mail" formControlName="email" autocomplete="username">
+        </div>
+      </div>
+
+      <div class="form-input flex my-4">
+        <label> Senha </label>
+        <div class="input_icon">
+          <input type="password" placeholder="Senha" formControlName="password" autocomplete="password">
+        </div>
+      </div>
+
+      <!-- <div class="mb-6 flex items-center justify-between">
+        <mat-checkbox formControlName="remember" color="primary" class="text-sm text-label">
+          Lembrar-me
+        </mat-checkbox>
+
+        <button mat-button (click)="handleForgotPasswordButton()" class="text-sm text-label">
+          Esqueceu a senha?
+        </button>
+      </div> -->
+
+      <div class="buttons">
+        <button mat-flat-button color="primary" [disabled]="form.invalid"> Entrar </button>
+      </div>
+    </div>
+
+    <div class="w-full max-w-80 h-px bg-grey mt-6 mb-5"></div>
+
+    <div class="flex justify-center items-center">
+      <p class="m-0 text-sm text-label mr-1"> Não tem uma conta?</p>
+      <a class="m-0 text-sm text-label font-extrabold cursor-pointer"> Criar conta </a>
+    </div>
+  </form>
+
+</main>

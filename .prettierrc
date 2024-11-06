@@ -8,5 +8,6 @@
   "trailingComma": "es5",
   "printWidth": 80,
   "htmlWhitespaceSensitivity": "strict",
-  "endOfLine": "auto"
+  "tailwindConfig": "./tailwind.config.js",
+  "plugins": ["prettier-plugin-tailwindcss"]
 }

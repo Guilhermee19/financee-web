@@ -12,10 +12,15 @@
       "source.fixAll.eslint": "explicit"
     }
   },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "files.associations": {
     ".sequelizerc": "javascript",
     ".stylelintrc": "json",
-    ".prettierrc": "json"
+    ".prettierrc": "json",
+    ".hintrc": "json",
+    "*.scss": "postcss"
   },
   "editor.tabSize": 2,
   "git.enableSmartCommit": true,
