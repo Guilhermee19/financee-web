@@ -9,6 +9,7 @@ export const routes: Routes = [
   },
   {
     path: '',
+    title: 'financee.me',
     loadComponent: () =>
       import('./components/navbar/navbar.component').then(
         (m) => m.NavbarComponent
@@ -16,15 +17,25 @@ export const routes: Routes = [
     children: [
       {
         path: 'overview',
-        title: 'Overview',
+        title: 'Overview | financee.me',
         loadComponent: () =>
           import('./pages/overview/overview.component').then((m) => m.OverviewComponent),
       },
       {
         path: 'finance',
-        title: 'Finance',
+        title: 'Transações | financee.me',
         loadComponent: () =>
           import('./pages/finance/finance.component').then((m) => m.FinanceComponent),
+      },
+      {
+        path: 'plans',
+        title: 'Planos | financee.me',
+        loadComponent: () =>
+          import('./pages/finance/finance.component').then((m) => m.FinanceComponent),
+      },
+      {
+        path: '**',
+        redirectTo: 'overview',
       },
     ]
   },

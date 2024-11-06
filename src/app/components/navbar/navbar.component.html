@@ -1,17 +1,101 @@
-<nav id="navbar">
-  <ul>
-    <li>
-      <a> financee.me </a>
-    </li>
-  </ul>
+<nav id="top-navbar" class="fixed top-0 px-6 z-10 w-full bg-tertiary">
+  <div class="container mx-auto">
+    <div
+      class="flex flex-wrap items-center justify-between py-2 md:flex-nowrap"
+    >
+
+      <a role="button" routerLink="/" class="h-9 mr-6">
+        <img src="../../../assets/logo.png" alt="Logo" class="size-full object-contain" />
+      </a>
+
+
+      <div class="flex ml-auto md:hidden">
+        <button
+          mat-icon-button
+          class="my-0 ml-auto mr-0 text-label transition {{
+            isMenuOpen() ? 'rotate-90' : ''
+          }}"
+          (click)="toggleMenuOpened()"
+        >
+          <i [icon]="isMenuOpen() ? 'xmark' : 'bars'"></i>
+        </button>
+      </div>
+
+      <div class="relative flex md:hidden cursor-pointer">
+        <avatar [name]="'Guilherme'" class="text-xs" color="light" bg="#55b02e" />
+      </div>
+
+
+      <div
+        #menuContainer
+        class="w-full overflow-hidden transition-all flex items-center {{
+            isMenuOpen() ? 'justify-center' : ''
+          }}"
+        [ngStyle]="{
+          height: scrollHeightMenuContainer(),
+        }"
+      >
+        <ul
+          class="m-0 flex list-none flex-col gap-x-6 p-0 pt-2 md:flex-row md:items-center md:justify-end md:pt-0"
+          (click)="onResize()"
+          (keydown)="onResize()"
+          tabindex="-1"
+        >
+        @for (item of navbars; track $index) {
+          <li>
+            <a
+              mat-button
+              [routerLink]="item.router"
+              routerLinkActive="active"
+              class="w-full"
+            >
+              {{ item.label }}
+            </a>
+          </li>
+        }
+        </ul>
+      </div>
+
+      <div class="relative ml-auto hidden md:flex items-center gap-3 border border-solid border-grey px-5 pr-2 py-2 rounded-lg cursor-pointer">
+        <p class="text-label text-sm"> Guilherme </p>
+        <avatar [name]="'Guilherme'" class="text-xs" color="light" bg="#55b02e" />
+      </div>
+
+    </div>
+  </div>
 </nav>
 
-<div id="financee">
-  <aside>
-
-  </aside>
-  <div class="screen">
+@if (!loading) {
+  <div class="relative w-full min-h-dvh pt-20 bg-tertiary">
     <router-outlet />
   </div>
-</div>
+}
 
+@if (loading) {
+  <!-- <page-loading /> -->
+}
+
+
+<!-- <nav id="navbar">
+  <a class="mr-6 cursor-pointer" routerLink="/overview">
+    <img src="../../../assets/logo.png" class="max-h-9 object-contain" alt="">
+  </a>
+
+  <ul [ngClass]="{mobile: isMobile}">
+    @for (item of navbars; track $index) {
+      <li >
+        <a mat-button [routerLink]="item.router" routerLinkActive="active"> {{ item.label }} </a>
+      </li>
+    }
+  </ul>
+
+  <div class="relative ml-auto flex items-center gap-3 border border-solid border-grey px-5 pr-2 py-2 rounded-lg cursor-pointer">
+    <p class="text-label text-sm"> Guilherme </p>
+    <avatar [name]="'Guilherme'" class="text-xs" color="light" bg="#55b02e" />
+  </div>
+</nav>
+
+<div class="relative w-full min-h-dvh pt-20 bg-tertiary">
+  <router-outlet />
+</div>
+ -->
