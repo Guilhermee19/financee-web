@@ -31,7 +31,7 @@ export const routes: Routes = [
         path: 'plans',
         title: 'Planos | financee.me',
         loadComponent: () =>
-          import('./pages/finance/finance.component').then((m) => m.FinanceComponent),
+          import('./pages/plans/plans.component').then((m) => m.PlansComponent),
       },
       {
         path: '**',

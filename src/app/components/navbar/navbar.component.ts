@@ -4,11 +4,12 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { AvatarComponent } from '../shared/avatar/avatar.component';
 import { IconDirective } from '../../directives/icon.directive';
+import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, RouterModule, MatButtonModule, AvatarComponent, IconDirective],
+  imports: [CommonModule, RouterModule, MatButtonModule, AvatarComponent, IconDirective, MatMenuModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })
