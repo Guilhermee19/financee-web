@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/Guilhermee19/financee-web/compare/v1.1.1...v1.2.0) (2024-11-07)
+
+
+### Features
+
+* identidade visual ([83ed1af](https://github.com/Guilhermee19/financee-web/commit/83ed1af7e095895ec31ecc37c4f8228f51d29a9f))
+* menu navbar ([eb373a1](https://github.com/Guilhermee19/financee-web/commit/eb373a11bf33344d8066e189eec4457839f40c7a))
+
 ### [1.1.1](https://github.com/Guilhermee19/financee-web/compare/v1.1.0...v1.1.1) (2024-11-06)
 
 ## [1.1.0](https://github.com/Guilhermee19/financee-web/compare/v1.0.0...v1.1.0) (2024-11-06)
