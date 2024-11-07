@@ -17,7 +17,7 @@ export const routes: Routes = [
     children: [
       {
         path: 'overview',
-        title: 'Overview | financee.me',
+        title: 'financee.me',
         loadComponent: () =>
           import('./pages/overview/overview.component').then((m) => m.OverviewComponent),
       },
