@@ -17,7 +17,7 @@ export const routes: Routes = [
     children: [
       {
         path: 'overview',
-        title: 'Overview | financee.me',
+        title: 'financee.me',
         loadComponent: () =>
           import('./pages/overview/overview.component').then((m) => m.OverviewComponent),
       },
@@ -31,7 +31,7 @@ export const routes: Routes = [
         path: 'plans',
         title: 'Planos | financee.me',
         loadComponent: () =>
-          import('./pages/finance/finance.component').then((m) => m.FinanceComponent),
+          import('./pages/plans/plans.component').then((m) => m.PlansComponent),
       },
       {
         path: '**',

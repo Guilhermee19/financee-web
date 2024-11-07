@@ -5,7 +5,7 @@
     >
 
       <a role="button" routerLink="/" class="h-9 mr-6">
-        <img src="../../../assets/logo.png" alt="Logo" class="size-full object-contain" />
+        <img src="../../../assets/logo_marca.png" alt="Logo" class="size-full object-contain" />
       </a>
 
 
@@ -21,8 +21,8 @@
         </button>
       </div>
 
-      <div class="relative flex md:hidden cursor-pointer">
-        <avatar [name]="'Guilherme'" class="text-xs" color="light" bg="#55b02e" />
+      <div class="relative flex md:hidden cursor-pointer"  [matMenuTriggerFor]="beforeMenu">
+        <avatar [name]="user.name" class="text-xs" color="light" bg="#55b02e" />
       </div>
 
 
@@ -56,17 +56,27 @@
         </ul>
       </div>
 
-      <div class="relative ml-auto hidden md:flex items-center gap-3 border border-solid border-grey px-5 pr-2 py-2 rounded-lg cursor-pointer">
-        <p class="text-label text-sm"> Guilherme </p>
-        <avatar [name]="'Guilherme'" class="text-xs" color="light" bg="#55b02e" />
+      <div class="relative ml-auto hidden md:flex items-center gap-3 border border-solid border-DarkGray px-5 pr-2 py-2 rounded-lg cursor-pointer"
+        [matMenuTriggerFor]="beforeMenu">
+        <p class="text-label text-sm"> {{ user.name }} </p>
+        <avatar *ngIf="!user.profile_image" [name]="user.name" class="text-xs" color="light" bg="#55b02e" />
+        <avatar *ngIf="user.profile_image" [src]="user.profile_image" class="text-xs" color="light" bg="#55b02e" />
       </div>
 
     </div>
   </div>
 </nav>
 
+<mat-menu #beforeMenu="matMenu" xPosition="before">
+  <button mat-menu-item> Perfil </button>
+  <button mat-menu-item> Contas </button>
+  <button mat-menu-item> Configuração </button>
+  <br>
+  <button mat-menu-item> Logof </button>
+</mat-menu>
+
 @if (!loading) {
-  <div class="relative w-full min-h-dvh pt-20 bg-tertiary">
+  <div class="relative w-full min-h-dvh pt-20 bg-tertiary px-6">
     <router-outlet />
   </div>
 }
@@ -74,28 +84,3 @@
 @if (loading) {
   <!-- <page-loading /> -->
 }
-
-
-<!-- <nav id="navbar">
-  <a class="mr-6 cursor-pointer" routerLink="/overview">
-    <img src="../../../assets/logo.png" class="max-h-9 object-contain" alt="">
-  </a>
-
-  <ul [ngClass]="{mobile: isMobile}">
-    @for (item of navbars; track $index) {
-      <li >
-        <a mat-button [routerLink]="item.router" routerLinkActive="active"> {{ item.label }} </a>
-      </li>
-    }
-  </ul>
-
-  <div class="relative ml-auto flex items-center gap-3 border border-solid border-grey px-5 pr-2 py-2 rounded-lg cursor-pointer">
-    <p class="text-label text-sm"> Guilherme </p>
-    <avatar [name]="'Guilherme'" class="text-xs" color="light" bg="#55b02e" />
-  </div>
-</nav>
-
-<div class="relative w-full min-h-dvh pt-20 bg-tertiary">
-  <router-outlet />
-</div>
- -->
