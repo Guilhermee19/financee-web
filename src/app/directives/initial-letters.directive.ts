@@ -1,16 +1,16 @@
-import { Directive, ElementRef, Input, OnInit } from '@angular/core';
+import { Directive, ElementRef, Input } from '@angular/core';
 
 @Directive({
   selector: '[initialLetters]',
   standalone: true,
 })
-export class InitialLettersDirective implements OnInit {
-  @Input() initialLetters: string = 'Foo Bar';
-  @Input() length: number = 2;
-
-  private linkingPrepositions = ['de', 'da', 'do', 'das', 'dos', 'e'];
+export class InitialLettersDirective {
+  @Input() initialLetters = 'Foo Bar';
+  @Input() length = 2;
 
   constructor(private elementRef: ElementRef) {}
+
+  linkingPrepositions = ['de', 'da', 'do', 'das', 'dos', 'e'];
 
   ngOnInit() {
     // Check if initialLetters is defined and has value
@@ -29,7 +29,7 @@ export class InitialLettersDirective implements OnInit {
     }
   }
 
-  private removeLinkingPrepositions() {
+  removeLinkingPrepositions() {
     this.initialLetters = this.initialLetters
       .split(' ')
       .filter((word) => !this.linkingPrepositions.includes(word.toLowerCase()))
