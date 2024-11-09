@@ -2,14 +2,67 @@
 @tailwind components;
 @tailwind utilities;
 
-@import './_animations.scss';
+.form-input {
+  @apply w-full flex flex-col gap-2;
 
-.form-input{
+  label {
+    @apply text-white text-sm;
+  }
+
+  input,
+  textarea,
+  select,
+  .mat-mdc-select-trigger {
+    @apply relative w-full rounded-xl py-2 px-3 bg-transparent border-2 border-solid border-DarkGray text-white;
+
+    &:placeholder{
+      @apply text-DarkGray;
+    }
+
+    &:read-only {
+      opacity: 0.5;
+    }
+
+    &[type="number"] {
+      -webkit-appearance: textfield;
+      -moz-appearance: textfield;
+      appearance: textfield;
+    }
+    &[type="number"]::-webkit-inner-spin-button,
+    &[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+    }
+    &.ng-touched.ng-invalid {
+      @apply border-red-500 animate-shake;
+    }
+    &[type="file"] {
+      display: none;
+    }
+
+    &:focus-visible {
+      outline: none;
+      // outline: 1px solid var(--text-color);
+    }
+  }
+}
+
+
+/* .form-input{
   @apply w-full flex flex-col gap-2;
 
   label{
     @apply text-white text-sm;
   }
+
+  input,
+  textarea,
+  select{
+    &.ng-touched.ng-invalid {
+      @apply border-red-500;
+      @include shake;
+    }
+  }
+
 
   .input_icon{
     @apply relative w-full flex justify-center items-center;
@@ -113,11 +166,11 @@ form-field {
     }
   }
 
-  .ng-invalid {
+  /* .ng-invalid {
     &.ng-dirty,
     &.ng-touched {
       @apply border-red-500;
       @include shake;
     }
-  }
-}
+  } *
+} */

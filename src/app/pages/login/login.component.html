@@ -14,7 +14,12 @@
       <div class="form-input">
         <label> E-mail </label>
         <div class="input_icon">
-          <input type="text" placeholder="E-mail" formControlName="email" autocomplete="username">
+          <input
+            type="text"
+            id="email"
+            placeholder="Email"
+            formControlName="email"
+          />
         </div>
       </div>
 
@@ -25,18 +30,18 @@
         </div>
       </div>
 
-      <!-- <div class="mb-6 flex items-center justify-between">
+      <div class="mb-6 flex items-center justify-between">
         <mat-checkbox formControlName="remember" color="primary" class="text-sm text-label">
           Lembrar-me
         </mat-checkbox>
 
-        <button mat-button (click)="handleForgotPasswordButton()" class="text-sm text-label">
+        <!-- <button mat-button (click)="handleForgotPasswordButton()" class="text-sm text-label">
           Esqueceu a senha?
-        </button>
-      </div> -->
+        </button> -->
+      </div>
 
       <div class="buttons">
-        <button mat-flat-button color="primary" [disabled]="form.invalid"> Entrar </button>
+        <button mat-flat-button color="primary" [disabled]="form.invalid"  [loading]="loading()"> Entrar </button>
       </div>
     </div>
 

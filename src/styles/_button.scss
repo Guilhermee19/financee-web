@@ -12,6 +12,7 @@
   @apply w-full text-sm;
 
   &.mat-primary{
+    --mdc-filled-button-disabled-container-color: #55b02e !important;
     --mdc-filled-button-container-color: #55b02e !important;
     --mdc-filled-button-label-text-color: #fff !important;
 

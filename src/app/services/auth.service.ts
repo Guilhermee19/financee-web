@@ -2,7 +2,7 @@
 import { Injectable, inject } from '@angular/core';
 import { Observable, from } from 'rxjs';
 // import { Auth, signOut, user } from '@angular/fire/auth';
-import { IToken } from '../models/user';
+import { IToken, IUser } from '../models/user';
 import { Router } from '@angular/router';
 import { BodyJson, HttpService } from './http.service';
 
@@ -17,6 +17,10 @@ export class AuthService {
 
   login(body: BodyJson) {
     return this.http.post<IToken>('core/auth/', body);
+  }
+
+  getMe(): Observable<IUser> {
+    return this.http.get<IUser>('core/get-user/');
   }
 
   // loginGoogle(token: any, social_network: string): Observable<any> {
