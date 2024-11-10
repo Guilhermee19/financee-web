@@ -35,6 +35,7 @@ $financee-web-theme: mat.define-light-theme((
   box-sizing: border-box;
   outline: none;
   font-family: 'Mulish', sans-serif !important;
+  background-color: var(--secund-bg);
 }
 
 html,
@@ -50,7 +51,6 @@ body {
 }
 body {
   margin: 0;
-  background-color: var(--secund-bg);
 }
 
 html, body { height: 100%; }

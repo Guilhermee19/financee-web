@@ -55,12 +55,6 @@ export class StorageService {
       'Strict'               // Modo de SameSite para maior segurança
     );
 
-    this.cookieService.set(
-      'token2',
-      token,
-      keep ? 60 : undefined, // Número de dias (60 dias ou sessão)
-    );
-
     this.router.navigate(['/']);
   }
 

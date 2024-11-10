@@ -3,11 +3,9 @@
     <div
       class="flex flex-wrap items-center justify-between py-2 md:flex-nowrap"
     >
-
       <a role="button" routerLink="/" class="h-9 mr-6">
         <img src="../../../assets/logo_marca.png" alt="Logo" class="size-full object-contain" />
       </a>
-
 
       <div class="flex ml-auto md:hidden">
         <button
@@ -21,9 +19,11 @@
         </button>
       </div>
 
-      <div class="relative flex md:hidden cursor-pointer"  [matMenuTriggerFor]="beforeMenu">
-        <avatar [name]="user.name" class="text-xs" color="light" bg="#55b02e" />
-      </div>
+      @if(!loading && user){
+        <div class="relative flex md:hidden cursor-pointer"  [matMenuTriggerFor]="beforeMenu">
+          <avatar [name]="user.name" class="text-xs" color="light" bg="#55b02e" />
+        </div>
+      }
 
 
       <div
@@ -56,12 +56,15 @@
         </ul>
       </div>
 
-      <div class="relative ml-auto hidden md:flex items-center gap-3 border border-solid border-DarkGray px-5 pr-2 py-2 rounded-lg cursor-pointer"
-        [matMenuTriggerFor]="beforeMenu">
-        <p class="text-label text-sm"> {{ user.name }} </p>
-        <avatar *ngIf="!user.profile_image" [name]="user.name" class="text-xs" color="light" bg="#55b02e" />
-        <avatar *ngIf="user.profile_image" [src]="user.profile_image" class="text-xs" color="light" bg="#55b02e" />
-      </div>
+
+      @if(!loading && user){
+        <div class="relative ml-auto hidden md:flex items-center gap-3 border border-solid border-DarkGray px-5 pr-2 py-2 rounded-lg cursor-pointer"
+          [matMenuTriggerFor]="beforeMenu">
+          <p class="text-label text-sm"> {{ user.name }} </p>
+          <avatar *ngIf="!user.profile_image" [name]="user.name" class="text-xs" color="light" bg="#55b02e" />
+          <avatar *ngIf="user.profile_image" [src]="user.profile_image" class="text-xs" color="light" bg="#55b02e" />
+        </div>
+      }
 
     </div>
   </div>

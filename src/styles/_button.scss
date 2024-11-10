@@ -8,6 +8,7 @@
 
 .mat-mdc-button-base,
 .mat-mdc-unelevated-button {
+  --mdc-text-button-label-text-color: #fff;
   --mdc-filled-button-container-shape: 12px;
   @apply w-full text-sm;
 

@@ -62,6 +62,8 @@ export class NavbarComponent {
       this.loading = true;
       this.authService.getMe().subscribe({
         next: (data) => {
+          this.user = data
+          this.storage.myself = data;
           this.loading = false;
         },
         error: (error) => {
@@ -72,7 +74,7 @@ export class NavbarComponent {
         },
       });
     } else {
-      // this.storage.logout();
+      this.storage.logout();
     }
   }
 
