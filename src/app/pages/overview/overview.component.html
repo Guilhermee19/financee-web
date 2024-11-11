@@ -8,95 +8,94 @@
       </div>
     </header>
 
-    <section class="w-full mt-4 flex-wrap gap-3 grid grid-cols-4">
-      <!-- CARD SALDO -->
-      <div class="col-start-1 col-end-4 row-start-1 card bg-DarkGreen border border-solid border-Gray rounded-default p-5">
-       <div class="flex justify-between items-center gap-3">
-        <div class="w-max flex items-center gap-2">
-          <div class="w-max aspect-square px-2 flex justify-center items-center rounded-md bg-black text-white">
-            <i icon="wallet"></i>
+      <section class="w-full mt-4 gap-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <!-- CARD SALDO -->
+        <div class="w-full col-span-full lg:col-span-3 card bg-DarkGreen border border-solid border-Gray rounded-default p-5">
+          <div class="flex justify-between items-center gap-3">
+            <div class="w-max flex items-center gap-2">
+              <div class="w-max aspect-square px-2 flex justify-center items-center rounded-md bg-black text-white">
+                <i icon="wallet"></i>
+              </div>
+              <h3 class="text-sm text-white opacity-70"> Saldo </h3>
+            </div>
+
+            <i [icon]="view_values() ? 'eye' : 'eye_slash'" class="text-white text-lg cursor-pointer p-1" (click)="modeView()"></i>
+
           </div>
-          <h3 class="text-sm text-white opacity-70"> Saldo </h3>
-        </div>
 
-        <i [icon]="view_values() ? 'eye' : 'eye_slash'" class="text-white text-lg cursor-pointer p-1" (click)="modeView()"></i>
+          <div class="mt-3 flex justify-between items-center gap-4">
+            <h1 class="text-white text-4xl font-semibold"> {{ view_values() ? (balance | currency:'BRL') : 'R$ •••••' }} </h1>
 
-       </div>
-
-        <div class="mt-3 flex justify-between items-center gap-4">
-          <h1 class="text-white text-4xl font-semibold"> {{ view_values() ? (balance | currency:'BRL') : 'R$ •••••' }} </h1>
-
-          <button mat-flat-button color="primary" class="w-max"> Adicionar Transação <i icon="arrow_up_arrow_down"></i> </button>
-        </div>
-      </div>
-
-      <!-- CARD INVESTMENT -->
-      <div class="col-start-1 row-start-2 card bg-White3 border border-solid border-Gray rounded-default p-5">
-        <div class="w-max flex items-center gap-2">
-          <div class="w-max aspect-square px-2 flex justify-center items-center rounded-md bg-White8 text-white">
-            <i icon="piggy_bank"></i>
-          </div>
-          <h3 class="text-sm text-Gray opacity-70"> Investido </h3>
-        </div>
-
-        <div class="mt-3 flex justify-between items-center gap-4">
-          <div class="flex items-center gap-3">
-            <h1 class="text-white text-2xl font-semibold">  {{ view_values() ? (investment | currency:'BRL') : 'R$ •••••' }} </h1>
+            <button mat-flat-button color="primary" class="w-max" (click)="createFinance()"> Adicionar Transação <i icon="arrow_up_arrow_down"></i> </button>
           </div>
         </div>
-      </div>
 
-      <!-- CARD REVENUE -->
-      <div class="col-start-2 row-start-2 card bg-tertiary border border-solid border-Gray rounded-default p-5">
-        <div class="w-max flex items-center gap-2">
-          <div class="w-max aspect-square px-2 flex justify-center items-center rounded-md bg-primary8 text-primary">
-            <i icon="arrow_trend_up"></i>
+        <!-- CARD INVESTMENT -->
+        <div class="w-full col-span-1 card bg-White3 border border-solid border-Gray rounded-default p-5">
+          <div class="w-max flex items-center gap-2">
+            <div class="w-max aspect-square px-2 flex justify-center items-center rounded-md bg-White8 text-white">
+              <i icon="piggy_bank"></i>
+            </div>
+            <h3 class="text-sm text-Gray opacity-70"> Investido </h3>
           </div>
-          <h3 class="text-sm text-Gray opacity-70"> Receita </h3>
-        </div>
 
-        <div class="mt-3 flex justify-between items-center gap-4">
-          <div class="flex items-center gap-3">
-            <h1 class="text-white text-2xl font-semibold">
-              {{ view_values() ? (revenue | currency:'BRL') : 'R$ •••••' }}
-            </h1>
+          <div class="mt-3 flex justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+              <h1 class="text-white text-2xl font-semibold">  {{ view_values() ? (investment | currency:'BRL') : 'R$ •••••' }} </h1>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- CARD EXPENSES -->
-      <div class="col-start-3 row-start-2 card bg-tertiary border border-solid border-Gray rounded-default p-5">
-        <div class="w-max flex items-center gap-2">
-          <div class="w-max aspect-square px-2 flex justify-center items-center rounded-md bg-Red8 text-Red">
-            <i icon="arrow_trend_down"></i>
+        <!-- CARD REVENUE -->
+        <div class="w-full col-span-1 card bg-tertiary border border-solid border-Gray rounded-default p-5">
+          <div class="w-max flex items-center gap-2">
+            <div class="w-max aspect-square px-2 flex justify-center items-center rounded-md bg-primary8 text-primary">
+              <i icon="arrow_trend_up"></i>
+            </div>
+            <h3 class="text-sm text-Gray opacity-70"> Receita </h3>
           </div>
-          <h3 class="text-sm text-Gray opacity-70"> Despesas </h3>
+
+          <div class="mt-3 flex justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+              <h1 class="text-white text-2xl font-semibold">
+                {{ view_values() ? (revenue | currency:'BRL') : 'R$ •••••' }}
+              </h1>
+            </div>
+          </div>
         </div>
 
-        <div class="mt-3 flex justify-between items-center gap-4">
-          <div class="flex items-center gap-3">
-            <h1 class="text-white text-2xl font-semibold">
-              {{ view_values() ? (expenses | currency:'BRL') : 'R$ •••••' }}
-            </h1>
+        <!-- CARD EXPENSES -->
+        <div class="w-full col-span-1 card bg-tertiary border border-solid border-Gray rounded-default p-5">
+          <div class="w-max flex items-center gap-2">
+            <div class="w-max aspect-square px-2 flex justify-center items-center rounded-md bg-Red8 text-Red">
+              <i icon="arrow_trend_down"></i>
+            </div>
+            <h3 class="text-sm text-Gray opacity-70"> Despesas </h3>
+          </div>
+
+          <div class="mt-3 flex justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+              <h1 class="text-white text-2xl font-semibold">
+                {{ view_values() ? (expenses | currency:'BRL') : 'R$ •••••' }}
+              </h1>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- CARD TRANSATION -->
-      <div class="col-start-4 row-start-1 row-end-5  card bg-tertiary border border-solid border-Gray rounded-default p-5">
-
-      </div>
-
-       <!-- CARD GRAPHIC -->
-       <div class="col-start-1 row-start-3 row-end-5  card bg-tertiary border border-solid border-Gray rounded-default p-5">
-
-       </div>
+        <!-- CARD GRAPHIC -->
+        <div class="w-full col-span-1 lg:col-span-2 card bg-tertiary border border-solid border-Gray rounded-default p-5">
+          <!-- Conteúdo do Card Gráfico -->
+        </div>
 
         <!-- CARD PORCENT CATEGORY -->
-      <div class="col-start-2 col-end-4 row-start-3 row-end-5  card bg-tertiary border border-solid border-Gray rounded-default p-5">
+        <div class="w-full col-span-1 lg:col-span-2 card bg-tertiary border border-solid border-Gray rounded-default p-5">
+          <!-- Conteúdo do Card Porcentagem por Categoria -->
+        </div>
 
-      </div>
-
-    </section>
+        <!-- CARD TRANSACTIONS -->
+        <div class="w-full col-span-full lg:col-span-1 card bg-tertiary border border-solid border-Gray rounded-default p-5">
+          <!-- Conteúdo do Card Transações -->
+        </div>
+      </section>
   </div>
 </main>
