@@ -8,6 +8,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { IUser } from '../../models/user';
 import { StorageService } from '../../services/storage.service';
 import { UserService } from '../../services/user.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -19,7 +20,7 @@ import { UserService } from '../../services/user.service';
 export class NavbarComponent {
   @ViewChild('menuContainer') public menuContainer?: ElementRef;
   private storage = inject(StorageService);
-  private userService = inject(UserService);
+  private authService = inject(AuthService);
 
   public loading = false;
   public error = 0;
@@ -43,7 +44,7 @@ export class NavbarComponent {
     }
   ]
 
-  user: IUser = {} as IUser;
+  public user = this.storage.myself;
 
   public ngOnInit(): void {
     // this.connectSocket()
@@ -57,15 +58,12 @@ export class NavbarComponent {
   }
 
   public getMe() {
-    this.user = this.storage.myself;
-
     if (this.storage.token) {
       this.loading = true;
-      this.userService.getMe().subscribe({
+      this.authService.getMe().subscribe({
         next: (data) => {
-          this.user = data;
+          this.user = data
           this.storage.myself = data;
-
           this.loading = false;
         },
         error: (error) => {
@@ -101,6 +99,10 @@ export class NavbarComponent {
       this.scrollHeightMenuContainer.set(`${size}px`);
       return;
     }
+  }
+
+  public logout(){
+    this.storage.logout()
   }
 
   @HostListener('window:resize')

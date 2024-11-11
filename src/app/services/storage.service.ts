@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Subject } from 'rxjs';
@@ -8,7 +8,8 @@ import { IUser } from '../models/user';
   providedIn: 'root',
 })
 export class StorageService {
-  constructor(private cookieService: CookieService, private router: Router) {}
+  private cookieService = inject(CookieService);
+  private router = inject(Router);
 
   UserSubject = new Subject<void>();
   myUser: IUser = {} as IUser;
@@ -47,11 +48,11 @@ export class StorageService {
     this.cookieService.set(
       'token',
       token,
-      keep ? 60 : undefined,
-      '/',
-      undefined,
-      true,
-      'Strict'
+      keep ? 60 : undefined, // Número de dias (60 dias ou sessão)
+      '/',                   // Caminho do cookie
+      undefined,             // Domínio (pode ser `undefined` em `localhost`)
+      true,                  // Envia o cookie apenas por HTTPS
+      'Strict'               // Modo de SameSite para maior segurança
     );
 
     this.router.navigate(['/']);

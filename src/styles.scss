@@ -23,9 +23,11 @@ $financee-web-theme: mat.define-light-theme((
 @tailwind components;
 @tailwind utilities;
 
-@import 'styles/_animations.scss';
+@import 'ngx-toastr/toastr';
+@import 'styles/_dialog.scss';
 @import 'styles/_button.scss';
 @import 'styles/_input.scss';
+@import 'styles/_table.scss';
 @import 'styles/fw2svg.scss';
 
 * {
@@ -34,6 +36,7 @@ $financee-web-theme: mat.define-light-theme((
   box-sizing: border-box;
   outline: none;
   font-family: 'Mulish', sans-serif !important;
+  background-color: var(--secund-bg);
 }
 
 html,
@@ -49,7 +52,6 @@ body {
 }
 body {
   margin: 0;
-  background-color: var(--secund-bg);
 }
 
 html, body { height: 100%; }
