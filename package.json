@@ -6,6 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "build:prod": "ng build --configuration production",
+    "watch": "ng build --watch --configuration production --open",
     "post-release": "ts-node ./version.ts && git c \"chore(env): update enviroment versions\" && git push --tags",
     "release:ma": "standard-version --release-as major && npm run post-release",
     "release:mi": "standard-version --release-as minor && npm run post-release",
