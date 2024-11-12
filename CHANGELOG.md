@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.1](https://github.com/Guilhermee19/financee-web/compare/v1.2.0...v1.2.1) (2024-11-12)
+
+
+### Features
+
+* link prod ([b0f4215](https://github.com/Guilhermee19/financee-web/commit/b0f4215550e30fd894a394cb4351396c718dd616))
+* login e get user ([ca1fe95](https://github.com/Guilhermee19/financee-web/commit/ca1fe9561a2572718c6ee0bd9828d265c840d952))
+* overview | requets e tela de planos ([8827dca](https://github.com/Guilhermee19/financee-web/commit/8827dca15b2e9b5963d4d3bcb02a2057dcb5a041))
+* request login ([0730c74](https://github.com/Guilhermee19/financee-web/commit/0730c7479ced0bd47b50d05475ee64b7796776c6))
+* table ([f0fc82c](https://github.com/Guilhermee19/financee-web/commit/f0fc82c3ea5419a427ffc19305b9b18a22363ee3))
+* tela overview | popup detail finance ([c91e297](https://github.com/Guilhermee19/financee-web/commit/c91e297af3f41b46d21bcaa54997e233fbd302ed))
+
+
+### Bug Fixes
+
+* build prod ([14788ef](https://github.com/Guilhermee19/financee-web/commit/14788ef26443a68453e9002be24e12f44b5d1aca))
+
 ## [1.2.0](https://github.com/Guilhermee19/financee-web/compare/v1.1.1...v1.2.0) (2024-11-07)
 
 
