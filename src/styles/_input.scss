@@ -46,6 +46,21 @@
   }
 }
 
+.input_icon{
+  @apply relative w-full flex justify-center items-center;
+
+  input{
+    @apply relative w-full rounded-xl py-2 px-3 bg-transparent border-2 border-solid border-DarkGray text-white;
+
+    &:placeholder{
+      @apply text-DarkGray;
+    }
+  }
+
+  i{
+    @apply absolute right-3 text-white text-base cursor-pointer p-1;
+  }
+}
 
 /* .form-input{
   @apply w-full flex flex-col gap-2;

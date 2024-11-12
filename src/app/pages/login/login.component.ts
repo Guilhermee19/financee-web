@@ -5,7 +5,7 @@ import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angu
 import { MatButtonModule } from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { Router } from '@angular/router';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { Md5 } from 'md5-typescript';
 import { AuthService } from '../../services/auth.service';
 import { StorageService } from '../../services/storage.service';
@@ -17,6 +17,8 @@ import { BodyJson } from '../../services/http.service';
   selector: 'app-login',
   standalone: true,
   imports: [
+    RouterOutlet,
+    RouterModule,
     CommonModule,
     MatButtonModule,
     FormsModule,
@@ -32,7 +34,6 @@ export class LoginComponent {
   private toastr = inject(Toastr);
   private authService = inject(AuthService);
   private storage = inject(StorageService);
-  private router = inject(Router);
   public version = environment.version
 
   public loading = signal(false);

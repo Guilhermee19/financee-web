@@ -12,6 +12,6 @@ export class AppComponent implements OnInit{
   title = 'financee-web';
 
   public ngOnInit(){
-    console.log(environment.production ? '--- is development ---' : '--- is production ---');
+    console.log(!environment.production ? '--- is development ---' : '--- is production ---');
   }
 }
