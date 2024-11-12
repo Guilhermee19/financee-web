@@ -24,7 +24,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Bug Fixes
 
-* version.ts name file enviroment.prod ([c0d4219](https://github.com/Guilhermee19/financee-web/commit/c0d4219e06b1e992392cd48941d6390d72d96eb9))
+* version.ts name file enviroment.production ([c0d4219](https://github.com/Guilhermee19/financee-web/commit/c0d4219e06b1e992392cd48941d6390d72d96eb9))
 
 ## 1.0.0 (2024-10-30)
 
