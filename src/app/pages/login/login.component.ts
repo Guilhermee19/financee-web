@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { CommonModule } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -32,6 +33,7 @@ export class LoginComponent {
   private authService = inject(AuthService);
   private storage = inject(StorageService);
   private router = inject(Router);
+  public version = environment.version
 
   public loading = signal(false);
 

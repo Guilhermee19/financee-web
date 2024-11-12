@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,10 @@ import { RouterOutlet } from '@angular/router';
   imports: [RouterOutlet],
   templateUrl: './app.component.html'
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'financee-web';
+
+  public ngOnInit(){
+    console.log(environment.production ? '--- is development ---' : '--- is production ---');
+  }
 }
