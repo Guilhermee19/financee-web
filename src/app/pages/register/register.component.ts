@@ -41,10 +41,10 @@ export class RegisterComponent {
   public showConfirm = signal(false);
 
   public form = this.fb.nonNullable.group({
-    name: ['admin', [Validators.required]],
-    email: ['admin@admin.com', [Validators.required, Validators.email]],
-    password: ['admin', Validators.required],
-    confirm_password: ['admin', Validators.required],
+    name: ['', [Validators.required]],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', Validators.required],
+    confirm_password: ['', Validators.required],
     remember: [false],
   });
 
