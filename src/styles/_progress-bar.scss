@@ -1,0 +1,20 @@
+.mdc-linear-progress {
+  --mdc-linear-progress-track-height: 10px;
+
+  border-radius: 20px;
+}
+
+.mdc-linear-progress__buffer-bar {
+  --mdc-linear-progress-track-color: rgba(85,176,46,.08);
+}
+
+.mdc-linear-progress__bar {
+  --mdc-linear-progress-active-indicator-height: 10px;
+
+  border-radius: 20px;
+}
+
+
+.mdc-linear-progress__bar-inner {
+  --mdc-linear-progress-active-indicator-color: #55b02e;
+}

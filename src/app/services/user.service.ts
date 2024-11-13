@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IUser } from '../models/user';
-import { HttpClient } from '@angular/common/http';
-import { BodyJson } from './http.service';
+import { BodyJson, HttpService } from './http.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpService) {}
 
   createUser(body: BodyJson): Observable<IUser> {
     return this.http.post<IUser>('core/create-user/', body);

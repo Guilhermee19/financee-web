@@ -62,7 +62,7 @@ export class HttpService {
 
   private handleError = (error: HttpErrorResponse) => {
     let errorMessage = '';
-    if (error.error instanceof ErrorEvent) {
+    if (typeof ErrorEvent !== 'undefined' && error.error instanceof ErrorEvent) {
       errorMessage = error.error.message;
     } else {
       errorMessage = error.error.detail;
