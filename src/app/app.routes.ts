@@ -1,10 +1,11 @@
 import { Routes } from '@angular/router';
-import { authGuard } from './guards/auth.guard';
+import { unauthGuard } from './guards/unauth.guard';
 
 export const routes: Routes = [
   {
     path: 'login',
     title: 'Login',
+    canActivate: [unauthGuard],
     loadComponent: () =>
       import('./pages/login/login.component').then((m) => m.LoginComponent),
   },
@@ -45,6 +46,10 @@ export const routes: Routes = [
         path: '**',
         redirectTo: 'overview',
       },
-    ]
+    ],
+  },
+  {
+    path: '**',
+    redirectTo: 'overview',
   },
 ];

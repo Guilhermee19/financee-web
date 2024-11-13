@@ -1,7 +1,7 @@
 import { isPlatformServer } from '@angular/common';
 import { inject, PLATFORM_ID } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { StorageService } from '@app/shared/services/storage.service';
+import { StorageService } from '../services/storage.service';
 
 export const unauthGuard: CanActivateFn = () => {
   const platformId = inject(PLATFORM_ID);
@@ -11,7 +11,7 @@ export const unauthGuard: CanActivateFn = () => {
   const router = inject(Router);
   const token = storage.token;
   if (token) {
-    router.navigate(['/']);
+    router.navigate(['/overview']);
     return false;
   }
   return true;
