@@ -3,7 +3,22 @@
     <header class="w-full flex justify-between items-center gap-4">
       <h1 class="text-2xl font-bold text-label"> Overview </h1>
 
+
       <div class="buttons">
+        <form [formGroup]="form" class="form-input">
+          <div class="form-calendar">
+            <input
+              type="month"
+              id="date"
+              placeholder="Data"
+              formControlName="date"
+            />
+            <div class="custom-calendar-icon">
+              <i icon="calendar_days"></i>
+            </div>
+          </div>
+        </form>
+
         <button mat-button> Reatório IA <i icon="file_lines"></i> </button>
       </div>
     </header>

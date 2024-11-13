@@ -6,7 +6,7 @@
   .mat-mdc-dialog-container{
     @apply rounded-default;
     .mdc-dialog__surface{
-      @apply p-5 rounded-default bg-secondary;
+      @apply py-5 rounded-default bg-secondary;
     }
   }
 }

@@ -1,24 +1,25 @@
 import { Routes } from '@angular/router';
 import { unauthGuard } from './guards/unauth.guard';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   {
     path: 'login',
-    title: 'Login',
+    title: 'Login | financee.me',
     canActivate: [unauthGuard],
     loadComponent: () =>
       import('./pages/login/login.component').then((m) => m.LoginComponent),
   },
   {
     path: 'register',
-    title: 'Login',
+    title: 'Registrar | financee.me',
     loadComponent: () =>
       import('./pages/register/register.component').then((m) => m.RegisterComponent),
   },
   {
     path: '',
     title: 'financee.me',
-    // canActivate: [authGuard],
+    canActivate: [authGuard],
     loadComponent: () =>
       import('./components/navbar/navbar.component').then(
         (m) => m.NavbarComponent

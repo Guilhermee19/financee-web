@@ -8,15 +8,27 @@ import { DashboardService } from '../../services/dashboard.service';
 import { MONTHS } from '../../constants/utils';
 import { IDashbaord } from '../../models/dashboard';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { debounceTime, distinctUntilChanged, startWith } from 'rxjs';
 @Component({
   selector: 'app-overview',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, IconDirective, CurrencyPipe, MatDialogModule, MatProgressBarModule],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    IconDirective,
+    CurrencyPipe,
+    MatDialogModule,
+    MatProgressBarModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   templateUrl: './overview.component.html',
 })
 export class OverviewComponent implements OnInit{
   readonly dialog = inject(MatDialog);
   readonly dashboardService = inject(DashboardService);
+  private fb = inject(FormBuilder);
 
   public view_values = signal(true);
 
@@ -37,8 +49,25 @@ export class OverviewComponent implements OnInit{
   public revenue = 8150;
   public expenses = 2950;
 
+  public form = this.fb.nonNullable.group({
+    date: [`${new Date().getFullYear()}-${new Date().getMonth()+1}`],
+  });
+
   public ngOnInit(){
+    console.log(new Date());
+
+    this.form.controls.date.valueChanges
+      .pipe(startWith(''), debounceTime(100), distinctUntilChanged())
+      .subscribe((value) => {
+        this.getDashboard()
+      });
+
     this.getDashboard()
+  }
+
+  public selectDate(){
+    console.log(this.form.value.date);
+
   }
 
   public modeView(){
@@ -62,8 +91,8 @@ export class OverviewComponent implements OnInit{
 
   private getDashboard(){
     const params = {
-      year: this.current_year,
-      month: this.months[this.current_month].month,
+      year: Number(this.form.value.date?.split('-')[0] || new Date().getFullYear()),
+      month: Number(this.form.value.date?.split('-')[1] || new Date().getMonth() +1),
     };
 
     this.dashboardService.getDashboard(params).subscribe({
