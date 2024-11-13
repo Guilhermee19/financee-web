@@ -39,8 +39,8 @@ export class LoginComponent {
   public loading = signal(false);
 
   public form = this.fb.nonNullable.group({
-    email: ['admin@admin.com', [Validators.required, Validators.email]],
-    password: ['admin', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', Validators.required],
     remember: [false],
   });
 
