@@ -5,6 +5,12 @@
     <i icon="xmark" class="text-white p-1 cursor-pointer" (click)="chance(false)"></i>
   </header>
 
+
+  <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="setValue($event)">
+    <mat-tab label="Entrada"></mat-tab>
+    <mat-tab label="Saída"></mat-tab>
+  </mat-tab-group>
+
   <form  [formGroup]="form" class="my-4 px-5 flex flex-col gap-4">
     <div class="form-input">
       <label> Descrição </label>

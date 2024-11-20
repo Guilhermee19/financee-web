@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.mat-tab-group{
+  background-color: red !important;
+
+  .mat-mdc-tab-header{
+    .mat-mdc-tab-label-container{
+      .mat-mdc-tab-list{
+        .mat-mdc-tab-labels{
+          .mat-mdc-tab {
+            .mdc-tab--active{
+              &:hover{
+                .mdc-tab__text-label {
+                  --mat-tab-header-active-hover-label-text-color: #55b02e !important;
+                }
+              }
+            }
+
+            .mdc-tab-indicator__content--underline {
+              --mdc-tab-indicator-active-indicator-color: #55b02e !important;
+            }
+
+            .mdc-tab__text-label {
+              --mat-tab-header-inactive-label-text-color: white !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}

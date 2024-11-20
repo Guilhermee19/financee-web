@@ -24,13 +24,13 @@ $financee-web-theme: mat.define-light-theme((
 @tailwind utilities;
 
 @import 'ngx-toastr/toastr';
-@import 'styles/_dialog.scss';
-@import 'styles/_button.scss';
-@import 'styles/_input.scss';
-@import 'styles/_mat-checkbox.scss';
-@import 'styles/_progress-bar.scss';
-@import 'styles/_table.scss';
-@import 'styles/fw2svg.scss';
+@import 'assets/styles/_dialog.scss';
+@import 'assets/styles/_button.scss';
+@import 'assets/styles/_input.scss';
+@import 'assets/styles/_mat-checkbox.scss';
+@import 'assets/styles/_progress-bar.scss';
+@import 'assets/styles/_table.scss';
+@import 'assets/styles/fw2svg.scss';
 
 * {
   padding: 0;
