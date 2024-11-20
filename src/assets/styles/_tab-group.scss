@@ -29,6 +29,16 @@
   }
 }
 
+.mdc-tab {
+  min-width: 0 !important;
+  padding-right: 0  !important;
+  padding-left: 0 !important;
+}
+
+.mat-mdc-tab-header {
+  --mdc-secondary-navigation-tab-container-height: 40px;
+}
+
 .mat-mdc-tab.mdc-tab--active{
   &:hover {
     .mdc-tab__text-label {

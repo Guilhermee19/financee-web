@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule, Validators 
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTabsModule } from '@angular/material/tabs';
 import { NgxMaskDirective } from 'ngx-mask';
 import { IconDirective } from '../../../shared/directives/icon.directive';
@@ -19,7 +20,8 @@ import { IconDirective } from '../../../shared/directives/icon.directive';
     ReactiveFormsModule,
     NgxMaskDirective,
     MatSelectModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSlideToggleModule
   ],
   templateUrl: './detail-finance.component.html'
 })
@@ -35,14 +37,19 @@ export class DetailFinanceComponent {
     date: ['', Validators.required],
     installments: [''],
     recurrence: [''],
+    edit_all: [false],
     type: ['Entrada'],
   });
 
-  public tabs = ['First', 'Second', 'Third'];
   public selected = new FormControl(0);
+  public recurrence = new FormControl(0);
 
-  setValue(event: number): void {
+  setSelected(event: number): void {
     this.selected.setValue(event)
+  }
+
+  setRecurrence(event: number): void {
+    this.recurrence.setValue(event)
   }
 
   chance(chance: true | false): void {

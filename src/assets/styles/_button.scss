@@ -51,3 +51,39 @@
     @apply opacity-40 ;
   }
 }
+
+.mat-mdc-outlined-button{
+  --mdc-outlined-button-label-text-color: #55b02e;
+  --mdc-outlined-button-container-shape: 12px;
+
+  @apply w-full text-sm;
+
+  &.mat-primary{
+    --mdc-filled-button-container-color: #1f1f21 !important;
+    --mdc-filled-button-label-text-color: #fff !important;
+
+    @apply bg-transparent border border-solid border-primary;
+
+    .mdc-button__label{
+      @apply text-primary;
+    }
+
+    &.mat-mdc-button-disabled {
+      --mdc-filled-button-disabled-label-text-color: #fff !important;
+      --mdc-filled-button-disabled-container-color: #1f1f21 !important;
+      --mat-full-pseudo-checkbox-selected-icon-color: #1f1f21 !important;
+    }
+
+    &:disabled{
+      @apply opacity-40 ;
+    }
+  }
+
+  &:disabled{
+    @apply opacity-40 ;
+  }
+}
+
+.mat-mdc-outlined-button:not(:disabled) {
+  --mdc-outlined-button-outline-color: #55b02e !important;
+}

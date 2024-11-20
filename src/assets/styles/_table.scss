@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .mdc-dialog__surface {
   overflow-y: hidden !important;
 }
@@ -29,6 +33,10 @@
           transition: all 0.2s;
           cursor: pointer;
         }
+      }
+
+      th.mat-mdc-header-cell{
+        @apply text-white;
       }
     }
 

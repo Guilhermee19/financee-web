@@ -6,7 +6,7 @@
   </header>
 
 
-  <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="setValue($event)">
+  <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="setSelected($event)">
     <mat-tab label="Entrada"></mat-tab>
     <mat-tab label="Saída"></mat-tab>
   </mat-tab-group>
@@ -45,14 +45,6 @@
       <mat-select formControlName="category">
         <mat-option value="WEEKLY">semanal</mat-option>
       </mat-select>
-      <!-- <div class="input_icon">
-        <input
-          type="text"
-          id="category"
-          placeholder="Categoria"
-          formControlName="category"
-        />
-      </div> -->
     </div>
 
     <div class="form-input">
@@ -60,14 +52,6 @@
       <mat-select formControlName="account">
         <mat-option value="WEEKLY">semanal</mat-option>
       </mat-select>
-      <!-- <div class="input_icon">
-        <input
-          type="text"
-          id="account"
-          placeholder="Conta"
-          formControlName="account"
-        />
-      </div> -->
     </div>
 
     <div class="form-input form-calendar">
@@ -83,28 +67,37 @@
       </div>
     </div>
 
-    <br>
+    <mat-slide-toggle formControlName="edit_all" class="!text-white"> Editar todas as variações </mat-slide-toggle>
 
-    <div class="form-input">
-      <label> Recorrência </label>
-      <mat-select formControlName="recurrence">
-        <mat-option value="WEEKLY">semanal</mat-option>
-        <mat-option value="MONTHLY">mensal</mat-option>
-        <mat-option value="ANNUAL">anual</mat-option>
-      </mat-select>
-    </div>
+    <mat-tab-group [selectedIndex]="recurrence.value" (selectedIndexChange)="setRecurrence($event)">
+      <mat-tab label="Único"></mat-tab>
 
-    <div class="form-input">
-      <label> Parcelas </label>
-      <div class="input_icon">
-        <input
-          type="number"
-          id="installments"
-          placeholder="Parcelas"
-          formControlName="installments"
-        />
-      </div>
-    </div>
+      <mat-tab label="Recorrente">
+        <div class="form-input mt-4">
+          <label> Recorrência </label>
+          <mat-select formControlName="recurrence">
+            <mat-option value="WEEKLY">semanal</mat-option>
+            <mat-option value="MONTHLY">mensal</mat-option>
+            <mat-option value="ANNUAL">anual</mat-option>
+          </mat-select>
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Parcelada">
+        <div class="form-input mt-4">
+          <label> Parcelas </label>
+          <div class="input_icon">
+            <input
+              type="number"
+              id="installments"
+              placeholder="Parcelas"
+              formControlName="installments"
+            />
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+
   </form>
 
   <div class="buttons mt-auto px-5">

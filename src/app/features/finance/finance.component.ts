@@ -1,17 +1,29 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { CurrencyPipe, DatePipe } from '@angular/common';
 import { AfterViewInit, Component, inject, OnInit, signal, ViewChild } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { DetailFinanceComponent } from '../../core/components/detail-finance/detail-finance.component';
 import { MONTHS } from '../../core/constants/utils';
 import { ITransaction } from '../../core/models/finance';
+import { IconDirective } from '../../shared/directives/icon.directive';
 import { ConvertStatusPipe } from '../../shared/pipes/convert-status.pipe';
 import { FinanceService } from '../../shared/services/finance.service';
 
 @Component({
   selector: 'app-finance',
   standalone: true,
-  imports: [MatTableModule, MatSortModule, CurrencyPipe, DatePipe, ConvertStatusPipe],
+  imports: [
+    MatTableModule,
+    MatSortModule,
+    CurrencyPipe,
+    DatePipe,
+    ConvertStatusPipe,
+    MatButtonModule,
+    IconDirective
+  ],
   templateUrl: './finance.component.html',
 })
 export class FinanceComponent implements OnInit, AfterViewInit{
@@ -19,6 +31,7 @@ export class FinanceComponent implements OnInit, AfterViewInit{
 
   private financeService = inject(FinanceService)
   private _liveAnnouncer = inject(LiveAnnouncer)
+  readonly dialog = inject(MatDialog);
 
   private loading = signal(false);
   private months = MONTHS;
@@ -65,5 +78,20 @@ export class FinanceComponent implements OnInit, AfterViewInit{
     } else {
       this._liveAnnouncer.announce('Sorting cleared');
     }
+  }
+
+  public createFinance(){
+    const dialogRef = this.dialog.open(DetailFinanceComponent,{
+      panelClass: 'custom-dialog', // classe CSS personalizada
+      disableClose: true, // Impede o fechamento automático
+      position: { right: '1rem', top: '1rem' }, // posição no canto superior direito
+      width: 'calc(100% - 2rem)', // ajuste o tamanho conforme necessário
+      maxWidth: '350px',
+      height: 'calc(100dvh - 2rem)'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }

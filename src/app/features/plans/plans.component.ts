@@ -11,7 +11,7 @@ import { PlansService } from '../../shared/services/plans.service';
 })
 export class PlansComponent implements OnInit {
   private plansService = inject(PlansService)
-  public user_plan = 0;
+  public user_plan = 1;
 
   public plans: IPlan[] = []
 
