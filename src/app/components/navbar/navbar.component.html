@@ -56,16 +56,19 @@
         </ul>
       </div>
 
-
       @if(!loading && user){
         <div class="relative ml-auto hidden md:flex items-center gap-3 border border-solid border-DarkGray px-5 pr-2 py-2 rounded-lg cursor-pointer"
           [matMenuTriggerFor]="beforeMenu">
-          <p class="text-label text-sm"> {{ user.name }} </p>
-          <avatar *ngIf="!user.profile_image" [name]="user.name" class="text-xs" color="light" bg="#55b02e" />
-          <avatar *ngIf="user.profile_image" [src]="user.profile_image" class="text-xs" color="light" bg="#55b02e" />
+          <p class="w-max text-label text-sm"> {{ user.name }} </p>
+
+          @if( user.profile_image ){
+            <avatar [src]="user.profile_image" class="text-xs" color="light" bg="#55b02e" />
+          }
+          @else {
+            <avatar [name]="user.name" class="text-xs" color="light" bg="#55b02e" />
+          }
         </div>
       }
-
     </div>
   </div>
 </nav>
