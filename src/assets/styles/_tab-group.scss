@@ -2,32 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
-.mat-tab-group{
-  background-color: red !important;
+.mat-mdc-tab .mdc-tab-indicator__content--underline {
+  --mdc-tab-indicator-active-indicator-color: #55b02e !important;
+}
 
-  .mat-mdc-tab-header{
-    .mat-mdc-tab-label-container{
-      .mat-mdc-tab-list{
-        .mat-mdc-tab-labels{
-          .mat-mdc-tab {
-            .mdc-tab--active{
-              &:hover{
-                .mdc-tab__text-label {
-                  --mat-tab-header-active-hover-label-text-color: #55b02e !important;
-                }
-              }
-            }
+.mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
+  --mat-tab-header-active-label-text-color: #55b02e !important;
+}
 
-            .mdc-tab-indicator__content--underline {
-              --mdc-tab-indicator-active-indicator-color: #55b02e !important;
-            }
+.mat-mdc-tab .mdc-tab__text-label {
+  --mat-tab-header-inactive-label-text-color: #fff !important;
+}
 
-            .mdc-tab__text-label {
-              --mat-tab-header-inactive-label-text-color: white !important;
-            }
-          }
-        }
-      }
+.mat-mdc-tab:hover .mdc-tab__text-label {
+  --mat-tab-header-inactive-hover-label-text-color: #fff !important;
+}
+
+.mat-mdc-tab .mdc-tab__ripple::before{
+  --mat-tab-header-inactive-ripple-color: transparent !important;
+}
+
+.mat-mdc-tab.mdc-tab--active {
+  .mdc-tab__ripple::before,
+  .mat-ripple-element {
+    --mat-tab-header-active-ripple-color: transparent !important;
+  }
+}
+
+.mat-mdc-tab.mdc-tab--active{
+  &:hover {
+    .mdc-tab__text-label {
+      --mat-tab-header-active-hover-label-text-color: #55b02e !important;
+    }
+    .mdc-tab-indicator__content--underline {
+      --mat-tab-header-active-hover-indicator-color: #55b02e !important;
+    }
+  }
+  &:focus{
+    .mdc-tab__text-label {
+      --mat-tab-header-active-focus-label-text-color: #55b02e !important;
+    }
+    .mdc-tab-indicator__content--underline {
+      --mat-tab-header-active-focus-indicator-color: #55b02e !important;
     }
   }
 }
