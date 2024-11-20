@@ -1,0 +1,58 @@
+<main>
+  <div class="container mx-auto">
+    <header class="w-full flex justify-between">
+      <h1 class="text-2xl font-bold text-label"> Transações </h1>
+
+      <button mat-flat-button color="primary" class="w-max" (click)="createFinance()"> Adicionar Transação <i icon="arrow_up_arrow_down"></i> </button>
+    </header>
+
+    <section class="container-tablet mt-6">
+      <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
+       class="mat-elevation-z8">
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
+            Descrição
+          </th>
+          <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="type">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
+            Tipo
+          </th>
+          <td mat-cell *matCellDef="let element"> {{ element.type | status }} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="category">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by weight">
+            Categoria
+          </th>
+          <td mat-cell *matCellDef="let element"> {{element.category_obj?.name || '-'}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="expiry_date">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+            Data
+          </th>
+          <td mat-cell *matCellDef="let element"> {{element.expiry_date | date: 'dd MMM yyyy'}} </td>
+        </ng-container>
+
+         <!-- Symbol Column -->
+         <ng-container matColumnDef="value_installment">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+            Valor
+          </th>
+          <td mat-cell *matCellDef="let element"> {{element.value_installment | currency }} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </section>
+  </div>
+</main>

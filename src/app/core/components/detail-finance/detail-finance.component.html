@@ -1,0 +1,108 @@
+<section class="h-full flex flex-col">
+  <header class="flex justify-between items-center px-5 gap-2 pb-5 border-b border-solid border-White8">
+    <h1 class="text-white text-xl font-semibold"> Transação </h1>
+
+    <i icon="xmark" class="text-white p-1 cursor-pointer" (click)="chance(false)"></i>
+  </header>
+
+
+  <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="setSelected($event)">
+    <mat-tab label="Entrada"></mat-tab>
+    <mat-tab label="Saída"></mat-tab>
+  </mat-tab-group>
+
+  <form  [formGroup]="form" class="my-4 px-5 flex flex-col gap-4">
+    <div class="form-input">
+      <label for="description"> Descrição </label>
+      <div class="input_icon">
+        <input
+          type="text"
+          id="description"
+          placeholder="Descrição"
+          formControlName="description"
+        />
+      </div>
+    </div>
+
+    <div class="form-input">
+      <label> Valor </label>
+      <div class="input_icon">
+        <input
+          type="text"
+          id="value"
+          mask="separator.2"
+          [thousandSeparator]="'.'"
+          [decimalMarker]="','"
+          prefix="R$ "
+          placeholder="R$ 0,00"
+          formControlName="value"
+        />
+      </div>
+    </div>
+
+    <div class="form-input">
+      <label> Categoria </label>
+      <mat-select formControlName="category">
+        <mat-option value="WEEKLY">semanal</mat-option>
+      </mat-select>
+    </div>
+
+    <div class="form-input">
+      <label> Conta </label>
+      <mat-select formControlName="account">
+        <mat-option value="WEEKLY">semanal</mat-option>
+      </mat-select>
+    </div>
+
+    <div class="form-input form-calendar">
+      <label> Data </label>
+      <input
+        type="date"
+        id="date"
+        placeholder="Data"
+        formControlName="date"
+      />
+      <div class="custom-calendar-icon">
+        <i icon="calendar_days"></i>
+      </div>
+    </div>
+
+    <mat-slide-toggle formControlName="edit_all" class="!text-white"> Editar todas as variações </mat-slide-toggle>
+
+    <mat-tab-group [selectedIndex]="recurrence.value" (selectedIndexChange)="setRecurrence($event)">
+      <mat-tab label="Único"></mat-tab>
+
+      <mat-tab label="Recorrente">
+        <div class="form-input mt-4">
+          <label> Recorrência </label>
+          <mat-select formControlName="recurrence">
+            <mat-option value="WEEKLY">semanal</mat-option>
+            <mat-option value="MONTHLY">mensal</mat-option>
+            <mat-option value="ANNUAL">anual</mat-option>
+          </mat-select>
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Parcelada">
+        <div class="form-input mt-4">
+          <label> Parcelas </label>
+          <div class="input_icon">
+            <input
+              type="number"
+              id="installments"
+              placeholder="Parcelas"
+              formControlName="installments"
+            />
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+
+  </form>
+
+  <div class="buttons mt-auto px-5">
+    <button mat-flat-button color="accent" (click)="chance(false)"> Cancelar </button>
+    <button mat-flat-button color="primary" [disabled]="form.invalid" > Salvar </button>
+  </div>
+
+</section>

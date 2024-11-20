@@ -6,6 +6,7 @@ import { provideClientHydration } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideToastr } from 'ngx-toastr';
+import { provideEnvironmentNgxMask } from 'ngx-mask';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -14,5 +15,6 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(), provideAnimationsAsync(),
     provideHttpClient(withFetch()),
     provideToastr(), // Toastr providers
+    provideEnvironmentNgxMask(),
   ],
 };

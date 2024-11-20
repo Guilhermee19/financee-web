@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/Guilhermee19/financee-web/compare/v1.2.1...v1.3.0) (2024-11-20)
+
+
+### Features
+
+* add eslint ([c80a520](https://github.com/Guilhermee19/financee-web/commit/c80a520e96ccdacd179edb1e97b064907e0a5a73))
+* filter date overview | inputs popup ([9bab7fa](https://github.com/Guilhermee19/financee-web/commit/9bab7fa204f6303357d30a2951d6ae3a3c668d06))
+* login ([08b3e31](https://github.com/Guilhermee19/financee-web/commit/08b3e31c8cd5fe45a0e551ad0a90ab3c505f73f3))
+* login | register ([5354169](https://github.com/Guilhermee19/financee-web/commit/535416961a2bbf60d6c10ab80dacba8b855e087c))
+* modal detail finance ([eb4a130](https://github.com/Guilhermee19/financee-web/commit/eb4a130daf63ea14d3aaa1463a354934f229a027))
+* overview - categories, balance ([a99e38a](https://github.com/Guilhermee19/financee-web/commit/a99e38ad6e37b7b529c99a8df4bbf73643e5b087))
+
 ### [1.2.1](https://github.com/Guilhermee19/financee-web/compare/v1.2.0...v1.2.1) (2024-11-12)
 
 

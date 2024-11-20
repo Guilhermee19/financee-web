@@ -1,0 +1,42 @@
+<main>
+  <div class="container mx-auto pb-10">
+    <header>
+      <h1 class="text-2xl font-bold text-label"> Assinatura </h1>
+    </header>
+
+    <section class="w-full flex flex-wrap gap-6 mt-5">
+      @if(plans && plans.length > 0){
+        @for (plan of plans; track $index) {
+          <div class="relative h-full min-w-96 flex-1 border border-solid border-Gray rounded-default py-8">
+            <h2 class="w-full text-White text-2xl font-semibold text-center"> {{ plan.title }} </h2>
+
+            <div class="w-full flex justify-center items-center gap-3 my-4">
+              <h2 class="text-White text-4xl font-normal mb-auto mt-2">
+                R$
+              </h2>
+              <h2 class="text-White text-6xl font-semibold">
+                {{ plan?.monthly_price }}
+              </h2>
+              <h2 class="text-Gray text-2xl font-normal">
+                /mês
+              </h2>
+            </div>
+
+            <div class="space-y-6 pt-8 px-10 border-t border-solid border-Gray flex flex-col justify-between">
+              <div class="flex items-center gap-2">
+                <p class="text-White" [innerHTML]="plan.benefits"> </p>
+              </div>
+
+              @if(user_plan === plan.id){
+                <button mat-stroked-button color="primary" class="mt-auto"> Fazer Upgrade </button>
+              }
+              @else {
+                <button mat-flat-button color="primary" class="mt-auto"> Adquirir plano </button>
+              }
+            </div>
+          </div>
+        }
+      }
+    </section>
+  </div>
+</main>

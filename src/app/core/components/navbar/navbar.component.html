@@ -1,0 +1,92 @@
+<nav id="top-navbar" class="fixed top-0 px-6 z-10 w-full bg-tertiary">
+  <div class="container mx-auto">
+    <div
+      class="flex flex-wrap items-center justify-between py-2 md:flex-nowrap"
+    >
+      <a role="button" routerLink="/" class="h-9 mr-6">
+        <img src="../../../assets/logo_marca.png" alt="Logo" class="size-full object-contain" />
+      </a>
+
+      <div class="flex ml-auto md:hidden">
+        <button
+          mat-icon-button
+          class="my-0 ml-auto mr-0 text-label transition {{
+            isMenuOpen() ? 'rotate-90' : ''
+          }}"
+          (click)="toggleMenuOpened()"
+        >
+          <i [icon]="isMenuOpen() ? 'xmark' : 'bars'"></i>
+        </button>
+      </div>
+
+      @if(!loading && user){
+        <div class="relative flex md:hidden cursor-pointer"  [matMenuTriggerFor]="beforeMenu">
+          <avatar [name]="user.name" class="text-xs" color="light" bg="#55b02e" />
+        </div>
+      }
+
+
+      <div
+        #menuContainer
+        class="w-full overflow-hidden transition-all flex items-center {{
+            isMenuOpen() ? 'justify-center' : ''
+          }}"
+        [ngStyle]="{
+          height: scrollHeightMenuContainer(),
+        }"
+      >
+        <ul
+          class="m-0 flex list-none flex-col gap-x-6 p-0 pt-2 md:flex-row md:items-center md:justify-end md:pt-0"
+          (click)="onResize()"
+          (keydown)="onResize()"
+          tabindex="-1"
+        >
+        @for (item of navbars; track $index) {
+          <li>
+            <a
+              mat-button
+              [routerLink]="item.router"
+              routerLinkActive="active"
+              class="w-full"
+            >
+              {{ item.label }}
+            </a>
+          </li>
+        }
+        </ul>
+      </div>
+
+      @if(!loading && user){
+        <div class="relative ml-auto hidden md:flex items-center gap-3 border border-solid border-DarkGray px-5 pr-2 py-2 rounded-lg cursor-pointer"
+          [matMenuTriggerFor]="beforeMenu">
+          <p class="w-max text-label text-sm"> {{ user.name }} </p>
+
+          @if( user.profile_image ){
+            <avatar [src]="user.profile_image" class="text-xs" color="light" bg="#55b02e" />
+          }
+          @else {
+            <avatar [name]="user.name" class="text-xs" color="light" bg="#55b02e" />
+          }
+        </div>
+      }
+    </div>
+  </div>
+</nav>
+
+<mat-menu #beforeMenu="matMenu" xPosition="before">
+  <button mat-menu-item> Perfil </button>
+  <button mat-menu-item> Contas </button>
+  <button mat-menu-item> Configuração </button>
+  <br>
+  <button mat-menu-item (click)="logout()"> Logof </button>
+</mat-menu>
+
+@if (!loading) {
+  <div class="relative w-full min-h-dvh pt-20 bg-tertiary px-6">
+    <router-outlet />
+  </div>
+}
+
+@if (loading) {
+  <!-- <page-loading /> -->
+}

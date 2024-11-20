@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.form-input {
+  @apply w-full flex flex-col gap-2;
+
+  label {
+    @apply text-white text-sm;
+  }
+
+  input,
+  textarea,
+  select,
+  .mat-mdc-select-trigger {
+    @apply relative w-full rounded-xl py-2 px-3 bg-transparent border-2 border-solid border-DarkGray text-white;
+
+
+
+    &:placeholder{
+      @apply text-DarkGray;
+    }
+
+    .mat-mdc-select-value-text{
+      @apply text-white;
+      span{
+        @apply text-white;
+      }
+    }
+
+    .mat-mdc-select-arrow{
+      @apply text-white;
+    }
+
+    &:read-only {
+      opacity: 0.5;
+    }
+
+    &[type="number"] {
+      -webkit-appearance: textfield;
+      -moz-appearance: textfield;
+      appearance: textfield;
+    }
+    &[type="number"]::-webkit-inner-spin-button,
+    &[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+    }
+    &.ng-touched.ng-invalid {
+      @apply border-red-500 animate-shake;
+    }
+    &[type="file"] {
+      display: none;
+    }
+
+    &:focus-visible {
+      outline: none;
+      // outline: 1px solid var(--text-color);
+    }
+  }
+
+  .input_icon{
+    @apply relative w-full flex justify-center items-center;
+
+    input{
+      @apply relative w-full rounded-xl py-2 px-3 bg-transparent border-2 border-solid border-DarkGray text-white;
+
+      &:placeholder{
+        @apply text-DarkGray;
+      }
+    }
+
+    i{
+      @apply absolute right-3 text-white text-base cursor-pointer p-1;
+    }
+  }
+
+  .mat-mdc-select-trigger{
+    &:read-only {
+      opacity: 1 !important;
+    }
+  }
+}
+
+
+/* Esconde o ícone padrão do campo de data */
+.form-calendar {
+  @apply relative inline-block;
+
+  input[type="date"],
+  input[type="month"] {
+    @apply pr-8 pl-2 py-2  text-white focus:outline-none; /* Estilos para o input */
+
+    /* Deixe espaço para o ícone personalizado */
+    padding-right: .7rem;
+
+    &::-webkit-calendar-picker-indicator {
+      opacity: 0;
+      z-index: 20;
+      cursor: pointer;
+    }
+  }
+
+  .custom-calendar-icon {
+    @apply absolute bottom-[.6rem] right-4 transform text-white z-10; /* Posicionamento do ícone */
+    pointer-events: none; /* Evita interferência na interação do input */
+    color: #fff; /* Cor do ícone */
+  }
+}
