@@ -1,16 +1,14 @@
 /* eslint-disable camelcase */
 import { Injectable, inject } from '@angular/core';
-import { Observable, from } from 'rxjs';
-// import { Auth, signOut, user } from '@angular/fire/auth';
+import { Observable } from 'rxjs';
 import { IToken, IUser } from '../models/user';
-import { Router } from '@angular/router';
 import { BodyJson, HttpService } from './http.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpService, private router: Router) {}
+  private http = inject (HttpService)
 
   login(body: BodyJson) {
     return this.http.post<IToken>('core/auth/', body);

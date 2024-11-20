@@ -1,23 +1,22 @@
-import { environment } from './../../../environments/environment';
 import { CommonModule } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import {MatInputModule} from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { Router, RouterModule, RouterOutlet } from '@angular/router';
+import { MatInputModule } from '@angular/material/input';
+import { RouterModule } from '@angular/router';
 import { Md5 } from 'md5-typescript';
+import { LoadingStateDirective } from '../../directives/loading.directive';
 import { AuthService } from '../../services/auth.service';
+import { BodyJson } from '../../services/http.service';
 import { StorageService } from '../../services/storage.service';
 import { Toastr } from '../../services/toastr.service';
-import { LoadingStateDirective } from '../../directives/loading.directive';
-import { BodyJson } from '../../services/http.service';
+import { environment } from './../../../environments/environment';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [
-    RouterOutlet,
     RouterModule,
     CommonModule,
     MatButtonModule,

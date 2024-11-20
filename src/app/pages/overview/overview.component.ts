@@ -1,15 +1,15 @@
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { IconDirective } from '../../directives/icon.directive';
-import { CurrencyPipe, CommonModule } from '@angular/common';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { DetailFinanceComponent } from '../../components/modal/detail-finance/detail-finance.component';
-import { DashboardService } from '../../services/dashboard.service';
-import { MONTHS } from '../../constants/utils';
-import { IDashbaord } from '../../models/dashboard';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { debounceTime, distinctUntilChanged, startWith } from 'rxjs';
+import { DetailFinanceComponent } from '../../components/modal/detail-finance/detail-finance.component';
+import { MONTHS } from '../../constants/utils';
+import { IconDirective } from '../../directives/icon.directive';
+import { IDashbaord } from '../../models/dashboard';
+import { DashboardService } from '../../services/dashboard.service';
 @Component({
   selector: 'app-overview',
   standalone: true,
@@ -58,7 +58,7 @@ export class OverviewComponent implements OnInit{
 
     this.form.controls.date.valueChanges
       .pipe(startWith(''), debounceTime(100), distinctUntilChanged())
-      .subscribe((value) => {
+      .subscribe(() => {
         this.getDashboard()
       });
 

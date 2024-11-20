@@ -70,13 +70,13 @@ export class HttpService {
 
     if (errorMessage === 'Authentication credentials were not provided.') {
       this.storage.logout();
-    } else if (errorMessage === 'User inactive or deleted.') {
-    } else if (
-      errorMessage !==
-        "Cannot resolve keyword 'propertypurpose' into field. Choices are: bedrooms, code, created_at, description, garage_space, id, is_active, is_deleted, main_neighborhood, main_neighborhood_id, maximum_size, minimum_size, neighborhood, propertyorderpurpose, report, search_address, title, type, type_id, updated_at, user, user_id" &&
-      errorMessage !==
-        "Cannot resolve keyword 'propertyorderpurpose' into field. Choices are: CEP, IPTU, address, address_complement, address_number, annual_iptu_value, bathroom, bedrooms, block, code, concierge, created_at, description, floor, full_address, furnished, garage_space, id, iptu_type, iptu_value, is_active, is_deleted, media, monthly_iptu_value, neighborhood, neighborhood_id, propertypurpose, report, rooms, size, street_name, suite, type, type_id, unity, updated_at, user, user_id"
-    ) {
+    // } else if (errorMessage === 'User inactive or deleted.') {
+    // } else if (
+    //   errorMessage !==
+    //     "Cannot resolve keyword 'propertypurpose' into field. Choices are: bedrooms, code, created_at, description, garage_space, id, is_active, is_deleted, main_neighborhood, main_neighborhood_id, maximum_size, minimum_size, neighborhood, propertyorderpurpose, report, search_address, title, type, type_id, updated_at, user, user_id" &&
+    //   errorMessage !==
+    //     "Cannot resolve keyword 'propertyorderpurpose' into field. Choices are: CEP, IPTU, address, address_complement, address_number, annual_iptu_value, bathroom, bedrooms, block, code, concierge, created_at, description, floor, full_address, furnished, garage_space, id, iptu_type, iptu_value, is_active, is_deleted, media, monthly_iptu_value, neighborhood, neighborhood_id, propertypurpose, report, rooms, size, street_name, suite, type, type_id, unity, updated_at, user, user_id"
+    // ) {
     }
 
     return throwError(() => error);

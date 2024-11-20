@@ -11,7 +11,7 @@
       <h1 class="w-full text-label text-center text-4xl font-bold mb-4"> Registrar </h1>
 
       <div class="form-input">
-        <label> Nome </label>
+        <label for="name"> Nome </label>
         <div class="input_icon">
           <input
             type="text"
@@ -23,7 +23,7 @@
       </div>
 
       <div class="form-input my-4">
-        <label> E-mail </label>
+        <label for="email"> E-mail </label>
         <div class="input_icon">
           <input
             type="text"
@@ -35,18 +35,18 @@
       </div>
 
       <div class="form-input flex">
-        <label> Senha </label>
+        <label for="password"> Senha </label>
         <div class="input_icon">
-          <input  [type]="showPassword() ? 'text' : 'password'" placeholder="Senha" formControlName="password" autocomplete="password">
+          <input [type]="showPassword() ? 'text' : 'password'" id="password" placeholder="Senha" formControlName="password" autocomplete="password">
 
           <i [icon]="showPassword() ? 'eye' : 'eye_slash'" (click)="showPassword.set(!showPassword())"></i>
         </div>
       </div>
 
       <div class="form-input flex my-4">
-        <label> Confirmar Senha </label>
+        <label for="confirm_password"> Confirmar Senha </label>
         <div class="input_icon">
-          <input  [type]="showConfirm() ? 'text' : 'password'" placeholder="Senha" formControlName="confirm_password" autocomplete="password">
+          <input [type]="showConfirm() ? 'text' : 'password'" id="confirm_password" placeholder="Senha" formControlName="confirm_password" autocomplete="password">
 
           <i [icon]="showConfirm() ? 'eye' : 'eye_slash'" (click)="showConfirm.set(!showConfirm())"></i>
         </div>

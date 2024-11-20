@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal, ViewChild } from '@angular/core';
+import { Component, inject, OnInit, signal, ViewChild, AfterViewInit } from '@angular/core';
 import { FinanceService } from '../../services/finance.service';
 import { MONTHS } from '../../constants/utils';
 import { ITransaction } from '../../models/finance';
@@ -14,7 +14,7 @@ import { ConvertStatusPipe } from '../../pipes/convert-status.pipe';
   imports: [MatTableModule, MatSortModule, CurrencyPipe, DatePipe, ConvertStatusPipe],
   templateUrl: './finance.component.html',
 })
-export class FinanceComponent implements OnInit{
+export class FinanceComponent implements OnInit, AfterViewInit{
   @ViewChild(MatSort) public sort!: MatSort;
 
   private financeService = inject(FinanceService)

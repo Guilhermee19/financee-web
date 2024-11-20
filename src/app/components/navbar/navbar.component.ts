@@ -1,14 +1,12 @@
-import { afterNextRender, Component, ElementRef, HostListener, inject, PLATFORM_ID, signal, ViewChild } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { afterNextRender, Component, ElementRef, HostListener, inject, OnInit, signal, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { AvatarComponent } from '../shared/avatar/avatar.component';
-import { IconDirective } from '../../directives/icon.directive';
 import { MatMenuModule } from '@angular/material/menu';
-import { IUser } from '../../models/user';
-import { StorageService } from '../../services/storage.service';
-import { UserService } from '../../services/user.service';
+import { RouterModule } from '@angular/router';
+import { IconDirective } from '../../directives/icon.directive';
 import { AuthService } from '../../services/auth.service';
+import { StorageService } from '../../services/storage.service';
+import { AvatarComponent } from '../shared/avatar/avatar.component';
 
 @Component({
   selector: 'app-navbar',
@@ -17,7 +15,7 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
   @ViewChild('menuContainer') public menuContainer?: ElementRef;
   private storage = inject(StorageService);
   private authService = inject(AuthService);
@@ -47,7 +45,6 @@ export class NavbarComponent {
   public user = this.storage.myself;
 
   public ngOnInit(): void {
-    // this.connectSocket()
     this.getMe();
 
     this.storage.watchUser().subscribe({

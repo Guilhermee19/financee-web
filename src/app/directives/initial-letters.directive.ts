@@ -1,10 +1,10 @@
-import { Directive, ElementRef, Input } from '@angular/core';
+import { Directive, ElementRef, Input, OnInit } from '@angular/core';
 
 @Directive({
   selector: '[initialLetters]',
   standalone: true,
 })
-export class InitialLettersDirective {
+export class InitialLettersDirective implements OnInit {
   @Input() initialLetters = 'Foo Bar';
   @Input() length = 2;
 
