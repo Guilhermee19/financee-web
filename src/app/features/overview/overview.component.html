@@ -23,9 +23,10 @@
       </div>
     </header>
 
-    <section class="w-full mt-4 flex-wrap gap-3 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    <section class="w-full mt-4 flex-wrap gap-3 grid grid-cols-10">
+
       <!-- CARD SALDO -->
-      <div class="col-start-1 col-end-4 row-start-1 card bg-DarkGreen border border-solid border-Gray rounded-default p-5">
+      <div class="col-span-10 md:col-span-7 order-1 lg:order-1 lg:col-span-7 card bg-DarkGreen border border-solid border-Gray rounded-default p-5">
        <div class="flex justify-between items-center gap-3">
         <div class="w-max flex items-center gap-2">
           <div class="w-max aspect-square px-2 flex justify-center items-center rounded-md bg-black text-white">
@@ -34,7 +35,7 @@
           <h3 class="text-sm text-white opacity-70"> Saldo </h3>
         </div>
 
-        <i [icon]="view_values() ? 'eye' : 'eye_slash'" class="text-white text-lg cursor-pointer p-1" (click)="modeView()"></i>
+        <i [icon]="view_values() ? 'eye' : 'eye_slash'" class="text-white text-lg cursor-pointer p-1" (click)="modeView()" (keydown)="modeView()" tabindex="1"></i>
 
        </div>
 
@@ -45,8 +46,13 @@
         </div>
       </div>
 
+      <!-- CARD TRANSATION -->
+      <div class="col-span-5 md:col-span-4 order-3 md:order-5 lg:order-2 lg:col-span-3 row-span-3 card bg-tertiary border border-solid border-Gray rounded-default p-5">
+
+      </div>
+
       <!-- CARD INVESTMENT -->
-      <div class="col-start-1 row-start-2 card bg-White3 border border-solid border-Gray rounded-default p-5">
+      <div class="col-span-5 md:col-span-3 order-2 md:order-2 lg:order-3 lg:col-span-3 card bg-White3 border border-solid border-Gray rounded-default p-5">
         <div class="w-max flex items-center gap-2">
           <div class="w-max aspect-square px-2 flex justify-center items-center rounded-md bg-White8 text-white">
             <i icon="piggy_bank"></i>
@@ -62,7 +68,7 @@
       </div>
 
       <!-- CARD REVENUE -->
-      <div class="col-start-2 row-start-2 card bg-tertiary border border-solid border-Gray rounded-default p-5">
+      <div class="col-span-5 md:col-span-3 order-4 md:order-3 lg:order-4 lg:col-span-2 card bg-tertiary border border-solid border-Gray rounded-default p-5">
         <div class="w-max flex items-center gap-2">
           <div class="w-max aspect-square px-2 flex justify-center items-center rounded-md bg-primary8 text-primary">
             <i icon="arrow_trend_up"></i>
@@ -80,7 +86,7 @@
       </div>
 
       <!-- CARD EXPENSES -->
-      <div class="col-start-3 row-start-2 card bg-tertiary border border-solid border-Gray rounded-default p-5">
+      <div class="col-span-5 md:col-span-3 order-5 md:order-4 lg:order-5 lg:col-span-2 card bg-tertiary border border-solid border-Gray rounded-default p-5">
         <div class="w-max flex items-center gap-2">
           <div class="w-max aspect-square px-2 flex justify-center items-center rounded-md bg-Red8 text-Red">
             <i icon="arrow_trend_down"></i>
@@ -98,12 +104,12 @@
       </div>
 
       <!-- CARD GRAPHIC -->
-      <div class="col-start-1 row-start-3 row-end-5  card bg-tertiary border border-solid border-Gray rounded-default p-5">
+      <div class="col-span-5 md:col-span-6 order-6 md:order-6 lg:order-6 lg:col-span-3 card bg-tertiary border border-solid border-Gray rounded-default p-5">
 
       </div>
 
       <!-- CARD PORCENT CATEGORY -->
-      <div class="col-start-2 col-end-4 row-start-3 row-end-5 card bg-tertiary border border-solid border-Gray rounded-default p-5">
+      <div class="col-span-5 md:col-span-6 order-7 md:order-7 lg:order-7 lg:col-span-4 card bg-tertiary border border-solid border-Gray rounded-default p-5">
         <h1 class="w-full text-White text-base font-semibold"> Gastos por categoria </h1>
         <div class="w-full h-px bg-White8 my-4"></div>
 
@@ -121,11 +127,6 @@
             <p class="text-White text-xs opacity-30"> {{ view_values() ? (category.total_spent| currency:'BRL') : 'R$ •••••' }} </p>
           </div>
         }
-      </div>
-
-      <!-- CARD TRANSATION -->
-      <div class="col-start-4 row-start-1 row-end-5 card bg-tertiary border border-solid border-Gray rounded-default p-5">
-
       </div>
 
     </section>
