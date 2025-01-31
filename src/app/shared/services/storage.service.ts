@@ -34,8 +34,20 @@ export class StorageService {
     this.UserSubject.next();
   }
 
-  get token() {
-    return this.cookieService.get('token');
+  public get token() {
+    if (this.cookies) {
+      return this.cookieService.get('token');
+    } else {
+      return sessionStorage.getItem('token');
+    }
+  }
+
+  public get cookies() {
+    return localStorage.getItem('cookies') === 'true';
+  }
+
+  public set cookies(value: boolean) {
+    localStorage.setItem('cookies', value.toString());
   }
 
   /**
@@ -45,17 +57,21 @@ export class StorageService {
    * @returns void
    */
   setToken(token: string, keep = false): void {
-    this.cookieService.set(
-      'token',
-      token,
-      keep ? 60 : undefined, // Número de dias (60 dias ou sessão)
-      '/',                   // Caminho do cookie
-      undefined,             // Domínio (pode ser `undefined` em `localhost`)
-      true,                  // Envia o cookie apenas por HTTPS
-      'Strict'               // Modo de SameSite para maior segurança
-    );
+    if (this.cookies) {
+      this.cookieService.set(
+        'token',
+        token,
+        keep ? 60 : undefined,
+        '/',
+        undefined,
+        true,
+        'Strict'
+      );
+    } else {
+      sessionStorage.setItem('token', token);
+    }
 
-    this.router.navigate(['/']);
+    this.router.navigate(['/overview']);
   }
 
   logout() {

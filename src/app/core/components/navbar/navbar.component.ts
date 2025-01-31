@@ -24,7 +24,7 @@ export class NavbarComponent implements OnInit {
   private storage = inject(StorageService);
   private authService = inject(AuthService);
 
-  public loading = false;
+  public loading = signal(true);
   public error = 0;
   public scrollHeightMenuContainer = signal('0px');
   public isMenuOpen = signal(false);
@@ -60,18 +60,19 @@ export class NavbarComponent implements OnInit {
 
   public getMe() {
     if (this.storage.token) {
-      this.loading = true;
+      this.loading.set(true);
+
       this.authService.getMe().subscribe({
         next: (data) => {
           this.user = data
           this.storage.myself = data;
-          this.loading = false;
+          this.loading.set(false);
         },
         error: (error) => {
           if (error?.status === 401) {
             this.storage.logout();
           }
-          this.loading = false;
+          this.loading.set(false);
         },
       });
     } else {

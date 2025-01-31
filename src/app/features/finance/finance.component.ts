@@ -1,10 +1,10 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { CurrencyPipe, DatePipe } from '@angular/common';
-import { AfterViewInit, Component, inject, OnInit, signal, ViewChild } from '@angular/core';
+import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { Sort } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
 import { DetailFinanceComponent } from '../../core/components/detail-finance/detail-finance.component';
 import { MONTHS } from '../../core/constants/utils';
 import { ITransaction } from '../../core/models/finance';
@@ -16,8 +16,8 @@ import { FinanceService } from '../../shared/services/finance.service';
   selector: 'app-finance',
   standalone: true,
   imports: [
+    CommonModule,
     MatTableModule,
-    MatSortModule,
     CurrencyPipe,
     DatePipe,
     ConvertStatusPipe,
@@ -25,26 +25,22 @@ import { FinanceService } from '../../shared/services/finance.service';
     IconDirective
   ],
   templateUrl: './finance.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FinanceComponent implements OnInit, AfterViewInit{
-  @ViewChild(MatSort) public sort!: MatSort;
+export class FinanceComponent implements OnInit{
 
   private financeService = inject(FinanceService)
   private _liveAnnouncer = inject(LiveAnnouncer)
   readonly dialog = inject(MatDialog);
 
-  private loading = signal(false);
+  public loading = signal(false);
   private months = MONTHS;
 
   private current_month = new Date().getMonth();
   private current_year = new Date().getFullYear();
 
   public displayedColumns: string[] = ['description', 'type', 'category', 'expiry_date', 'value_installment'];
-  public dataSource = new MatTableDataSource(<ITransaction[]>[]);
-
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-  }
+  public dataSource: WritableSignal<ITransaction[]> = signal<ITransaction[]>([]);
 
   public ngOnInit() {
     this.getAllFinances();
@@ -61,7 +57,7 @@ export class FinanceComponent implements OnInit, AfterViewInit{
 
     this.financeService.getAllFinance(params).subscribe({
       next: (data) => {
-        this.dataSource.data = data;
+        this.dataSource.set(data);
         this.loading.set(false);
       },
     });

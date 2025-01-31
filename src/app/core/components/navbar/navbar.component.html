@@ -19,7 +19,7 @@
         </button>
       </div>
 
-      @if(!loading && user){
+      @if(!loading() && user){
         <div class="relative flex md:hidden cursor-pointer"  [matMenuTriggerFor]="beforeMenu">
           <avatar [name]="user.name" class="text-xs" color="light" bg="#55b02e" />
         </div>
@@ -56,7 +56,7 @@
         </ul>
       </div>
 
-      @if(!loading && user){
+      @if(!loading() && user){
         <div class="relative ml-auto hidden md:flex items-center gap-3 border border-solid border-DarkGray px-5 pr-2 py-2 rounded-lg cursor-pointer"
           [matMenuTriggerFor]="beforeMenu">
           <p class="w-max text-label text-sm"> {{ user.name }} </p>
@@ -81,12 +81,12 @@
   <button mat-menu-item (click)="logout()"> Logof </button>
 </mat-menu>
 
-@if (!loading) {
+@if (!loading()) {
   <div class="relative w-full min-h-dvh pt-20 bg-tertiary px-6">
     <router-outlet />
   </div>
 }
 
-@if (loading) {
+@if (loading()) {
   <!-- <page-loading /> -->
 }
