@@ -3,7 +3,6 @@ import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
-import { Sort } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { DetailFinanceComponent } from '../../core/components/detail-finance/detail-finance.component';
 import { MONTHS } from '../../core/constants/utils';
@@ -39,7 +38,7 @@ export class FinanceComponent implements OnInit{
   private current_month = new Date().getMonth();
   private current_year = new Date().getFullYear();
 
-  public displayedColumns: string[] = ['description', 'type', 'category', 'expiry_date', 'value_installment'];
+  public displayedColumns: string[] = ['description', 'type', 'category', 'value_installment', 'expiry_date', 'options'];
   public dataSource: WritableSignal<ITransaction[]> = signal<ITransaction[]>([]);
 
   public ngOnInit() {
@@ -63,19 +62,6 @@ export class FinanceComponent implements OnInit{
     });
   }
 
-  /** Announce the change in sort state for assistive technology. */
-  announceSortChange(sortState: Sort) {
-    // This example uses English messages. If your application supports
-    // multiple language, you would internationalize these strings.
-    // Furthermore, you can customize the message to add additional
-    // details about the values being sorted.
-    if (sortState.direction) {
-      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
-    } else {
-      this._liveAnnouncer.announce('Sorting cleared');
-    }
-  }
-
   public createFinance(){
     const dialogRef = this.dialog.open(DetailFinanceComponent,{
       panelClass: 'custom-dialog', // classe CSS personalizada
@@ -87,7 +73,9 @@ export class FinanceComponent implements OnInit{
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      if(result){
+        this.getAllFinances();
+      }
     });
   }
 }

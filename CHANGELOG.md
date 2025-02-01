@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/Guilhermee19/financee-web/compare/v1.3.0...v1.4.0) (2025-02-01)
+
+
+### Features
+
+* create transaction ([3180f00](https://github.com/Guilhermee19/financee-web/commit/3180f003112cb79a42be7d78e6dffee11e059758))
+* css tabela transction ([19dd10a](https://github.com/Guilhermee19/financee-web/commit/19dd10a9a6cf7441db68086ab4c6166c6dba21fb))
+
+
+### Bug Fixes
+
+* correção login site | feat: ajustes table ([432f26d](https://github.com/Guilhermee19/financee-web/commit/432f26de331ec6b056ea65abf6a08de33576e2f4))
+
 ## [1.3.0](https://github.com/Guilhermee19/financee-web/compare/v1.2.1...v1.3.0) (2024-11-20)
 
 
