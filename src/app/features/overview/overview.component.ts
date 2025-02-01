@@ -44,10 +44,7 @@ export class OverviewComponent implements OnInit{
     category_percentages: []
   } as IDashbaord;
 
-  public balance = 2700;
-  public investment = 3500;
-  public revenue = 8150;
-  public expenses = 2950;
+  public investment = 0;
 
   public form = this.fb.nonNullable.group({
     date: [`${new Date().getFullYear()}-${new Date().getMonth()+1}`],
