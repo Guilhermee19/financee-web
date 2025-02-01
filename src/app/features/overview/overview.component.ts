@@ -6,7 +6,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { debounceTime, distinctUntilChanged, startWith } from 'rxjs';
 import { DetailFinanceComponent } from '../../core/components/detail-finance/detail-finance.component';
-import { MONTHS } from '../../core/constants/utils';
+import { CONFIG_MODAL_TRANSACTION, MONTHS } from '../../core/constants/utils';
 import { IDashbaord } from '../../core/models/dashboard';
 import { IconDirective } from '../../shared/directives/icon.directive';
 import { DashboardService } from '../../shared/services/dashboard.service';
@@ -76,12 +76,7 @@ export class OverviewComponent implements OnInit{
 
   public createFinance(){
     const dialogRef = this.dialog.open(DetailFinanceComponent,{
-      panelClass: 'custom-dialog', // classe CSS personalizada
-      disableClose: true, // Impede o fechamento automático
-      position: { right: '1rem', top: '1rem' }, // posição no canto superior direito
-      width: 'calc(100% - 2rem)', // ajuste o tamanho conforme necessário
-      maxWidth: '350px',
-      height: 'calc(100dvh - 2rem)'
+      ...CONFIG_MODAL_TRANSACTION
     });
 
     dialogRef.afterClosed().subscribe(result => {

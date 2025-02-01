@@ -29,3 +29,12 @@ export const DialogConfig: MatDialogConfig = {
     description: '',
   },
 };
+
+export const CONFIG_MODAL_TRANSACTION: MatDialogConfig = {
+  panelClass: 'custom-dialog', // classe CSS personalizada
+  disableClose: true, // Impede o fechamento automático
+  position: { right: '1rem', top: '1rem' }, // posição no canto superior direito
+  width: 'calc(100% - 2rem)', // ajuste o tamanho conforme necessário
+  maxWidth: '380px',
+  height: 'calc(100dvh - 2rem)'
+};
