@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/Guilhermee19/financee-web/compare/v1.4.0...v1.5.0) (2025-02-03)
+
+
+### Features
+
+* category account no detail finance ([39986d4](https://github.com/Guilhermee19/financee-web/commit/39986d43577d8e47c8b48bb5a895430c7cc92dd5))
+
 ## [1.4.0](https://github.com/Guilhermee19/financee-web/compare/v1.3.0...v1.4.0) (2025-02-01)
 
 
