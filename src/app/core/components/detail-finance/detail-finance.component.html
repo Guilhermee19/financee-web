@@ -45,14 +45,18 @@
     <div class="form-input">
       <label for="category"> Categoria </label>
       <mat-select id="category" formControlName="category">
-        <mat-option value="WEEKLY">semanal</mat-option>
+        @for (category of categories(); track $index) {
+          <mat-option [value]="category.id">{{ category.name }}</mat-option>
+        }
       </mat-select>
     </div>
 
     <div class="form-input">
       <label for="account"> Conta </label>
       <mat-select id="account" formControlName="account">
-        <mat-option value="WEEKLY">semanal</mat-option>
+        @for (account of accounts(); track $index) {
+          <mat-option [value]="account.id">{{ account.name }}</mat-option>
+        }
       </mat-select>
     </div>
 
