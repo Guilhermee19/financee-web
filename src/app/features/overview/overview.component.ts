@@ -7,7 +7,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { debounceTime, distinctUntilChanged, startWith } from 'rxjs';
 import { DetailFinanceComponent } from '../../core/components/detail-finance/detail-finance.component';
 import { CONFIG_MODAL_TRANSACTION, MONTHS } from '../../core/constants/utils';
-import { IDashbaord } from '../../core/models/dashboard';
+import { ICategoryPercentages, IDashbaord } from '../../core/models/dashboard';
 import { IconDirective } from '../../shared/directives/icon.directive';
 import { DashboardService } from '../../shared/services/dashboard.service';
 @Component({
@@ -41,8 +41,9 @@ export class OverviewComponent implements OnInit{
     balance: 0,
     total_income: 0,
     total_expenditure: 0,
-    category_percentages: []
   } as IDashbaord;
+
+  public category_percentages: ICategoryPercentages[] = []
 
   public investment = 0;
 
@@ -57,9 +58,11 @@ export class OverviewComponent implements OnInit{
       .pipe(startWith(''), debounceTime(100), distinctUntilChanged())
       .subscribe(() => {
         this.getDashboard()
+        this.getDashboardCategory()
       });
 
     this.getDashboard()
+    this.getDashboardCategory()
   }
 
   public selectDate(){
@@ -90,6 +93,19 @@ export class OverviewComponent implements OnInit{
     this.dashboardService.getDashboard(params).subscribe({
       next: (data) => {
         this.dashboard = data;
+      }
+    })
+  }
+
+  private getDashboardCategory(){
+    const params = {
+      year: Number(this.form.value.date?.split('-')[0] || new Date().getFullYear()),
+      month: Number(this.form.value.date?.split('-')[1] || new Date().getMonth() +1),
+    };
+
+    this.dashboardService.getDashboardCategory(params).subscribe({
+      next: (data) => {
+        this.category_percentages = data;
       }
     })
   }

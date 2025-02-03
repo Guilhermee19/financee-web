@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
@@ -9,8 +9,12 @@ import { MatTabsModule } from '@angular/material/tabs';
 import moment from 'moment';
 import { NgxMaskDirective } from 'ngx-mask';
 import { IconDirective } from '../../../shared/directives/icon.directive';
+import { AccountService } from '../../../shared/services/account.service';
+import { CategoryService } from '../../../shared/services/category.service';
 import { FinanceService } from '../../../shared/services/finance.service';
 import { BodyJson } from '../../../shared/services/http.service';
+import { IAccount } from '../../models/accounts';
+import { ICategory } from '../../models/category';
 import { ITransaction } from '../../models/finance';
 
 @Component({
@@ -34,6 +38,11 @@ export class DetailFinanceComponent implements OnInit {
   public data?: { transaction: ITransaction } = inject(MAT_DIALOG_DATA);
   private fb = inject(FormBuilder);
   private financeService = inject(FinanceService);
+  private categoryService = inject(CategoryService);
+  private accountService = inject(AccountService);
+
+  public categories: WritableSignal<ICategory[]> = signal([]);
+  public accounts: WritableSignal<IAccount[]> = signal([]);
 
   public loading = signal(false);
 
@@ -53,6 +62,8 @@ export class DetailFinanceComponent implements OnInit {
   public recurrence = new FormControl(0);
 
   public ngOnInit(): void {
+    this.getAlltags();
+
     this.form.reset();
 
     this.form.patchValue({
@@ -67,28 +78,23 @@ export class DetailFinanceComponent implements OnInit {
   }
 
   getAlltags() {
-    // this.loading = true;
-
-    // this.categoryService.getAllCategories().subscribe({
-    //   next: (data) => {
-    //     this.categories = data.results;
-    //     this.getAllAccounts();
-    //   },
-    //   error: () => {
-    //     this.getAllAccounts();
-    //   },
-    // });
+    this.categoryService.getAllCategories().subscribe({
+      next: (data) => {
+        this.categories.set(data.results)
+        this.getAllAccounts();
+      },
+      error: () => {
+        this.getAllAccounts();
+      },
+    });
   }
 
   getAllAccounts() {
-    // this.loading = true;
-
-    // this.accountsService.getAllAccounts(1, true).subscribe({
-    //   next: (data) => {
-    //     this.accounts = data;
-    //     this.loading = false;
-    //   },
-    // });
+    this.accountService.getAllAccounts(1).subscribe({
+      next: (data) => {
+        this.accounts.set(data.results);
+      },
+    });
   }
 
   public setSelected(event: number): void {

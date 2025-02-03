@@ -8,7 +8,5 @@ export interface ICategoryPercentages {
 export interface IDashbaord {
   balance: number,
   total_income: number,
-  total_expenditure: number,
-  category_percentages: ICategoryPercentages[]
+  total_expenditure: number
 }
-
