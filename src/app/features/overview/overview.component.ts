@@ -8,6 +8,7 @@ import { debounceTime, distinctUntilChanged, startWith } from 'rxjs';
 import { DetailFinanceComponent } from '../../core/components/detail-finance/detail-finance.component';
 import { CONFIG_MODAL_TRANSACTION, MONTHS } from '../../core/constants/utils';
 import { ICategoryPercentages, IDashbaord } from '../../core/models/dashboard';
+import { GraphicPieComponent } from '../../shared/components/graphic-pie/graphic-pie.component';
 import { IconDirective } from '../../shared/directives/icon.directive';
 import { DashboardService } from '../../shared/services/dashboard.service';
 @Component({
@@ -22,6 +23,7 @@ import { DashboardService } from '../../shared/services/dashboard.service';
     MatProgressBarModule,
     FormsModule,
     ReactiveFormsModule,
+    GraphicPieComponent
   ],
   templateUrl: './overview.component.html',
 })
@@ -80,7 +82,10 @@ export class OverviewComponent implements OnInit{
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      if(result){
+        this.getDashboard()
+        this.getDashboardCategory()
+      }
     });
   }
 

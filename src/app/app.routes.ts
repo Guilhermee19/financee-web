@@ -38,6 +38,12 @@ export const routes: Routes = [
           import('./features/finance/finance.component').then((m) => m.FinanceComponent),
       },
       {
+        path: 'calendar',
+        title: 'Calendário | financee.me',
+        loadComponent: () =>
+          import('./features/calendar/calendar.component').then((m) => m.CalendarComponent),
+      },
+      {
         path: 'plans',
         title: 'Planos | financee.me',
         loadComponent: () =>
