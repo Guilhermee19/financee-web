@@ -1,5 +1,5 @@
 import { CommonModule, CurrencyPipe } from '@angular/common';
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
@@ -11,6 +11,8 @@ import { ICategoryPercentages, IDashbaord } from '../../core/models/dashboard';
 import { GraphicPieComponent } from '../../shared/components/graphic-pie/graphic-pie.component';
 import { IconDirective } from '../../shared/directives/icon.directive';
 import { DashboardService } from '../../shared/services/dashboard.service';
+import { FinanceService } from '../../shared/services/finance.service';
+import { ITransaction } from './../../core/models/finance';
 @Component({
   selector: 'app-overview',
   standalone: true,
@@ -30,14 +32,13 @@ import { DashboardService } from '../../shared/services/dashboard.service';
 export class OverviewComponent implements OnInit{
   readonly dialog = inject(MatDialog);
   readonly dashboardService = inject(DashboardService);
+  private financeService = inject(FinanceService)
   private fb = inject(FormBuilder);
 
   public view_values = signal(true);
 
   public current_month = new Date().getMonth();
   public current_year = new Date().getFullYear();
-
-  private months = MONTHS;
 
   public dashboard: IDashbaord = {
     balance: 0,
@@ -47,7 +48,9 @@ export class OverviewComponent implements OnInit{
 
   public category_percentages: ICategoryPercentages[] = []
 
+  public transactions: WritableSignal<ITransaction[]> = signal([])
   public investment = 0;
+  private months = MONTHS;
 
   public form = this.fb.nonNullable.group({
     date: [`${new Date().getFullYear()}-${new Date().getMonth()+1}`],
@@ -59,13 +62,17 @@ export class OverviewComponent implements OnInit{
     this.form.controls.date.valueChanges
       .pipe(startWith(''), debounceTime(100), distinctUntilChanged())
       .subscribe(() => {
+        this.getAllFinances();
         this.getDashboard()
         this.getDashboardCategory()
       });
 
+    this.getAllFinances();
     this.getDashboard()
     this.getDashboardCategory()
   }
+
+
 
   public selectDate(){
     console.log(this.form.value.date);
@@ -86,6 +93,23 @@ export class OverviewComponent implements OnInit{
         this.getDashboard()
         this.getDashboardCategory()
       }
+    });
+  }
+
+  private getAllFinances() {
+    // this.loading.set(true);
+
+    const params = {
+      year: this.current_year,
+      month: this.months[this.current_month].month,
+      return_all: true
+    };
+
+    this.financeService.getAllFinance(params).subscribe({
+      next: (data) => {
+        this.transactions.set(data);
+        // this.loading.set(false);
+      },
     });
   }
 
