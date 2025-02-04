@@ -7,6 +7,7 @@ import { AvatarComponent } from '../../../shared/components/avatar/avatar.compon
 import { IconDirective } from '../../../shared/directives/icon.directive';
 import { AuthService } from '../../../shared/services/auth.service';
 import { StorageService } from '../../../shared/services/storage.service';
+import { NAVBAR_PAGES } from '../../constants/navbar';
 // import { AvatarComponent } from '../../shared/components/avatar/avatar.component';
 // import { IconDirective } from '../../shared/directives/icon.directive';
 // import { AuthService } from '../../shared/services/auth.service';
@@ -31,20 +32,7 @@ export class NavbarComponent implements OnInit {
 
   private metric_mobile = 768;
 
-  navbars = [
-    {
-      label: 'Overview',
-      router: '/overview'
-    },
-    {
-      label: 'Transações',
-      router: '/finance'
-    },
-    {
-      label: 'Assinatura',
-      router: '/plans'
-    }
-  ]
+  navbars = NAVBAR_PAGES
 
   public user = this.storage.myself;
 

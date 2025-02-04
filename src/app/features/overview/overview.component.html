@@ -48,7 +48,30 @@
 
       <!-- CARD TRANSATION -->
       <div class="col-span-5 md:col-span-4 order-3 md:order-5 lg:order-2 lg:col-span-3 row-span-3 card bg-tertiary border border-solid border-Gray rounded-default p-5">
+        <h1 class="w-full text-White text-base font-semibold"> Transações </h1>
+        <div class="w-full h-px bg-White8 my-4"></div>
 
+
+        <div class="w-full flex flex-col gap-4">
+          @for (item of transactions(); track $index){
+            <div class="w-full flex justify-between items-center gap-2">
+              <div class="size-10 aspect-square rounded-lg p-2 bg-White3">
+                <i icon="arrow_trend_up" class="text-white opacity-50"></i>
+              </div>
+
+              <div class="w-max flex flex-col gap-2 mr-auto">
+                <h2 class="text-sm m-0 leading-none text-white"> {{ item.description }} </h2>
+                <p class="text-sm m-0 leading-none text-white opacity-50"> {{ item.expiry_date | date: 'dd MMM, yyyy' }} </p>
+              </div>
+
+              <h1 class="m-0 leading-none text-white"
+              [ngClass]="{
+                '!text-primary': item.type === 'INCOME',
+                '!text-Red': item.type === 'EXPENDITURE'
+              }"> {{ item.type === 'INCOME' ? '+' : '-' }} {{ item.value_installment | currency }} </h1>
+            </div>
+          }
+        </div>
       </div>
 
       <!-- CARD INVESTMENT -->
@@ -105,8 +128,8 @@
       </div>
 
       <!-- CARD GRAPHIC -->
-      <div class="col-span-5 md:col-span-6 order-6 md:order-6 lg:order-6 lg:col-span-3 card bg-tertiary border border-solid border-Gray rounded-default p-5">
-
+      <div class="col-span-5 md:col-span-6 order-6 md:order-6 lg:order-6 lg:col-span-3 card bg-tertiary border border-solid border-Gray rounded-default p-10">
+        <app-graphic-pie [dashboard]="dashboard" />
       </div>
 
       <!-- CARD PORCENT CATEGORY -->

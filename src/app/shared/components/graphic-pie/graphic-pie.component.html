@@ -1,0 +1,24 @@
+<apx-chart
+  [series]="donut_chart.series"
+  [labels]="donut_chart.labels"
+  [chart]="donut_chart.chart"
+  [dataLabels]="donut_chart.dataLabels"
+  [stroke]="donut_chart.stroke"
+  [legend]="donut_chart.legend"
+  [plotOptions]="donut_chart.plotOptions"
+  [colors]="donut_chart.colors"
+></apx-chart>
+
+<div class="w-full flex flex-col gap-4 mt-10">
+  @for (item of array; track $index) {
+    <div class="w-full flex justify-between items-center">
+      <div class="aspect-square rounded-sm p-2 mr-2 bg-White3">
+        <i [icon]="item.icon"  [ngClass]="item.color"></i>
+      </div>
+
+      <p class="w-max text-white mr-auto opacity-50"> {{ item.label }} </p>
+
+      <p class="w-max text-white"> {{ item.percentage }}% </p>
+    </div>
+  }
+</div>
