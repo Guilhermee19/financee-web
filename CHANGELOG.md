@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.6.1](https://github.com/Guilhermee19/financee-web/compare/v1.6.0...v1.6.1) (2025-02-05)
+
+
+### Bug Fixes
+
+* version apexchart ([1b94b8f](https://github.com/Guilhermee19/financee-web/commit/1b94b8f1eb0bc4205e743f735a6641d06ade2b4d))
+
 ## [1.6.0](https://github.com/Guilhermee19/financee-web/compare/v1.5.0...v1.6.0) (2025-02-04)
 
 
