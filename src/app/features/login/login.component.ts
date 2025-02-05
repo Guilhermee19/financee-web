@@ -59,9 +59,11 @@ export class LoginComponent {
 
     this.authService.login(body as unknown as BodyJson).subscribe(
       (data) => {
+        alert(data.token)
         this.storage.setToken(data.token, this.form.value.remember);
       },
       (error) => {
+        alert(error)
         if(error.status === 400){
           this.toastr.error('E-mail ou senha invalidos!')
         }
