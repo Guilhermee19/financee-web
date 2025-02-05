@@ -48,7 +48,9 @@ export class OverviewComponent implements OnInit{
 
   public category_percentages: ICategoryPercentages[] = []
 
-  public transactions: WritableSignal<ITransaction[]> = signal([])
+  public transactions_overdue_unpaid: WritableSignal<ITransaction[]> = signal([])
+  public transactions_upcoming: WritableSignal<ITransaction[]> = signal([])
+
   public investment = 0;
   private months = MONTHS;
 
@@ -62,17 +64,15 @@ export class OverviewComponent implements OnInit{
     this.form.controls.date.valueChanges
       .pipe(startWith(''), debounceTime(100), distinctUntilChanged())
       .subscribe(() => {
-        this.getAllFinances();
         this.getDashboard()
         this.getDashboardCategory()
+        this.getDashboardUpcomingAndUnpaidTransactions();
       });
 
-    this.getAllFinances();
     this.getDashboard()
     this.getDashboardCategory()
+    this.getDashboardUpcomingAndUnpaidTransactions();
   }
-
-
 
   public selectDate(){
     console.log(this.form.value.date);
@@ -92,11 +92,12 @@ export class OverviewComponent implements OnInit{
       if(result){
         this.getDashboard()
         this.getDashboardCategory()
+        this.getDashboardUpcomingAndUnpaidTransactions();
       }
     });
   }
 
-  private getAllFinances() {
+  private getDashboardUpcomingAndUnpaidTransactions() {
     // this.loading.set(true);
 
     const params = {
@@ -105,12 +106,12 @@ export class OverviewComponent implements OnInit{
       return_all: true
     };
 
-    this.financeService.getAllFinance(params).subscribe({
+    this.dashboardService.getDashboardUpcomingAndUnpaidTransactions(params).subscribe({
       next: (data) => {
-        this.transactions.set(data);
-        // this.loading.set(false);
-      },
-    });
+        this.transactions_overdue_unpaid.set(data.overdue_unpaid); // Atualiza o signal
+        this.transactions_upcoming.set(data.upcoming); // Atualiza o signal
+      }
+    })
   }
 
   private getDashboard(){
