@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { ApexChart, ApexDataLabels, ApexPlotOptions, ApexStroke, NgApexchartsModule } from 'ng-apexcharts';
+import { ApexChart, ApexDataLabels, ApexLegend, ApexPlotOptions, ApexStroke, NgApexchartsModule } from 'ng-apexcharts';
 import { IDashbaord } from '../../../core/models/dashboard';
 import { IconDirective } from '../../directives/icon.directive';
 
