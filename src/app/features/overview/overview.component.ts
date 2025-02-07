@@ -55,15 +55,14 @@ export class OverviewComponent implements OnInit{
   private months = MONTHS;
 
   public form = this.fb.nonNullable.group({
-    date: [`${new Date().getFullYear()}-${new Date().getMonth()+1}`],
+    date: [`${new Date().getFullYear()}-${(new Date().getMonth() + 1).toString().padStart(2, '0')}`],
   });
 
   public ngOnInit(){
-    console.log(new Date());
-
     this.form.controls.date.valueChanges
       .pipe(startWith(''), debounceTime(100), distinctUntilChanged())
       .subscribe(() => {
+        console.log(this.form.value)
         this.getDashboard()
         this.getDashboardCategory()
         this.getDashboardUpcomingAndUnpaidTransactions();
