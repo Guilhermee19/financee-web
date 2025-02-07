@@ -59,6 +59,7 @@ export class OverviewComponent implements OnInit{
   });
 
   public ngOnInit(){
+    this.view_values.set(localStorage.getItem("VIEW") === 'true')
     this.form.controls.date.valueChanges
       .pipe(startWith(''), debounceTime(100), distinctUntilChanged())
       .subscribe(() => {
@@ -80,6 +81,7 @@ export class OverviewComponent implements OnInit{
 
   public modeView(){
     this.view_values.set(!this.view_values())
+    localStorage.setItem("VIEW", this.view_values().toString())
   }
 
   public createFinance(){

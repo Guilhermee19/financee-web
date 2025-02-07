@@ -35,7 +35,9 @@
           <h3 class="text-sm text-white opacity-70"> Saldo </h3>
         </div>
 
-        <i [icon]="view_values() ? 'eye' : 'eye_slash'" class="text-white text-lg cursor-pointer p-1" (click)="modeView()" (keydown)="modeView()" tabindex="1"></i>
+        <button (click)="modeView()">
+          <i [icon]="view_values() ? 'eye' : 'eye_slash'" class="text-white text-lg cursor-pointer p-1"></i>
+        </button>
 
        </div>
 
@@ -68,7 +70,7 @@
               [ngClass]="{
                 '!text-primary': item.type === 'INCOME',
                 '!text-Red': item.type === 'EXPENDITURE'
-              }"> {{ item.type === 'INCOME' ? '+' : '-' }} {{ item.value_installment | currency }} </h1>
+              }"> {{ item.type === 'INCOME' ? '+' : '-' }} {{ view_values() ? (item.value_installment| currency:'BRL') : 'R$ •••••' }} </h1>
             </div>
           }
           @for (item of transactions_upcoming(); track $index){
@@ -86,7 +88,8 @@
               [ngClass]="{
                 '!text-primary': item.type === 'INCOME',
                 '!text-Red': item.type === 'EXPENDITURE'
-              }"> {{ item.type === 'INCOME' ? '+' : '-' }} {{ item.value_installment | currency }} </h1>
+              }">
+              {{ item.type === 'INCOME' ? '+' : '-' }} {{ view_values() ? (item.value_installment| currency:'BRL') : 'R$ •••••' }} </h1>
             </div>
           }
         </div>
@@ -151,7 +154,7 @@
       </div>
 
       <!-- CARD PORCENT CATEGORY -->
-      <div class="col-span-10 sm:col-span-5 md:col-span-6 order-6 md:order-6 lg:order-6 lg:col-span-3 card bg-tertiary border border-solid border-Gray rounded-default p-10">
+      <div class="col-span-10 sm:col-span-5 md:col-span-6 order-6 md:order-6 lg:order-6 lg:col-span-3 card bg-tertiary border border-solid border-Gray rounded-default p-5">
         <h1 class="w-full text-White text-base font-semibold"> Gastos por categoria </h1>
         <div class="w-full h-px bg-White8 my-4"></div>
 
