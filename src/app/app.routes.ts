@@ -37,17 +37,35 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/finance/finance.component').then((m) => m.FinanceComponent),
       },
-      {
-        path: 'calendar',
-        title: 'Calendário | financee.me',
-        loadComponent: () =>
-          import('./features/calendar/calendar.component').then((m) => m.CalendarComponent),
-      },
+      // {
+      //   path: 'calendar',
+      //   title: 'Calendário | financee.me',
+      //   loadComponent: () =>
+      //     import('./features/calendar/calendar.component').then((m) => m.CalendarComponent),
+      // },
       {
         path: 'plans',
         title: 'Planos | financee.me',
         loadComponent: () =>
           import('./features/plans/plans.component').then((m) => m.PlansComponent),
+      },
+      {
+        path: 'account',
+        title: 'Contas | financee.me',
+        loadComponent: () =>
+          import('./features/account/account.component').then((m) => m.AccountComponent),
+      },
+      {
+        path: 'category',
+        title: 'Categorias | financee.me',
+        loadComponent: () =>
+          import('./features/category/category.component').then((m) => m.CategoryComponent),
+      },
+      {
+        path: 'profile',
+        title: 'Perfil | financee.me',
+        loadComponent: () =>
+          import('./features/profile/profile.component').then((m) => m.ProfileComponent),
       },
       {
         path: '**',

@@ -55,15 +55,15 @@ export class OverviewComponent implements OnInit{
   private months = MONTHS;
 
   public form = this.fb.nonNullable.group({
-    date: [`${new Date().getFullYear()}-${new Date().getMonth()+1}`],
+    date: [`${new Date().getFullYear()}-${(new Date().getMonth() + 1).toString().padStart(2, '0')}`],
   });
 
   public ngOnInit(){
-    console.log(new Date());
-
+    this.view_values.set(localStorage.getItem("VIEW") === 'true')
     this.form.controls.date.valueChanges
       .pipe(startWith(''), debounceTime(100), distinctUntilChanged())
       .subscribe(() => {
+        console.log(this.form.value)
         this.getDashboard()
         this.getDashboardCategory()
         this.getDashboardUpcomingAndUnpaidTransactions();
@@ -81,6 +81,7 @@ export class OverviewComponent implements OnInit{
 
   public modeView(){
     this.view_values.set(!this.view_values())
+    localStorage.setItem("VIEW", this.view_values().toString())
   }
 
   public createFinance(){

@@ -24,8 +24,9 @@ $financee-web-theme: mat.define-light-theme((
 @tailwind utilities;
 
 @import 'ngx-toastr/toastr';
-@import 'assets/styles/_dialog.scss';
 @import 'assets/styles/_button.scss';
+@import 'assets/styles/_calendar.scss';
+@import 'assets/styles/_dialog.scss';
 @import 'assets/styles/_input.scss';
 @import 'assets/styles/_mat-checkbox.scss';
 @import 'assets/styles/_progress-bar.scss';
