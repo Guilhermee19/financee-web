@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, inject, OnInit, signal, WritableSig
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
-import { DetailFinanceComponent } from '../../core/components/detail-finance/detail-finance.component';
+import { DetailCategoryComponent } from '../../core/components/detail-category/detail-category.component';
 import { CONFIG_MODAL_TRANSACTION } from '../../core/constants/utils';
 import { ICategory } from '../../core/models/category';
 import { IconDirective } from '../../shared/directives/icon.directive';
@@ -61,7 +61,7 @@ export class CategoryComponent implements OnInit {
   }
 
   public createFinance(){
-    const dialogRef = this.dialog.open(DetailFinanceComponent,{
+    const dialogRef = this.dialog.open(DetailCategoryComponent,{
       ...CONFIG_MODAL_TRANSACTION
     });
 

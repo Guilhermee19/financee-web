@@ -1,0 +1,66 @@
+<section class="h-full flex flex-col">
+  <header class="flex justify-between items-center px-5 gap-2 pb-5 border-b border-solid border-White8">
+    <h1 class="text-white text-xl font-semibold"> Categoria </h1>
+
+    <i icon="xmark" class="text-white p-1 cursor-pointer" (click)="chance(false)"
+    (keydown)="chance(false)"
+    tabindex="-1"></i>
+  </header>
+
+  <form [formGroup]="form" (ngSubmit)="handleFormSubmit()" class="my-4 px-5 flex flex-col gap-4">
+    <div class="form-input">
+      <label for="description"> Descrição </label>
+      <div class="input_icon">
+        <input
+          type="text"
+          id="description"
+          placeholder="Descrição"
+          formControlName="description"
+        />
+      </div>
+    </div>
+
+    <div class="form-input">
+      <label for="account"> Icone </label>
+      <mat-select id="account" formControlName="account">
+        @for (account of accounts(); track $index) {
+          <mat-option [value]="account.id">{{ account.name }}</mat-option>
+        }
+      </mat-select>
+    </div>
+
+    <div class="form-input">
+      <label for="value"> Icone </label>
+      <div class="input_icon">
+        <input
+          type="text"
+          id="value"
+          mask="separator.2"
+          [thousandSeparator]="'.'"
+          [decimalMarker]="','"
+          prefix="R$ "
+          placeholder="R$ 0,00"
+          formControlName="value"
+        />
+      </div>
+    </div>
+
+    <div class="form-input">
+      <label for="value"> Icones </label>
+
+
+      @for (item of icons; track $index) {
+        <span [innerHTML]="item" class="size-10 text-xl"></span>
+      }
+    </div>
+
+  </form>
+
+  <div class="buttons mt-auto px-5">
+    <button mat-flat-button type="button" color="accent" (click)="chance(false)"> Cancelar </button>
+    <button mat-flat-button type="submit" (click)="handleFormSubmit()" color="primary" [disabled]="form.invalid">
+      {{'Salvar'}}
+    </button>
+  </div>
+
+</section>
