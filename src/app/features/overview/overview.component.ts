@@ -102,10 +102,11 @@ export class OverviewComponent implements OnInit{
     // this.loading.set(true);
 
     const params = {
-      year: this.current_year,
-      month: this.months[this.current_month].month,
-      return_all: true
+      year: Number(this.form.value.date?.split('-')[0] || new Date().getFullYear()),
+      month: Number(this.form.value.date?.split('-')[1] || new Date().getMonth() +1),
     };
+
+    console.log(params);
 
     this.dashboardService.getDashboardUpcomingAndUnpaidTransactions(params).subscribe({
       next: (data) => {
