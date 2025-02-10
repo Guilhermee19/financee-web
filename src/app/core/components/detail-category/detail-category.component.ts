@@ -6,16 +6,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTabsModule } from '@angular/material/tabs';
-import moment from 'moment';
-import { NgxMaskDirective } from 'ngx-mask';
-import { AccountService } from '../../../shared/services/account.service';
 import { CategoryService } from '../../../shared/services/category.service';
-import { FinanceService } from '../../../shared/services/finance.service';
 import { BodyJson } from '../../../shared/services/http.service';
-import { ICONS } from '../../constants/icons';
 import { IAccount } from '../../models/accounts';
 import { ICategory } from '../../models/category';
-import { ITransaction } from '../../models/finance';
 import { IconDirective } from './../../../shared/directives/icon.directive';
 
 @Component({
@@ -27,7 +21,6 @@ import { IconDirective } from './../../../shared/directives/icon.directive';
     MatButtonModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxMaskDirective,
     MatSelectModule,
     MatTabsModule,
     MatSlideToggleModule
@@ -37,11 +30,9 @@ import { IconDirective } from './../../../shared/directives/icon.directive';
 })
 export class DetailCategoryComponent implements OnInit {
  private dialogRef = inject(MatDialogRef);
-  public data?: { transaction: ITransaction } = inject(MAT_DIALOG_DATA);
+  public data?: { category: ICategory } = inject(MAT_DIALOG_DATA);
   private fb = inject(FormBuilder);
-  private financeService = inject(FinanceService);
   private categoryService = inject(CategoryService);
-  private accountService = inject(AccountService);
 
   public categories: WritableSignal<ICategory[]> = signal([]);
   public accounts: WritableSignal<IAccount[]> = signal([]);
@@ -49,62 +40,38 @@ export class DetailCategoryComponent implements OnInit {
   public loading = signal(false);
 
   public form = this.fb.group({
-    description: ['', Validators.required],
-    value: ['', Validators.required],
-    category: [0],
-    account: [0],
-    expiry_date: ['', Validators.required],
-    installments: [0],
-    recurrence: [''],
-    edit_all: [false],
-    type: [''],
+    id: [-1],
+    name: ['', Validators.required],
+    icon: [''],
   });
 
   public selected = new FormControl(0);
   public recurrence = new FormControl(0);
 
-  public icons = this.objectToArray(ICONS);
+  public icons: WritableSignal<Array<keyof IconDirective['icon']>> = signal([
+    'arrow_trend_down',
+    'arrow_trend_up',
+    'arrow_up_arrow_down',
+    'file_lines',
+    'piggy_bank',
+    'wallet',
+  ]);
+
 
   public ngOnInit(): void {
-    console.log(this.icons);
-
-    this.getAlltags();
-
     this.form.reset();
 
-    this.form.patchValue({
-      expiry_date: moment(new Date().toISOString()).format('yyyy-MM-DD'),
-      recurrence: 'SINGLE',
-      edit_all: false,
-      type: 'INCOME',
-    })
-    console.log(this.form.value);
+    if(!this.data?.category.id) return;
 
-    if(!this.data?.transaction) return;
+    this.form.patchValue({
+      id: this.data.category.id,
+      name: this.data.category.name,
+      icon: this.data.category.icon,
+    })
   }
 
   objectToArray<T>(obj: Record<string, T>): T[] {
     return Object.values(obj);
-  }
-
-  getAlltags() {
-    this.categoryService.getAllCategories().subscribe({
-      next: (data) => {
-        this.categories.set(data.results)
-        this.getAllAccounts();
-      },
-      error: () => {
-        this.getAllAccounts();
-      },
-    });
-  }
-
-  getAllAccounts() {
-    this.accountService.getAllAccounts(1).subscribe({
-      next: (data) => {
-        this.accounts.set(data.results);
-      },
-    });
   }
 
   public handleFormSubmit(){
@@ -120,21 +87,32 @@ export class DetailCategoryComponent implements OnInit {
 
     const body = {
       ...this.form.value,
-      type: this.selected.value === 0 ? 'INCOME' : 'EXPENDITURE',
-      recurrence: this.recurrence.value === 0 ? 'SINGLE' : (this.recurrence.value === 2 ? 'INSTALLMENTS' : this.form.value.recurrence),
     };
 
     console.log(body);
 
-    this.financeService.postFinance(body as BodyJson).subscribe({
-      next: () => {
-        this.chance(true);
-        this.loading.set(false);
-      },
-      error: () => {
-        this.loading.set(false);
-      },
-    });
+    if(this.data?.category.id){
+      this.categoryService.patchCategory(this.data.category.id, body as BodyJson).subscribe({
+        next: () => {
+          this.chance(true);
+          this.loading.set(false);
+        },
+        error: () => {
+          this.loading.set(false);
+        },
+      });
+    }
+    else{
+      this.categoryService.postCategory(body as BodyJson).subscribe({
+        next: () => {
+          this.chance(true);
+          this.loading.set(false);
+        },
+        error: () => {
+          this.loading.set(false);
+        },
+      });
+    }
 
   }
   public chance(chance: boolean): void {

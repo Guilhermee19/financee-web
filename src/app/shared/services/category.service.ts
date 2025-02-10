@@ -24,7 +24,7 @@ export class CategoryService {
     return this.http.patch<ICategory>(`core/edit-category/${id}/`, body);
   }
 
-  deletCategory(id: number): Observable<ICategory> {
+  deleteCategory(id: number): Observable<ICategory> {
     return this.http.delete<ICategory>(`core/delete-category/${id}/`);
   }
 }

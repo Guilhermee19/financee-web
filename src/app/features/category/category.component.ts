@@ -46,12 +46,6 @@ export class CategoryComponent implements OnInit {
   private getAllCategories(page = 1) {
     this.loading.set(true);
 
-    // const params = {
-    //   year: this.current_year,
-    //   month: this.months[this.current_month].month,
-    //   return_all: true
-    // };
-
     this.categoryService.getAllCategories(page).subscribe({
       next: (data) => {
         this.dataSource.set(data.results);
@@ -60,15 +54,26 @@ export class CategoryComponent implements OnInit {
     });
   }
 
-  public createFinance(){
+  public detailCategory(category?: ICategory){
     const dialogRef = this.dialog.open(DetailCategoryComponent,{
-      ...CONFIG_MODAL_TRANSACTION
+      ...CONFIG_MODAL_TRANSACTION,
+      data: {
+        category
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if(result){
         this.getAllCategories();
       }
+    });
+  }
+
+  public deleteCategory(category: ICategory){
+    this.categoryService.deleteCategory(category.id).subscribe({
+      next: () => {
+        this.getAllCategories();
+      },
     });
   }
 }
