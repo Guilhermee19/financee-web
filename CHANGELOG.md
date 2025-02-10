@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.0](https://github.com/Guilhermee19/financee-web/compare/v1.8.1...v1.9.0) (2025-02-10)
+
+
+### Features
+
+* category ([5af39fc](https://github.com/Guilhermee19/financee-web/commit/5af39fcff9ef8b834aa1cdd4237c47115e1efd89))
+
+### [1.8.1](https://github.com/Guilhermee19/financee-web/compare/v1.8.0...v1.8.1) (2025-02-09)
+
+
+### Bug Fixes
+
+* filter data transaction ([177d079](https://github.com/Guilhermee19/financee-web/commit/177d07910dcab5dea59f2abb257dbc11bd7be416))
+
 ## [1.8.0](https://github.com/Guilhermee19/financee-web/compare/v1.7.0...v1.8.0) (2025-02-07)
 
 

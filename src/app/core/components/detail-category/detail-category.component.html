@@ -1,0 +1,42 @@
+<section class="h-full flex flex-col">
+  <header class="flex justify-between items-center px-5 gap-2 pb-5 border-b border-solid border-White8">
+    <h1 class="text-white text-xl font-semibold"> Categoria </h1>
+
+    <i icon="xmark" class="text-white p-1 cursor-pointer" (click)="chance(false)"
+    (keydown)="chance(false)"
+    tabindex="-1"></i>
+  </header>
+
+  <form [formGroup]="form" (ngSubmit)="handleFormSubmit()" class="my-4 px-5 flex flex-col gap-4">
+    <div class="form-input">
+      <label for="name"> Nome </label>
+      <div class="input_icon">
+        <input
+          type="text"
+          id="name"
+          placeholder="Descrição"
+          formControlName="name"
+        />
+      </div>
+    </div>
+
+    <div class="form-input">
+      <label for="value"> Icones </label>
+
+      <div class="grid grid-cols-8 gap-4">
+        @for (item of icons(); track $index) {
+          <i [icon]="item" class="text-white cursor-pointer"></i>
+        }
+      </div>
+    </div>
+
+  </form>
+
+  <div class="buttons mt-auto px-5">
+    <button mat-flat-button type="button" color="accent" (click)="chance(false)"> Cancelar </button>
+    <button mat-flat-button type="submit" (click)="handleFormSubmit()" color="primary" [disabled]="form.invalid">
+      {{'Salvar'}}
+    </button>
+  </div>
+
+</section>
