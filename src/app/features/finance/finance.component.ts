@@ -7,6 +7,7 @@ import { MatTableModule } from '@angular/material/table';
 import { DetailFinanceComponent } from '../../core/components/detail-finance/detail-finance.component';
 import { CONFIG_MODAL_TRANSACTION, MONTHS } from '../../core/constants/utils';
 import { ITransaction } from '../../core/models/finance';
+import { ConfirmModalComponent } from '../../shared/components/modals/confirm-modal/confirm-modal.component';
 import { IconDirective } from '../../shared/directives/icon.directive';
 import { ConvertStatusPipe } from '../../shared/pipes/convert-status.pipe';
 import { FinanceService } from '../../shared/services/finance.service';
@@ -62,9 +63,10 @@ export class FinanceComponent implements OnInit{
     });
   }
 
-  public createFinance(){
+  public detailFinance(finance?: ITransaction){
     const dialogRef = this.dialog.open(DetailFinanceComponent,{
-      ...CONFIG_MODAL_TRANSACTION
+      ...CONFIG_MODAL_TRANSACTION,
+      data: {finance}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -73,4 +75,30 @@ export class FinanceComponent implements OnInit{
       }
     });
   }
+
+  public openDelete(finance: ITransaction){
+      const dialogRef = this.dialog.open(ConfirmModalComponent,{
+        panelClass: 'custom-dialog',
+        data: {
+          title: 'Deletar Transação?',
+          message: `Deseja deletar a transação "${finance?.description ?? ''}" ?`,
+          confirmText: 'Sim',
+          cancelText: 'Não',
+        }
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        if(result){
+          this.deleteFinance(finance);
+        }
+      });
+    }
+
+    public deleteFinance(finance: ITransaction){
+      this.financeService.deleteFinance(finance.id).subscribe({
+        next: () => {
+          this.getAllFinances();
+        },
+      });
+    }
 }

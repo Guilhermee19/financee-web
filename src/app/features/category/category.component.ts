@@ -6,8 +6,10 @@ import { MatTableModule } from '@angular/material/table';
 import { DetailCategoryComponent } from '../../core/components/detail-category/detail-category.component';
 import { CONFIG_MODAL_TRANSACTION } from '../../core/constants/utils';
 import { ICategory } from '../../core/models/category';
+import { ConfirmModalComponent } from '../../shared/components/modals/confirm-modal/confirm-modal.component';
 import { IconDirective } from '../../shared/directives/icon.directive';
 import { ConvertStatusPipe } from '../../shared/pipes/convert-status.pipe';
+import { SafePipe } from '../../shared/pipes/safe.pipe';
 import { CategoryService } from '../../shared/services/category.service';
 
 @Component({
@@ -20,7 +22,8 @@ import { CategoryService } from '../../shared/services/category.service';
     DatePipe,
     ConvertStatusPipe,
     MatButtonModule,
-    IconDirective
+    IconDirective,
+    SafePipe
   ],
   templateUrl: './category.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -36,7 +39,7 @@ export class CategoryComponent implements OnInit {
   // private current_month = new Date().getMonth();
   // private current_year = new Date().getFullYear();
 
-  public displayedColumns: string[] = ['description', 'type', 'category', 'value_installment', 'expiry_date', 'options'];
+  public displayedColumns: string[] = ['icon', 'name', 'is_active', 'created_at', 'options'];
   public dataSource: WritableSignal<ICategory[]> = signal<ICategory[]>([]);
 
   public ngOnInit() {
@@ -65,6 +68,25 @@ export class CategoryComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if(result){
         this.getAllCategories();
+      }
+    });
+  }
+
+  public openDelete(category: ICategory){
+    const dialogRef = this.dialog.open(ConfirmModalComponent,{
+      panelClass: 'custom-dialog',
+      data: {
+        title: 'Deletar Categoria?',
+        message: `Deseja deletar a categoria "${category?.name ?? ''}" ?`,
+        confirmText: 'Sim',
+        cancelText: 'Não',
+        category
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.deleteCategory(category);
       }
     });
   }

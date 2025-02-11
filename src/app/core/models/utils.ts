@@ -15,3 +15,10 @@ export interface IFilter {
 export interface IDialogActions {
   action: 'yes' | 'no';
 }
+
+export interface ConfirmModalData {
+  title: string
+  message: string
+  confirmText: string
+  cancelText: string
+}

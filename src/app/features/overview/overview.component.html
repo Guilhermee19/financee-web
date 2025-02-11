@@ -58,7 +58,12 @@
           @for (item of transactions_overdue_unpaid(); track $index){
             <div class="w-full flex justify-between pr-2 items-center gap-2 rounded-lg bg-Red8">
               <div class="size-11 flex justify-center items-center aspect-square rounded-lg p-2 bg-White3">
-                <i icon="arrow_trend_up" class="text-white opacity-50"></i>
+                @if(item.category_obj?.icon){
+                  <i [innerHTML]="item.category_obj?.icon | safe: 'html'" class="text-white text-lg opacity-50"></i>
+                }
+                @else{
+                  <i icon="paperclip" class="text-white text-lg opacity-50"></i>
+                }
               </div>
 
               <div class="w-max flex flex-col gap-2 mr-auto">
@@ -76,7 +81,12 @@
           @for (item of transactions_upcoming(); track $index){
             <div class="w-full flex justify-between pr-2 items-center gap-2">
               <div class="size-11 flex justify-center items-center aspect-square rounded-lg p-2 bg-White3">
-                <i icon="arrow_trend_up" class="text-white opacity-50"></i>
+                @if(item.category_obj?.icon){
+                  <i [innerHTML]="item.category_obj?.icon| safe: 'html'" class="text-white text-lg opacity-50"></i>
+                }
+                @else{
+                  <i icon="paperclip" class="text-white text-lg opacity-50"></i>
+                }
               </div>
 
               <div class="w-max flex flex-col gap-2 mr-auto">

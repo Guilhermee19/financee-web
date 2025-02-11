@@ -23,11 +23,11 @@
     <div class="form-input">
       <label for="value"> Icones </label>
 
-      <div class="grid grid-cols-8 gap-4">
-        @for (item of icons(); track $index) {
-          <i [icon]="item" class="text-white cursor-pointer"></i>
-        }
-      </div>
+      <textarea name="" id="" formControlName="icon" rows="10"></textarea>
+    </div>
+
+    <div class="form-input">
+      <mat-slide-toggle formControlName="is_active" class="!text-white"> {{ form.value.is_active ? 'Ativar' : 'Desativar' }} </mat-slide-toggle>
     </div>
 
   </form>

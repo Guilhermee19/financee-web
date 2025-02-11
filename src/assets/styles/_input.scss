@@ -9,6 +9,10 @@
     @apply text-white text-sm;
   }
 
+  textarea{
+    resize: none;
+  }
+
   input,
   textarea,
   select,

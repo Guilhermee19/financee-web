@@ -35,7 +35,7 @@ import { ITransaction } from '../../models/finance';
 })
 export class DetailFinanceComponent implements OnInit {
   private dialogRef = inject(MatDialogRef);
-  public data?: { transaction: ITransaction } = inject(MAT_DIALOG_DATA);
+  public data?: { finance: ITransaction } = inject(MAT_DIALOG_DATA);
   private fb = inject(FormBuilder);
   private financeService = inject(FinanceService);
   private categoryService = inject(CategoryService);
@@ -48,7 +48,7 @@ export class DetailFinanceComponent implements OnInit {
 
   public form = this.fb.group({
     description: ['', Validators.required],
-    value: ['', Validators.required],
+    value: [0, Validators.required],
     category: [0],
     account: [0],
     expiry_date: ['', Validators.required],
@@ -62,7 +62,7 @@ export class DetailFinanceComponent implements OnInit {
   public recurrence = new FormControl(0);
 
   public ngOnInit(): void {
-    this.getAlltags();
+    this.getAllCategories();
 
     this.form.reset();
 
@@ -74,11 +74,24 @@ export class DetailFinanceComponent implements OnInit {
     })
     console.log(this.form.value);
 
-    if(!this.data?.transaction) return;
+    if(!this.data?.finance) return;
+
+    this.form.patchValue({
+      description: this.data.finance.description,
+      value: this.data.finance.value,
+      category: this.data.finance.category,
+      account: this.data.finance.account,
+      installments: this.data.finance.installments,
+      type: this.data.finance.type,
+
+      expiry_date: moment(new Date(this.data.finance.expiry_date).toISOString()).format('yyyy-MM-DD'),
+      recurrence: this.data.finance.recurrence,
+      edit_all: false,
+    })
   }
 
-  getAlltags() {
-    this.categoryService.getAllCategories().subscribe({
+  getAllCategories() {
+    this.categoryService.getAllCategories(1, 'active').subscribe({
       next: (data) => {
         this.categories.set(data.results)
         this.getAllAccounts();

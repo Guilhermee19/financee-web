@@ -11,10 +11,15 @@ import { BodyJson, HttpService } from './http.service';
 export class CategoryService {
   private http =inject(HttpService)
 
-  getAllCategories(page = 1): Observable<IPagedReq<ICategory>> {
-    const query = new HttpParams().set('page', page);
+  getAllCategories(page = 1, status: string = 'all', name: string = ''): Observable<IPagedReq<ICategory>> {
+    const query = new HttpParams()
+      .set('page', page.toString())        // Paginação
+      .set('status', status)               // Filtro de status: 'active', 'inactive', 'all'
+      .set('name', name);                  // Filtro de nome (caso haja)
+
     return this.http.get<IPagedReq<ICategory>>('core/all-categories/', query);
   }
+
 
   postCategory(body: BodyJson): Observable<ICategory> {
     return this.http.post<ICategory>(`core/create-category/`, body);

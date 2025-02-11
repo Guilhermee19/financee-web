@@ -1,12 +1,24 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ConfirmModalData } from '../../../../core/models/utils';
 
 @Component({
   selector: 'app-confirm-modal',
   standalone: true,
-  imports: [],
+  imports: [
+    CommonModule,
+    MatButtonModule
+  ],
   templateUrl: './confirm-modal.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ConfirmModalComponent {
+  private dialogRef = inject(MatDialogRef);
+  public data: ConfirmModalData = inject(MAT_DIALOG_DATA);
 
+  public chance(chance: boolean): void {
+    this.dialogRef.close(chance);
+  }
 }
