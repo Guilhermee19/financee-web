@@ -23,7 +23,7 @@ import { IconDirective } from './../../../shared/directives/icon.directive';
     ReactiveFormsModule,
     MatSelectModule,
     MatTabsModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
   ],
   templateUrl: './detail-category.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -43,6 +43,7 @@ export class DetailCategoryComponent implements OnInit {
     id: [-1],
     name: ['', Validators.required],
     icon: [''],
+    is_active: [true],
   });
 
   public selected = new FormControl(0);
@@ -61,12 +62,17 @@ export class DetailCategoryComponent implements OnInit {
   public ngOnInit(): void {
     this.form.reset();
 
-    if(!this.data?.category.id) return;
+    this.form.patchValue({
+      is_active: true,
+    })
+
+    if(!this.data?.category?.id) return;
 
     this.form.patchValue({
       id: this.data.category.id,
       name: this.data.category.name,
       icon: this.data.category.icon,
+      is_active: this.data.category.is_active,
     })
   }
 
@@ -91,7 +97,7 @@ export class DetailCategoryComponent implements OnInit {
 
     console.log(body);
 
-    if(this.data?.category.id){
+    if(this.data?.category?.id){
       this.categoryService.patchCategory(this.data.category.id, body as BodyJson).subscribe({
         next: () => {
           this.chance(true);

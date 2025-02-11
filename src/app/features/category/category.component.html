@@ -10,45 +10,47 @@
       <section class="container-tablet mt-6">
         <table mat-table [dataSource]="dataSource()">
 
-          <ng-container matColumnDef="description">
-            <th mat-header-cell *matHeaderCellDef> </th>
-            <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
-          </ng-container>
-
-          <ng-container matColumnDef="type">
-            <th mat-header-cell *matHeaderCellDef> Tipo </th>
+          <ng-container matColumnDef="icon">
+            <th mat-header-cell *matHeaderCellDef> Icone </th>
             <td mat-cell *matCellDef="let element">
-              <span class="!w-max px-3 flex items-center gap-2 py-1 rounded-full {{element.type === 'INCOME' ? 'bg-primary8 text-primary' : 'bg-Red8 text-Red'}}">
-                <i icon="circle_small" class="flex justify-center items-center"></i> {{ element.type | status }}
-              </span>
-            </td>
-          </ng-container>
-
-          <ng-container matColumnDef="category">
-            <th mat-header-cell *matHeaderCellDef> Categoria </th>
-            <td mat-cell *matCellDef="let element"> {{ element.category_obj?.name || '-' }} </td>
-          </ng-container>
-
-          <ng-container matColumnDef="value_installment">
-            <th mat-header-cell *matHeaderCellDef> Valor </th>
-            <td mat-cell *matCellDef="let element"> {{ element.value_installment | currency }} </td>
-          </ng-container>
-
-          <ng-container matColumnDef="expiry_date">
-            <th mat-header-cell *matHeaderCellDef> Data </th>
-            <td mat-cell *matCellDef="let element" class="opacity-50">
-              <div class="!w-max flex justify-start items-center gap-1">
-                <span>  {{ element.expiry_date | date: 'dd' }} </span>
-                <span> de </span>
-                <span class="capitalize"> {{ element.expiry_date | date: 'MMMM' }} </span>
-                <span> {{ element.expiry_date | date: 'yyyy' }} </span>
+              <div class="w-7 flex items-center justify-center">
+                @if(element.icon){
+                  <i [innerHTML]="element.icon | safe: 'html'" class="text-white mx-auto text-lg"></i>
+                }
+                @else {
+                  <i icon="xmark" class="text-white mx-auto text-lg opacity-50"></i>
+                }
               </div>
             </td>
           </ng-container>
 
-          <ng-container matColumnDef="status">
-            <th mat-header-cell *matHeaderCellDef> Status </th>
-            <td mat-cell *matCellDef="let element"> {{ element.value_installment | currency }} </td>
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Nome </th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.name }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="is_active">
+            <th mat-header-cell *matHeaderCellDef> Ativo </th>
+            <td mat-cell *matCellDef="let element">
+              <span class="!w-max px-3 flex items-center gap-2 py-1 rounded-full {{element.is_active ? 'bg-primary8 text-primary' : 'bg-Red8 text-Red'}}">
+                <i icon="circle_small" class="flex justify-center items-center"></i> {{ element.is_active ? 'Ativado' : 'Desativado' }}
+              </span>
+             </td>
+          </ng-container>
+
+          <ng-container matColumnDef="created_at">
+            <th mat-header-cell *matHeaderCellDef> Criação </th>
+            <td mat-cell *matCellDef="let element" class="opacity-50">
+              <div class="!w-max flex justify-start items-center gap-1">
+                <span>  {{ element.created_at | date: 'dd' }} </span>
+                <span> de </span>
+                <span class="capitalize"> {{ element.created_at | date: 'MMMM' }} </span>
+                <span> {{ element.created_at | date: 'yyyy' }} </span> -
+                <span class="!min-w-max"> {{ element.created_at | date: 'hh:mm aa' }} </span>
+              </div>
+            </td>
           </ng-container>
 
           <ng-container matColumnDef="options">
@@ -59,7 +61,7 @@
                   <i icon="pen_to_square" class="cursor-pointer p-1"></i>
                 </button>
 
-                <button mat-mini-fab class="!bg-transparent !p-1 !size-8" (click)="deleteCategory(element)">
+                <button mat-mini-fab class="!bg-transparent !p-1 !size-8" (click)="openDelete(element)">
                   <i icon="trash" class="cursor-pointer"></i>
                 </button>
               </div>
@@ -68,7 +70,7 @@
 
           <tr *matNoDataRow>
             <td colspan="100%">
-              <p>Nenhum resultado encontrado</p>
+              <p class="w-full p-5 text-center text-xl opacity-50 font-light">Nenhum resultado encontrado</p>
             </td>
           </tr>
 

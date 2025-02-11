@@ -1,1 +1,9 @@
-<p>confirm-modal works!</p>
+<section class="p-4 flex flex-col justify-center items-center gap-4">
+  <h1 class="text-white text-2xl font-semibold"> {{ data.title }} </h1>
+  <p class="text-white text-base text-center font-light"> {{ data.message }} </p>
+
+  <div class="w-full flex items-center gap-4 mt-4">
+    <button mat-flat-button color="primary" (click)="chance(true)"> {{ data.confirmText }} </button>
+    <button mat-flat-button color="accent" (click)="chance(false)"> {{ data.cancelText }} </button>
+  </div>
+</section>

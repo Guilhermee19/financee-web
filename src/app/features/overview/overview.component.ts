@@ -10,6 +10,7 @@ import { CONFIG_MODAL_TRANSACTION, MONTHS } from '../../core/constants/utils';
 import { ICategoryPercentages, IDashbaord } from '../../core/models/dashboard';
 import { GraphicPieComponent } from '../../shared/components/graphic-pie/graphic-pie.component';
 import { IconDirective } from '../../shared/directives/icon.directive';
+import { SafePipe } from '../../shared/pipes/safe.pipe';
 import { DashboardService } from '../../shared/services/dashboard.service';
 import { FinanceService } from '../../shared/services/finance.service';
 import { ITransaction } from './../../core/models/finance';
@@ -25,7 +26,8 @@ import { ITransaction } from './../../core/models/finance';
     MatProgressBarModule,
     FormsModule,
     ReactiveFormsModule,
-    GraphicPieComponent
+    GraphicPieComponent,
+    SafePipe
   ],
   templateUrl: './overview.component.html',
 })
