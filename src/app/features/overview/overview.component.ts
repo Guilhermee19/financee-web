@@ -8,11 +8,9 @@ import { debounceTime, distinctUntilChanged, startWith } from 'rxjs';
 import { DetailFinanceComponent } from '../../core/components/detail-finance/detail-finance.component';
 import { CONFIG_MODAL_TRANSACTION, MONTHS } from '../../core/constants/utils';
 import { ICategoryPercentages, IDashbaord } from '../../core/models/dashboard';
-import { GraphicPieComponent } from '../../shared/components/graphic-pie/graphic-pie.component';
 import { IconDirective } from '../../shared/directives/icon.directive';
 import { SafePipe } from '../../shared/pipes/safe.pipe';
 import { DashboardService } from '../../shared/services/dashboard.service';
-import { FinanceService } from '../../shared/services/finance.service';
 import { ITransaction } from './../../core/models/finance';
 @Component({
   selector: 'app-overview',
@@ -26,7 +24,6 @@ import { ITransaction } from './../../core/models/finance';
     MatProgressBarModule,
     FormsModule,
     ReactiveFormsModule,
-    GraphicPieComponent,
     SafePipe
   ],
   templateUrl: './overview.component.html',
@@ -34,7 +31,6 @@ import { ITransaction } from './../../core/models/finance';
 export class OverviewComponent implements OnInit{
   readonly dialog = inject(MatDialog);
   readonly dashboardService = inject(DashboardService);
-  private financeService = inject(FinanceService)
   private fb = inject(FormBuilder);
 
   public view_values = signal(true);

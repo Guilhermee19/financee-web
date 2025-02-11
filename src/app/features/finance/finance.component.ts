@@ -1,15 +1,17 @@
-import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
+import { debounceTime, distinctUntilChanged, startWith } from 'rxjs';
 import { DetailFinanceComponent } from '../../core/components/detail-finance/detail-finance.component';
 import { CONFIG_MODAL_TRANSACTION, MONTHS } from '../../core/constants/utils';
 import { ITransaction } from '../../core/models/finance';
 import { ConfirmModalComponent } from '../../shared/components/modals/confirm-modal/confirm-modal.component';
 import { IconDirective } from '../../shared/directives/icon.directive';
 import { ConvertStatusPipe } from '../../shared/pipes/convert-status.pipe';
+import { SafePipe } from '../../shared/pipes/safe.pipe';
 import { FinanceService } from '../../shared/services/finance.service';
 
 @Component({
@@ -22,7 +24,10 @@ import { FinanceService } from '../../shared/services/finance.service';
     DatePipe,
     ConvertStatusPipe,
     MatButtonModule,
-    IconDirective
+    IconDirective,
+    FormsModule,
+    ReactiveFormsModule,
+    SafePipe
   ],
   templateUrl: './finance.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -30,7 +35,7 @@ import { FinanceService } from '../../shared/services/finance.service';
 export class FinanceComponent implements OnInit{
 
   private financeService = inject(FinanceService)
-  private _liveAnnouncer = inject(LiveAnnouncer)
+  private fb = inject(FormBuilder);
   readonly dialog = inject(MatDialog);
 
   public loading = signal(false);
@@ -39,20 +44,30 @@ export class FinanceComponent implements OnInit{
   private current_month = new Date().getMonth();
   private current_year = new Date().getFullYear();
 
-  public displayedColumns: string[] = ['description', 'type', 'category', 'value_installment', 'expiry_date', 'options'];
+  public displayedColumns: string[] = ['description', 'type', 'account',  'category', 'value_installment', 'is_paid', 'expiry_date', 'options'];
   public dataSource: WritableSignal<ITransaction[]> = signal<ITransaction[]>([]);
+
+  public form = this.fb.nonNullable.group({
+    date: [`${new Date().getFullYear()}-${(new Date().getMonth() + 1).toString().padStart(2, '0')}`],
+  });
 
   public ngOnInit() {
     this.getAllFinances();
+
+    this.form.controls.date.valueChanges
+      .pipe(startWith(''), debounceTime(100), distinctUntilChanged())
+      .subscribe(() => {
+        console.log(this.form.value)
+        this.getAllFinances();
+      });
   }
 
   private getAllFinances() {
     this.loading.set(true);
 
     const params = {
-      year: this.current_year,
-      month: this.months[this.current_month].month,
-      return_all: true
+      year: Number(this.form.value.date?.split('-')[0] || new Date().getFullYear()),
+      month: Number(this.form.value.date?.split('-')[1] || new Date().getMonth() +1),
     };
 
     this.financeService.getAllFinance(params).subscribe({

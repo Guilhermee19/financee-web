@@ -88,6 +88,9 @@ export class DetailFinanceComponent implements OnInit {
       recurrence: this.data.finance.recurrence,
       edit_all: false,
     })
+
+    const tab = this.data.finance.type === 'INCOME'? 0 : 1;
+    this.setSelected(tab)
   }
 
   getAllCategories() {
@@ -153,15 +156,28 @@ export class DetailFinanceComponent implements OnInit {
 
     console.log(body);
 
-    this.financeService.postFinance(body as BodyJson).subscribe({
-      next: () => {
-        this.chance(true);
-        this.loading.set(false);
-      },
-      error: () => {
-        this.loading.set(false);
-      },
-    });
+    if(this.data?.finance?.id){
+      this.financeService.patchFinance(this.data.finance.id, body as BodyJson).subscribe({
+        next: () => {
+          this.chance(true);
+          this.loading.set(false);
+        },
+        error: () => {
+          this.loading.set(false);
+        },
+      });
+    }
+    else{
+      this.financeService.postFinance(body as BodyJson).subscribe({
+        next: () => {
+          this.chance(true);
+          this.loading.set(false);
+        },
+        error: () => {
+          this.loading.set(false);
+        },
+      });
+    }
 
   }
 
