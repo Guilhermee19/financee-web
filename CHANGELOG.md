@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.9.2](https://github.com/Guilhermee19/financee-web/compare/v1.9.1...v1.9.2) (2025-02-11)
+
+
+### Features
+
+* filter data FInanceiro | fix: imagen perfil navabr | feat: icon categoria ([4c4cb2b](https://github.com/Guilhermee19/financee-web/commit/4c4cb2b96ad5916bd2674f1406f4e6eec5dd8905))
+
 ### [1.9.1](https://github.com/Guilhermee19/financee-web/compare/v1.9.0...v1.9.1) (2025-02-11)
 
 

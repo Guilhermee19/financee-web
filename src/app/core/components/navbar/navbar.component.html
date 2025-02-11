@@ -25,7 +25,6 @@
         </div>
       }
 
-
       <div
         #menuContainer
         class="w-full overflow-hidden transition-all flex items-center {{
@@ -61,12 +60,7 @@
           [matMenuTriggerFor]="beforeMenu">
           <p class="w-max text-label text-sm"> {{ user.name }} </p>
 
-          @if( user.profile_image ){
-            <avatar [src]="user.profile_image" class="text-xs" color="light" bg="#55b02e" />
-          }
-          @else {
-            <avatar [name]="user.name" class="text-xs" color="light" bg="#55b02e" />
-          }
+          <avatar [name]="user.name" class="text-xs" color="light" bg="#55b02e" />
         </div>
       }
     </div>
