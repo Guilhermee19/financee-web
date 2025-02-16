@@ -3,10 +3,11 @@ import { ChangeDetectionStrategy, Component, inject, OnInit, signal, WritableSig
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table';
 import { debounceTime, distinctUntilChanged, startWith } from 'rxjs';
 import { DetailFinanceComponent } from '../../core/components/detail-finance/detail-finance.component';
-import { CONFIG_MODAL_TRANSACTION, MONTHS } from '../../core/constants/utils';
+import { CONFIG_MODAL_TRANSACTION } from '../../core/constants/utils';
 import { ITransaction } from '../../core/models/finance';
 import { ConfirmModalComponent } from '../../shared/components/modals/confirm-modal/confirm-modal.component';
 import { IconDirective } from '../../shared/directives/icon.directive';
@@ -27,7 +28,8 @@ import { FinanceService } from '../../shared/services/finance.service';
     IconDirective,
     FormsModule,
     ReactiveFormsModule,
-    SafePipe
+    SafePipe,
+    MatMenuModule
   ],
   templateUrl: './finance.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -39,12 +41,8 @@ export class FinanceComponent implements OnInit{
   readonly dialog = inject(MatDialog);
 
   public loading = signal(false);
-  private months = MONTHS;
 
-  private current_month = new Date().getMonth();
-  private current_year = new Date().getFullYear();
-
-  public displayedColumns: string[] = ['description', 'type', 'account',  'category', 'value_installment', 'is_paid', 'expiry_date', 'options'];
+  public displayedColumns: string[] = ['description', 'account',  'category', 'value_installment', 'is_paid', 'expiry_date', 'options'];
   public dataSource: WritableSignal<ITransaction[]> = signal<ITransaction[]>([]);
 
   public form = this.fb.nonNullable.group({
@@ -57,7 +55,6 @@ export class FinanceComponent implements OnInit{
     this.form.controls.date.valueChanges
       .pipe(startWith(''), debounceTime(100), distinctUntilChanged())
       .subscribe(() => {
-        console.log(this.form.value)
         this.getAllFinances();
       });
   }
@@ -78,10 +75,17 @@ export class FinanceComponent implements OnInit{
     });
   }
 
-  public detailFinance(finance?: ITransaction){
+  public paidTransaction(finance: ITransaction){
+    console.log(finance)
+  }
+
+  public detailFinance(finance?: ITransaction, all = false){
     const dialogRef = this.dialog.open(DetailFinanceComponent,{
       ...CONFIG_MODAL_TRANSACTION,
-      data: {finance}
+      data: {
+        finance,
+        edit_all: all
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -91,29 +95,29 @@ export class FinanceComponent implements OnInit{
     });
   }
 
-  public openDelete(finance: ITransaction){
-      const dialogRef = this.dialog.open(ConfirmModalComponent,{
-        panelClass: 'custom-dialog',
-        data: {
-          title: 'Deletar Transação?',
-          message: `Deseja deletar a transação "${finance?.description ?? ''}" ?`,
-          confirmText: 'Sim',
-          cancelText: 'Não',
-        }
-      });
+  public openDelete(finance: ITransaction, all = false){
+    const dialogRef = this.dialog.open(ConfirmModalComponent,{
+      panelClass: 'custom-dialog',
+      data: {
+        title: 'Deletar Transação?',
+        message: `Deseja deletar a transação "${finance?.description ?? ''}" ?`,
+        confirmText: 'Sim',
+        cancelText: 'Não',
+      }
+    });
 
-      dialogRef.afterClosed().subscribe(result => {
-        if(result){
-          this.deleteFinance(finance);
-        }
-      });
-    }
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.deleteFinance(finance, all);
+      }
+    });
+  }
 
-    public deleteFinance(finance: ITransaction){
-      this.financeService.deleteFinance(finance.id).subscribe({
-        next: () => {
-          this.getAllFinances();
-        },
-      });
-    }
+  public deleteFinance(finance: ITransaction, all = false){
+    this.financeService.deleteFinance(finance.id, all).subscribe({
+      next: () => {
+        this.getAllFinances();
+      },
+    });
+  }
 }

@@ -9,7 +9,8 @@
 .container-tablet {
   overflow-x: auto;
 
-  --mat-table-row-item-container-height: 45px;
+  --mat-table-row-item-container-height: 55px;
+  --mat-table-row-item-label-text-size: 14px;
   --mat-table-background-color: transparent;
 
   table {
@@ -28,7 +29,7 @@
       tr {
         @apply text-White font-extralight;
 
-        height: 40px;
+        height: 45px;
         background: transparent !important;
 
         th {

@@ -40,7 +40,7 @@ export class FinanceService {
     return this.http.patch<ITransaction>(`core/upload-transaction-image/`, body);
   }
 
-  deleteFinance(id: number): Observable<ITransaction> {
-    return this.http.delete<ITransaction>(`core/delete-transaction/${id}/`);
+  deleteFinance(id: number, all = false): Observable<ITransaction> {
+    return this.http.delete<ITransaction>(`core/delete-transaction/${id}/?all_transaction=${all}`);
   }
 }
