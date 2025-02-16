@@ -133,6 +133,9 @@ export class CalendarComponent implements OnInit {
   public viewToday() {
     if (!this.$calendar) return;
     const calendar = this.$calendar.getApi();
+
+    if(!calendar) return;
+
     calendar.today();
     this.refresh.set(false);
 
@@ -181,12 +184,16 @@ export class CalendarComponent implements OnInit {
   }
 
   public get listEvent() : EventSourceInput  {
+    const today = new Date(); // Data atual
+
     const arrayEvent = this.transactions().map((el) => {
+      const expiryDate = new Date(el.expiry_date);
+
       return {
         title: el.description,
         start: el.expiry_date, // Evento no dia 10 de fevereiro de 2025
         end: el.expiry_date,
-        classNames: el.is_paid ? 'isPaid' : 'notPaid'
+        classNames: !el.is_paid && (expiryDate < today) ? 'notPaid' : 'isPaid'
       }
     })
 
