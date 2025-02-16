@@ -6,35 +6,38 @@
 
     <form [formGroup]="form" class="flex w-full items-center justify-between">
       <div class="buttons flex w-max items-center justify-center">
-        <button mat-button class="primary" (click)="viewToday()"> Hoje </button>
+        <button mat-button class="primary text-label" (click)="viewToday()"> Hoje </button>
         <button mat-icon-button (click)="monthChange('previous')">
-          <i icon="angle_left"></i>
+          <i icon="angle_left" class="!text-label"></i>
         </button>
         <button mat-icon-button (click)="monthChange('next')">
-          <i icon="angle_right"></i>
+          <i icon="angle_right" class="!text-label"></i>
         </button>
       </div>
 
-      <p class="flex w-32 items-center justify-center text-2xl font-semibold"
+      <p class="flex w-max items-center justify-center text-xl font-semibold text-label"
         >{{ full_selected | date: 'MMMM' }} de
         {{ full_selected | date: 'yyyy' }}
       </p>
 
-      <mat-select
-        class="w-full max-w-32 rounded-md border border-solid border-main-color px-4 py-1"
-        formControlName="viewMode"
-        (selectionChange)="setViewCalendar(form.value.viewMode)"
-      >
-        <mat-option value="dayGridMonth">Mês</mat-option>
-        <mat-option value="timeGridWeek">Semana</mat-option>
-        <mat-option value="timeGridDay">Dia</mat-option>
-        <mat-option value="listWeek">Lista</mat-option>
-      </mat-select>
+      <div class="form-input max-w-32">
+        <mat-select
+          class="w-full"
+          formControlName="viewMode"
+          (selectionChange)="setViewCalendar(form.value.viewMode)"
+        >
+          <mat-option value="dayGridMonth">Mês</mat-option>
+          <mat-option value="timeGridWeek">Semana</mat-option>
+          <mat-option value="timeGridDay">Dia</mat-option>
+          <mat-option value="listWeek">Lista</mat-option>
+        </mat-select>
+      </div>
+
     </form>
 
     <div class="w-full grid grid-cols-10 gap-4">
       <div class="w-full col-span-2 aspect-square">
-        @if(refresh()){
+        <!-- @if(refresh()){
           <mat-calendar
             #calendarRef
             class="w-full"
@@ -42,7 +45,7 @@
             (selectedChange)="onDateSelected($event)"
             (click)="onDateChanged($event)"
           ></mat-calendar>
-        }
+        } -->
       </div>
 
       <div class="w-full col-span-8">

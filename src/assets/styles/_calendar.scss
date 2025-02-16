@@ -4,7 +4,11 @@
 
 
 .notPaid{
-  @apply bg-Red8 border-Red rounded-lg p-1 #{!important};
+  @apply bg-Red8 border-Red rounded-lg px-1 #{!important};
+}
+
+.isPaid{
+  @apply bg-secondary border-White8 rounded-lg px-1 #{!important};
 }
 
 // ? calendar angular
@@ -124,14 +128,13 @@
 
   .fc-event-time,
   .fc-event-title {
-    position: relative;
-    z-index: 5;
+    @apply relative z-10 text-xs leading-none;
   }
 }
 
 .fc .fc-daygrid-day-top {
   justify-content: left;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 
   a {
     @apply text-label;
@@ -170,6 +173,18 @@
   }
 }
 
+.fc-daygrid-day-events{
+  @apply h-full max-h-16 flex flex-col gap-1 overflow-y-auto;
+}
+
+.fc-daygrid-day-bg{
+  @apply absolute top-0;
+}
+
+.fc-h-event .fc-event-title-container{
+  @apply leading-none;
+}
+
 .fc-daygrid-block-event .fc-event-time,
 .fc-daygrid-dot-event .fc-event-title {
   font-weight: 400;
@@ -192,3 +207,5 @@
 .fc .fc-timegrid-slot-minor {
   border-top-style: hidden;
 }
+
+
