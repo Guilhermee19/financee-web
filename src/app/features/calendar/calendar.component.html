@@ -4,51 +4,8 @@
   >
     <h1 class="w-full"> Calendario </h1>
 
-    <form [formGroup]="form" class="flex w-full items-center justify-between">
-      <div class="buttons flex w-max items-center justify-center">
-        <button mat-button class="primary" (click)="viewToday()"> Hoje </button>
-        <button mat-icon-button (click)="monthChange('previous')">
-          <i icon="angle_left"></i>
-        </button>
-        <button mat-icon-button (click)="monthChange('next')">
-          <i icon="angle_right"></i>
-        </button>
-      </div>
-
-      <p class="flex w-32 items-center justify-center text-2xl font-semibold"
-        >{{ full_selected | date: 'MMMM' }} de
-        {{ full_selected | date: 'yyyy' }}
-      </p>
-
-      <mat-select
-        class="w-full max-w-32 rounded-md border border-solid border-main-color px-4 py-1"
-        formControlName="viewMode"
-        (selectionChange)="setViewCalendar(form.value.viewMode)"
-      >
-        <mat-option value="dayGridMonth">Mês</mat-option>
-        <mat-option value="timeGridWeek">Semana</mat-option>
-        <mat-option value="timeGridDay">Dia</mat-option>
-        <mat-option value="listWeek">Lista</mat-option>
-      </mat-select>
-    </form>
-
-    <div class="w-52">
-      <mat-calendar
-        *ngIf="refresh()"
-        #calendarRef
-        class="w-full"
-        [(selected)]="selected"
-        (selectedChange)="onDateSelected($event)"
-        (click)="onDateChanged($event)"
-      ></mat-calendar>
-    </div>
-
     <div class="max-w-screen-calendar w-full">
-      <full-calendar
-        #calendar
-        class="w-full"
-        [options]="calendarOptions"
-      ></full-calendar>
+
     </div>
   </div>
 </main>
