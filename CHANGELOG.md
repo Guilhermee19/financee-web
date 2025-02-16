@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.10.0](https://github.com/Guilhermee19/financee-web/compare/v1.9.2...v1.10.0) (2025-02-16)
+
+
+### Features
+
+* correção dos tabs ([3688421](https://github.com/Guilhermee19/financee-web/commit/3688421c74cfe8f0c8875941061f01c9b3304506))
+* financeiro ([f774186](https://github.com/Guilhermee19/financee-web/commit/f774186f3fec92f8850c678d44c24a9d13b67c5f))
+* limpar consoles ([3585c95](https://github.com/Guilhermee19/financee-web/commit/3585c951cd74d3c2c8c290ce4a1cdb783a698307))
+
 ### [1.9.2](https://github.com/Guilhermee19/financee-web/compare/v1.9.1...v1.9.2) (2025-02-11)
 
 
