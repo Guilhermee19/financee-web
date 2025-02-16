@@ -81,8 +81,6 @@ export class DetailCategoryComponent implements OnInit {
   }
 
   public handleFormSubmit(){
-    console.log(this.form.value);
-
     if (this.loading()) return;
 
     if (this.form.invalid) {
@@ -94,8 +92,6 @@ export class DetailCategoryComponent implements OnInit {
     const body = {
       ...this.form.value,
     };
-
-    console.log(body);
 
     if(this.data?.category?.id){
       this.categoryService.patchCategory(this.data.category.id, body as BodyJson).subscribe({

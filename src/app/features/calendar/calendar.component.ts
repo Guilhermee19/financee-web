@@ -93,8 +93,6 @@ export class CalendarComponent implements OnInit {
 
     if (!(DATE instanceof Date) || isNaN(DATE.getTime())) return; // Verifica se é uma data válida
 
-    // console.log('Selected ->', DATE);
-
     this.gotoDateInFullCalendar(DATE); // Move para a data
   }
 
@@ -102,8 +100,6 @@ export class CalendarComponent implements OnInit {
     const DATE = new Date(moment(date).format('YYYY-MM-DD') + 'T12:00:00'); // Corrige formato para YYYY-MM-DD
 
     if (!(DATE instanceof Date) || isNaN(DATE.getTime())) return; // Verifica se é uma data válida
-
-    // console.log('Changed ->', DATE);
 
     this.gotoDateInFullCalendar(DATE); // Move para a data
   }
