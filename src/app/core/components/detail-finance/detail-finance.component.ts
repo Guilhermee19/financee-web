@@ -35,7 +35,7 @@ import { ITransaction } from '../../models/finance';
 })
 export class DetailFinanceComponent implements OnInit {
   private dialogRef = inject(MatDialogRef);
-  public data?: { finance: ITransaction } = inject(MAT_DIALOG_DATA);
+  public data?: { finance: ITransaction, edit_all: boolean } = inject(MAT_DIALOG_DATA);
   private fb = inject(FormBuilder);
   private financeService = inject(FinanceService);
   private categoryService = inject(CategoryService);
@@ -69,10 +69,9 @@ export class DetailFinanceComponent implements OnInit {
     this.form.patchValue({
       expiry_date: moment(new Date().toISOString()).format('yyyy-MM-DD'),
       recurrence: 'SINGLE',
-      edit_all: false,
+      edit_all: this.data?.edit_all || false,
       type: 'INCOME',
     })
-    console.log(this.form.value);
 
     if(!this.data?.finance) return;
 
@@ -84,13 +83,16 @@ export class DetailFinanceComponent implements OnInit {
       installments: this.data.finance.installments,
       type: this.data.finance.type,
 
-      expiry_date: moment(new Date(this.data.finance.expiry_date).toISOString()).format('yyyy-MM-DD'),
+      expiry_date: moment(this.data.finance.expiry_date).startOf('day').format('YYYY-MM-DD'),
       recurrence: this.data.finance.recurrence,
-      edit_all: false,
+      edit_all: this.data?.edit_all || false,
     })
 
     const tab = this.data.finance.type === 'INCOME'? 0 : 1;
+    const recurrence = this.data.finance.recurrence === 'SINGLE' ? 0 : (this.data.finance.recurrence === 'INSTALLMENTS' ? 2 : 1);
+
     this.setSelected(tab)
+    this.setRecurrence(recurrence)
   }
 
   getAllCategories() {
@@ -121,18 +123,16 @@ export class DetailFinanceComponent implements OnInit {
   }
 
   public setRecurrence(event: number): void {
-    console.log(event)
-
     this.recurrence.setValue(event)
-    this.form.patchValue({
-      recurrence: event === 0 ? 'SINGLE' :
-      (event === 2 ? 'INSTALLMENTS' : '')
-    })
+    if(event !== 1){
+      this.form.patchValue({
+        recurrence: event === 0 ? 'SINGLE' :
+        (event === 2 ? 'INSTALLMENTS' : '')
+      })
+    }
   }
 
   public handleFormSubmit(){
-    console.log(this.form.value);
-
     if (this.loading()) return;
 
     if (this.form.invalid) {
@@ -153,8 +153,6 @@ export class DetailFinanceComponent implements OnInit {
     if(!body['account']) delete body.account;
     if(!body['category']) delete body.category;
     if(!body['edit_all']) delete body.edit_all;
-
-    console.log(body);
 
     if(this.data?.finance?.id){
       this.financeService.patchFinance(this.data.finance.id, body as BodyJson).subscribe({
