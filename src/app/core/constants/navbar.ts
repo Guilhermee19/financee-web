@@ -18,12 +18,12 @@ export const NAVBAR_PAGES: {
     router: '/finance',
     roles: ['Admin', 'Desenvolvedor'],
   },
-  // {
-  //   label: 'Calendario',
-  //   icon: 'calendar_range',
-  //   router: '/calendar',
-  //   roles: ['Admin', 'Desenvolvedor'],
-  // },
+  {
+    label: 'Calendario',
+    icon: 'calendar_range',
+    router: '/calendar',
+    roles: ['Admin', 'Desenvolvedor'],
+  },
   {
     label: 'Assinatura',
     icon: 'plans',

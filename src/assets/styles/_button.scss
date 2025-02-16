@@ -84,6 +84,18 @@
   }
 }
 
+.mat-mdc-menu-item{
+  @apply py-1 #{!important};
+
+  &.mat-primary{
+    @apply text-primary;
+  }
+
+  /* .mat-mdc-menu-item-text{
+    @apply text-right #{!important};
+  } */
+}
+
 .mat-mdc-outlined-button:not(:disabled) {
   --mdc-outlined-button-outline-color: #55b02e !important;
 }

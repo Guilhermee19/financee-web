@@ -6,27 +6,28 @@ import {
   OnInit,
   signal,
   ViewChild,
+  WritableSignal
 } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCalendar, MatDatepickerModule } from '@angular/material/datepicker';
-// import { MatDialog } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
-// import { DetailConsultationModalComponent } from '@app/components/modals/consultations/detail-consultation-modal/detail-consultation-modal.component';
-// import { CalendarService } from '@app/services/calendar.service';
 import {
   FullCalendarComponent,
-  FullCalendarModule
+  FullCalendarModule,
 } from '@fullcalendar/angular';
-import { CalendarOptions, EventClickArg } from '@fullcalendar/core';
+import { CalendarOptions, EventClickArg, EventSourceInput } from '@fullcalendar/core';
 import ptBrLocale from '@fullcalendar/core/locales/pt-br';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import listPlugin from '@fullcalendar/list';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import moment from 'moment';
+import { ITransaction } from '../../core/models/finance';
 import { IconDirective } from '../../shared/directives/icon.directive';
+import { FinanceService } from '../../shared/services/finance.service';
 
+// Register all Community features
 @Component({
   selector: 'app-calendar',
   standalone: true,
@@ -45,9 +46,9 @@ import { IconDirective } from '../../shared/directives/icon.directive';
 export class CalendarComponent implements OnInit {
   @ViewChild('calendar') $calendar: FullCalendarComponent | undefined;
   @ViewChild('calendarRef') mat_calendar!: MatCalendar<Date>;
+
   private fb = inject(FormBuilder);
-  // private calendarService = inject(CalendarService);
-  // private dialog = inject(MatDialog);
+  private financeService = inject(FinanceService)
 
   public selected = <Date | null>null;
   public mat_selected: Date = new Date();
@@ -67,25 +68,31 @@ export class CalendarComponent implements OnInit {
     eventClick: (arg) => this.handleEventClick(arg),
   };
 
-  ngOnInit() {
+  public transactions: WritableSignal<ITransaction[]> = signal([])
+
+  public ngOnInit() {
     this.getEvents();
   }
 
-  getEvents() {
-    // const month = this.full_selected.getMonth() + 1;
-    // const year = this.full_selected.getFullYear();
+  public getEvents() {
+    const month = this.full_selected.getMonth() + 1;
+    const year = this.full_selected.getFullYear();
     this.$calendar?.getApi().removeAllEventSources();
 
-    // this.calendarService
-    //   .getCalendarEvents(month.toString(), year.toString())
-    //   .subscribe({
-    //     next: (response) => {
-    //       const events = this.calendarService.calendarEventsSanitazer(response);
+    // this.loading.set(true);
 
-    //       this.$calendar?.getApi().addEventSource(events);
-    //       setTimeout(() => this.$calendar?.getApi().updateSize(), 500);
-    //     },
-    //   });
+    const params = {
+      year: year,
+      month: month,
+    };
+
+    this.financeService.getAllFinance(params).subscribe({
+      next: (data) => {
+        this.transactions.set(data)
+        // this.loading.set(false);
+      },
+    });
+
   }
 
   public onDateSelected(date: Date | null): void {
@@ -121,9 +128,6 @@ export class CalendarComponent implements OnInit {
 
   public handleEventClick(arg: EventClickArg) {
     console.log(arg)
-    // this.dialog.open(DetailConsultationModalComponent, {
-    //   data: arg.event._def.extendedProps,
-    // });
   }
 
   public viewToday() {
@@ -174,5 +178,18 @@ export class CalendarComponent implements OnInit {
     }, 10);
 
     this.getEvents();
+  }
+
+  public get listEvent() : EventSourceInput  {
+    const arrayEvent = this.transactions().map((el) => {
+      return {
+        title: el.description,
+        start: el.expiry_date, // Evento no dia 10 de fevereiro de 2025
+        end: el.expiry_date,
+        classNames: el.is_paid ? 'isPaid' : 'notPaid'
+      }
+    })
+
+    return arrayEvent
   }
 }

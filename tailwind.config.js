@@ -29,6 +29,7 @@ module.exports = {
       },
       boxShadow: {
         custom: '0 4px 26px rgba(25, 25, 25, 0.25)',
+        border: 'inset 0 0 2px #71717a',
       },
       animation: {
         'spin-fast': 'spin 0.5s linear infinite',

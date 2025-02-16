@@ -11,26 +11,6 @@ export interface Account {
   is_credit: boolean;
 }
 
-// export interface Installment {
-//   created_at: string;
-//   created_by: number;
-//   current_installment: number;
-//   total_installments: number;
-//   due_date: string;
-//   transaction: number;
-//   id: number;
-//   receipt: string
-//   value: number;
-//   is_paid: boolean;
-//   updated_at: string;
-//   updated_by: number;
-//   account: number;
-//   account_obj?: Account;
-//   category: number;
-//   category_obj?: ICategory;
-//   type: 'INCOME' | 'EXPENDITURE' | 'TRANSFER'
-// }
-
 export interface ITransaction {
   id: number;
   created_at: string;

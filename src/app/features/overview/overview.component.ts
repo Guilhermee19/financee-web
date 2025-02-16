@@ -61,7 +61,6 @@ export class OverviewComponent implements OnInit{
     this.form.controls.date.valueChanges
       .pipe(startWith(''), debounceTime(100), distinctUntilChanged())
       .subscribe(() => {
-        console.log(this.form.value)
         this.getDashboard()
         this.getDashboardCategory()
         this.getDashboardUpcomingAndUnpaidTransactions();
@@ -103,8 +102,6 @@ export class OverviewComponent implements OnInit{
       year: Number(this.form.value.date?.split('-')[0] || new Date().getFullYear()),
       month: Number(this.form.value.date?.split('-')[1] || new Date().getMonth() +1),
     };
-
-    console.log(params);
 
     this.dashboardService.getDashboardUpcomingAndUnpaidTransactions(params).subscribe({
       next: (data) => {

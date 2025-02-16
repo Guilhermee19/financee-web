@@ -73,9 +73,9 @@
       </div>
     </div>
 
-    @if(data?.finance?.id){
+    <!-- @if(data?.finance?.id){
       <mat-slide-toggle formControlName="edit_all" class="!text-white"> Editar todas as variações </mat-slide-toggle>
-    }
+    } -->
 
     <mat-tab-group [selectedIndex]="recurrence.value" (selectedIndexChange)="setRecurrence($event)">
       <mat-tab label="Único"></mat-tab>

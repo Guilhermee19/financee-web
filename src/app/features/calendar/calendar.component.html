@@ -1,8 +1,8 @@
-<main class="table-section page" id="calendar">
-  <div
-    class="container flex w-full flex-wrap justify-between gap-2 p-4 align-top"
-  >
-    <h1 class="w-full"> Calendario </h1>
+<main>
+  <div class="container mx-auto">
+    <header class="w-full flex justify-between">
+      <h1 class="text-2xl font-bold text-label"> Calendario </h1>
+    </header>
 
     <form [formGroup]="form" class="flex w-full items-center justify-between">
       <div class="buttons flex w-max items-center justify-center">
@@ -32,23 +32,27 @@
       </mat-select>
     </form>
 
-    <div class="w-52">
-      <mat-calendar
-        *ngIf="refresh()"
-        #calendarRef
-        class="w-full"
-        [(selected)]="selected"
-        (selectedChange)="onDateSelected($event)"
-        (click)="onDateChanged($event)"
-      ></mat-calendar>
-    </div>
+    <div class="w-full grid grid-cols-10 gap-4">
+      <div class="w-full col-span-2 aspect-square">
+        @if(refresh()){
+          <mat-calendar
+            #calendarRef
+            class="w-full"
+            [(selected)]="selected"
+            (selectedChange)="onDateSelected($event)"
+            (click)="onDateChanged($event)"
+          ></mat-calendar>
+        }
+      </div>
 
-    <div class="max-w-screen-calendar w-full">
-      <full-calendar
-        #calendar
-        class="w-full"
-        [options]="calendarOptions"
-      ></full-calendar>
+      <div class="w-full col-span-8">
+        <full-calendar
+          #calendar
+          class="w-full"
+          [options]="calendarOptions"
+          [events]="listEvent"
+        ></full-calendar>
+      </div>
     </div>
   </div>
 </main>
