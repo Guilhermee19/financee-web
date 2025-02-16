@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.10.1](https://github.com/Guilhermee19/financee-web/compare/v1.10.0...v1.10.1) (2025-02-16)
+
+
+### Features
+
+* calendar ([120adb4](https://github.com/Guilhermee19/financee-web/commit/120adb4bdbb5126be7e5f40d0602f5f073bebe5d))
+* calendario ([161a000](https://github.com/Guilhermee19/financee-web/commit/161a000bdf3bb075d4b78b41ea0b6f93f99614f9))
+
+
+### Bug Fixes
+
+* calendar ([c76b1f8](https://github.com/Guilhermee19/financee-web/commit/c76b1f85125b5f844087409d1980497f566d7a7f))
+
 ## [1.10.0](https://github.com/Guilhermee19/financee-web/compare/v1.9.2...v1.10.0) (2025-02-16)
 
 
