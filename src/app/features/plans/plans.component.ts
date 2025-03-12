@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { IPlan } from '../../core/models/plan';
 import { PlansService } from '../../shared/services/plans.service';
+import { StorageService } from '../../shared/services/storage.service';
 
 @Component({
   selector: 'app-plans',
@@ -11,7 +12,9 @@ import { PlansService } from '../../shared/services/plans.service';
 })
 export class PlansComponent implements OnInit {
   private plansService = inject(PlansService)
-  public user_plan = 1;
+  private storage = inject(StorageService)
+
+  public user_plan = this.storage.myself.plan_obj;
 
   public plans: IPlan[] = []
 

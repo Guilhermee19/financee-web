@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.10.2](https://github.com/Guilhermee19/financee-web/compare/v1.10.1...v1.10.2) (2025-03-12)
+
+
+### Bug Fixes
+
+* responsividade mobile ([f383ef6](https://github.com/Guilhermee19/financee-web/commit/f383ef6a4200a77a3a637afb8ea81f26b084468e))
+
 ### [1.10.1](https://github.com/Guilhermee19/financee-web/compare/v1.10.0...v1.10.1) (2025-02-16)
 
 

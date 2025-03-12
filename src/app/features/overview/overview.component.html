@@ -1,11 +1,10 @@
 <main>
   <div class="container mx-auto">
-    <header class="w-full flex justify-between items-center gap-4">
-      <h1 class="text-2xl font-bold text-label"> Overview </h1>
+    <header class="w-full flex justify-between flex-wrap items-center gap-4">
+      <h1 class="w-full sm:w-max text-2xl font-bold text-label"> Overview </h1>
 
-
-      <div class="buttons">
-        <form [formGroup]="form" class="form-input">
+      <div class="buttons justify-between sm:justify-end w-full sm:w-max flex-row-reverse sm:flex-row">
+        <form [formGroup]="form" class="form-input max-w-52">
           <div class="form-calendar">
             <input
               type="month"
@@ -19,7 +18,7 @@
           </div>
         </form>
 
-        <button mat-button> Reatório IA <i icon="file_lines"></i> </button>
+        <button mat-button class="!min-w-max w-max"> Reatório IA <i icon="file_lines"></i> </button>
       </div>
     </header>
 
@@ -44,7 +43,7 @@
         <div class="mt-3 flex justify-between items-center gap-4">
           <h1 class="text-white text-4xl font-semibold"> {{ view_values() ? (dashboard.balance| currency:'BRL') : 'R$ •••••' }} </h1>
 
-          <button mat-flat-button color="primary" class="w-max" (click)="createFinance()"> Adicionar Transação <i icon="arrow_up_arrow_down"></i> </button>
+          <button mat-flat-button color="primary" class="w-max" (click)="createFinance()"> <span class="hidden sm:block">Adicionar Transação</span> <i icon="arrow_up_arrow_down"></i> </button>
         </div>
       </div>
 

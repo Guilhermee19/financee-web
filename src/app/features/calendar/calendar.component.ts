@@ -10,7 +10,9 @@ import {
 } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatCalendar, MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import {
   FullCalendarComponent,
@@ -23,6 +25,8 @@ import interactionPlugin from '@fullcalendar/interaction';
 import listPlugin from '@fullcalendar/list';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import moment from 'moment';
+import { DetailFinanceComponent } from '../../core/components/detail-finance/detail-finance.component';
+import { CONFIG_MODAL_TRANSACTION } from '../../core/constants/utils';
 import { ITransaction } from '../../core/models/finance';
 import { IconDirective } from '../../shared/directives/icon.directive';
 import { FinanceService } from '../../shared/services/finance.service';
@@ -35,7 +39,8 @@ import { FinanceService } from '../../shared/services/finance.service';
     CommonModule,
     ReactiveFormsModule,
     FullCalendarModule,
-    MatDatepickerModule,
+    MatDatepickerModule, // 🔹 Certifique-se de que está importado
+    MatNativeDateModule,  // 🔹 Importação necessária para o funcionamento do calendário,
     MatSelectModule,
     MatButtonModule,
     IconDirective,
@@ -49,6 +54,7 @@ export class CalendarComponent implements OnInit {
 
   private fb = inject(FormBuilder);
   private financeService = inject(FinanceService)
+  readonly dialog = inject(MatDialog);
 
   public selected = <Date | null>null;
   public mat_selected: Date = new Date();
@@ -94,6 +100,22 @@ export class CalendarComponent implements OnInit {
     });
 
   }
+
+  public detailFinance(finance?: ITransaction, all = false){
+      const dialogRef = this.dialog.open(DetailFinanceComponent,{
+        ...CONFIG_MODAL_TRANSACTION,
+        data: {
+          finance,
+          edit_all: all
+        }
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        if(result){
+          this.getEvents();
+        }
+      });
+    }
 
   public onDateSelected(date: Date | null): void {
     const DATE = new Date(moment(date).format('YYYY-MM-DD') + 'T12:00:00'); // Corrige formato para YYYY-MM-DD
@@ -183,20 +205,29 @@ export class CalendarComponent implements OnInit {
     this.getEvents();
   }
 
-  public get listEvent() : EventSourceInput  {
+  public get listEvent(): EventSourceInput {
     const today = new Date(); // Data atual
 
     const arrayEvent = this.transactions().map((el) => {
       const expiryDate = new Date(el.expiry_date);
 
+      let className = 'isDefault'; // Valor padrão
+
+      if (!el.is_paid && expiryDate < today) {
+        className = 'notPaid';
+      } else if (el.is_paid) {
+        className = 'isPaid';
+      }
+
       return {
         title: el.description,
-        start: el.expiry_date, // Evento no dia 10 de fevereiro de 2025
+        start: el.expiry_date,
         end: el.expiry_date,
-        classNames: !el.is_paid && (expiryDate < today) ? 'notPaid' : 'isPaid'
-      }
-    })
+        classNames: className
+      };
+    });
 
-    return arrayEvent
+    return arrayEvent;
   }
+
 }

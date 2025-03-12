@@ -8,7 +8,7 @@ import { MatTableModule } from '@angular/material/table';
 import { debounceTime, distinctUntilChanged, startWith } from 'rxjs';
 import { DetailFinanceComponent } from '../../core/components/detail-finance/detail-finance.component';
 import { CONFIG_MODAL_TRANSACTION } from '../../core/constants/utils';
-import { ITransaction } from '../../core/models/finance';
+import { ITransaction, TType } from '../../core/models/finance';
 import { ConfirmModalComponent } from '../../shared/components/modals/confirm-modal/confirm-modal.component';
 import { IconDirective } from '../../shared/directives/icon.directive';
 import { ConvertStatusPipe } from '../../shared/pipes/convert-status.pipe';
@@ -119,5 +119,11 @@ export class FinanceComponent implements OnInit{
         this.getAllFinances();
       },
     });
+  }
+
+  public setStatus(type: TType, is_paid: boolean){
+    if(type === 'EXPENDITURE') return is_paid ? 'Pago' : 'não pago'
+    else if(type === 'INCOME') return is_paid ? 'Recbido' : 'não recebido'
+    else return '-'
   }
 }

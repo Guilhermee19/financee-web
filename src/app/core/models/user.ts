@@ -1,3 +1,5 @@
+import { IPlan } from "./plan";
+
 export interface IUser {
   id: number;
   last_login: string;
@@ -10,6 +12,8 @@ export interface IUser {
   created_at: string;
   updated_at: string;
   password?: string;
+  plan: number
+  plan_obj: IPlan
 }
 
 export interface IToken {
