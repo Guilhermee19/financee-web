@@ -95,7 +95,8 @@
                 (keydown)="paidTransaction(element)"
                 tabindex="-1"
               >
-                <i icon="circle_small" class="flex justify-center items-center"></i> {{ element.is_paid ? 'Pago' : 'não pago' }}
+                <i icon="circle_small" class="flex justify-center items-center"></i>
+                {{ setStatus(element.type, element.is_paid) }}
               </span>
             </td>
           </ng-container>

@@ -29,6 +29,10 @@ export interface ITransaction {
   category: number;
   category_obj?: ICategory;
   receipt: string
-  type: 'INCOME' | 'EXPENDITURE' | 'TRANSFER'
-  recurrence: 'SINGLE' | 'WEEKLY' | 'MONTHLY' | 'ANNUAL' | 'INSTALLMENTS'
+  type: TType
+  recurrence: TRecurrence
 }
+
+export type TType = 'INCOME' | 'EXPENDITURE' | 'TRANSFER'
+
+export type TRecurrence = 'SINGLE' | 'WEEKLY' | 'MONTHLY' | 'ANNUAL' | 'INSTALLMENTS'
