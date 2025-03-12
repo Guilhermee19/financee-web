@@ -8,6 +8,10 @@
 }
 
 .isPaid{
+  @apply bg-primary8 border-primary rounded-lg px-1 #{!important};
+}
+
+.isDefault{
   @apply bg-secondary border-White8 rounded-lg px-1 #{!important};
 }
 
@@ -23,6 +27,22 @@
 .mat-calendar-body-today,
 .mat-calendar-body-selected {
   --mat-datepicker-calendar-date-selected-state-text-color: #fff !important;
+}
+
+.mat-calendar-body-cell-content{
+  --mat-datepicker-calendar-date-text-color: #fff !important;
+
+  /* @apply text-label #{!important}; */
+}
+
+.mat-calendar-table-header th{
+  --mat-datepicker-calendar-header-text-color: #fff !important;
+
+  /* @apply text-label #{!important}; */
+}
+
+.mat-calendar-table-header-divider::after{
+  --mat-datepicker-calendar-header-divider-color: rgba(255,255,255,.5) !important
 }
 
 .mat-mdc-button-base.mdc-button .mdc-button__label {
@@ -174,7 +194,7 @@
 }
 
 .fc-daygrid-day-events{
-  @apply h-full max-h-16 flex flex-col gap-1 overflow-y-auto;
+  @apply h-full max-h-16 flex flex-wrap md:flex-col gap-1 overflow-y-auto;
 }
 
 .fc-daygrid-day-bg{
@@ -208,4 +228,7 @@
   border-top-style: hidden;
 }
 
+.fc-event-main{
+  @apply hidden md:block  #{!important};
+}
 

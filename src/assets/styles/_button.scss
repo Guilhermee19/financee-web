@@ -96,6 +96,15 @@
   } */
 }
 
+
+.mat-mdc-button-base,
+.mat-mdc-unelevated-button,
+.mat-mdc-outlined-button,
+.mat-mdc-menu-item{
+  .mdc-button__label{
+    @apply flex items-center gap-2;
+  }
+}
 .mat-mdc-outlined-button:not(:disabled) {
   --mdc-outlined-button-outline-color: #55b02e !important;
 }

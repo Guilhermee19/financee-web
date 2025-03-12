@@ -3,7 +3,7 @@
     <header class="w-full flex justify-between">
       <h1 class="text-2xl font-bold text-label"> Transações </h1>
 
-      <button mat-flat-button color="primary" class="w-max" (click)="detailFinance()"> Adicionar Transação <i icon="arrow_up_arrow_down"></i> </button>
+      <button mat-flat-button color="primary" class="w-max" (click)="detailFinance()"> <span class="hidden sm:block">Adicionar Transação</span> <i icon="arrow_up_arrow_down"></i> </button>
     </header>
 
     <form [formGroup]="form" class="form-input my-6 ml-auto max-w-64">

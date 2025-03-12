@@ -2,10 +2,12 @@
   <div class="container mx-auto">
     <header class="w-full flex justify-between">
       <h1 class="text-2xl font-bold text-label"> Calendario </h1>
+
+      <button mat-flat-button color="primary" class="!w-max" (click)="detailFinance()"> <span class="hidden sm:block">Adicionar Transação</span> <i icon="arrow_up_arrow_down"></i> </button>
     </header>
 
-    <form [formGroup]="form" class="flex w-full items-center justify-between">
-      <div class="buttons flex w-max items-center justify-center">
+    <form [formGroup]="form" class="flex w-full items-center justify-between flex-wrap mt-4 sm:mt-2">
+      <div class="order-2 sm:order-1 buttons flex w-max items-center justify-center">
         <button mat-button class="primary text-label" (click)="viewToday()"> Hoje </button>
         <button mat-icon-button (click)="monthChange('previous')">
           <i icon="angle_left" class="!text-label"></i>
@@ -15,12 +17,13 @@
         </button>
       </div>
 
-      <p class="flex w-max items-center justify-center text-xl font-semibold text-label"
-        >{{ full_selected | date: 'MMMM' }} de
-        {{ full_selected | date: 'yyyy' }}
+      <p class="order-1 sm:order-2 flex w-full sm:w-max items-center justify-center gap-2 text-xl font-semibold text-label"
+        ><span class="capitalize">{{ full_selected | date: 'MMMM' }}</span>
+        <span>de</span>
+       <span> {{ full_selected | date: 'yyyy' }}</span>
       </p>
 
-      <div class="form-input max-w-32">
+      <div class="order-3 form-input max-w-32">
         <mat-select
           class="w-full"
           formControlName="viewMode"
@@ -32,12 +35,11 @@
           <mat-option value="listWeek">Lista</mat-option>
         </mat-select>
       </div>
-
     </form>
 
-    <div class="w-full grid grid-cols-10 gap-4">
-      <div class="w-full col-span-2 aspect-square">
-        <!-- @if(refresh()){
+    <div class="w-full grid lg:grid-cols-10 gap-4">
+      <div class="w-full col-span-2 aspect-square hidden lg:block">
+        @if(refresh()){
           <mat-calendar
             #calendarRef
             class="w-full"
@@ -45,10 +47,10 @@
             (selectedChange)="onDateSelected($event)"
             (click)="onDateChanged($event)"
           ></mat-calendar>
-        } -->
+        }
       </div>
 
-      <div class="w-full col-span-8">
+      <div class="w-full lg:col-span-8">
         <full-calendar
           #calendar
           class="w-full"

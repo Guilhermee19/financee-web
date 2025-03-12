@@ -27,6 +27,9 @@ module.exports = {
         White8: 'rgba(255,255,255,.08)',
         White3: 'rgba(255,255,255,.03)',
       },
+      maxHeight:{
+        popup: 'calc(95vh - 100px)'
+      },
       boxShadow: {
         custom: '0 4px 26px rgba(25, 25, 25, 0.25)',
         border: 'inset 0 0 2px #71717a',

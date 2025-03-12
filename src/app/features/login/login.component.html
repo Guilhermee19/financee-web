@@ -6,7 +6,7 @@
   <form class="w-full flex flex-col justify-center items-center"
     (ngSubmit)="handleFormSubmit()" [formGroup]="form"
   >
-    <div class="w-full max-w-80">
+    <div class="w-full max-w-80 flex flex-col">
       <h1 class="w-full text-label text-center text-4xl font-bold mb-4"> Login </h1>
 
       <div class="form-input">
@@ -21,14 +21,16 @@
         </div>
       </div>
 
-      <div class="form-input flex my-4">
+      <div class="form-input flex my-4 mb-0">
         <label for="password"> Senha </label>
         <div class="input_icon">
           <input type="password" placeholder="Senha" formControlName="password" autocomplete="password">
         </div>
       </div>
 
-      <div class="mb-6 flex items-center justify-between">
+      <a class="w-max ml-auto text-right text-xs text-white font-light">esqueceu a senha?</a>
+
+      <div class="mb-6 flex items-center justify-between mt-4">
         <mat-checkbox formControlName="remember" color="primary" class="text-sm text-label">
           Lembrar-me
         </mat-checkbox>
