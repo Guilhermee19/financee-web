@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.11.0](https://github.com/Guilhermee19/financee-web/compare/v1.10.2...v1.11.0) (2025-03-19)
+
+
+### Features
+
+* label Status ([fd81fbf](https://github.com/Guilhermee19/financee-web/commit/fd81fbf786dc0da2a6f3294693cefc23c1dee9a9))
+* popup de pagamento e recebimento ([f4a0903](https://github.com/Guilhermee19/financee-web/commit/f4a0903d91f7d4c1d6b36b82436f9c56f11399ec))
+
 ### [1.10.2](https://github.com/Guilhermee19/financee-web/compare/v1.10.1...v1.10.2) (2025-03-12)
 
 
