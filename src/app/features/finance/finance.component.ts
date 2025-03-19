@@ -7,13 +7,14 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table';
 import { debounceTime, distinctUntilChanged, startWith } from 'rxjs';
 import { DetailFinanceComponent } from '../../core/components/detail-finance/detail-finance.component';
-import { CONFIG_MODAL_TRANSACTION } from '../../core/constants/utils';
+import { CONFIG_MODAL_CENTER, CONFIG_MODAL_TRANSACTION } from '../../core/constants/utils';
 import { ITransaction, TType } from '../../core/models/finance';
 import { ConfirmModalComponent } from '../../shared/components/modals/confirm-modal/confirm-modal.component';
 import { IconDirective } from '../../shared/directives/icon.directive';
 import { ConvertStatusPipe } from '../../shared/pipes/convert-status.pipe';
 import { SafePipe } from '../../shared/pipes/safe.pipe';
 import { FinanceService } from '../../shared/services/finance.service';
+import { Toastr } from '../../shared/services/toastr.service';
 
 @Component({
   selector: 'app-finance',
@@ -29,7 +30,7 @@ import { FinanceService } from '../../shared/services/finance.service';
     FormsModule,
     ReactiveFormsModule,
     SafePipe,
-    MatMenuModule
+    MatMenuModule,
   ],
   templateUrl: './finance.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -37,6 +38,7 @@ import { FinanceService } from '../../shared/services/finance.service';
 export class FinanceComponent implements OnInit{
 
   private financeService = inject(FinanceService)
+  private toastr = inject(Toastr);
   private fb = inject(FormBuilder);
   readonly dialog = inject(MatDialog);
 
@@ -77,6 +79,43 @@ export class FinanceComponent implements OnInit{
 
   public paidTransaction(finance: ITransaction){
     console.log(finance)
+
+    if(finance.is_paid) return;
+
+    const isExpenditure = finance.type === 'EXPENDITURE';
+
+    const dialogRef = this.dialog.open(ConfirmModalComponent, {
+      ...CONFIG_MODAL_CENTER,
+      data: {
+        title: isExpenditure ? 'Pagamento Efetuado?' : 'Valor Recebido?',
+        message: `Deseja marcar ${isExpenditure ? 'a conta' : 'o recebimento de'}
+                  <strong class='!font-bold'>${finance.description}</strong>
+                  no valor de <strong class='!font-bold'>R$ ${finance.value_installment}</strong> como concluído?`,
+        confirmText: isExpenditure ? 'Confirmar Pagamento' : 'Confirmar Recebimento',
+        cancelText: 'Voltar',
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.toastr.success(`${isExpenditure ? 'Pagamento Efetuado!' : 'Valor Recebido!'}`)
+        this.paymentTransaction(finance);
+      }
+    });
+  }
+
+  private paymentTransaction(finance: ITransaction) {
+    this.loading.set(true);
+
+    const params = {
+      transaction_id: finance.id,
+    };
+
+    this.financeService.paymentTransaction(params).subscribe({
+      next: () => {
+        this.getAllFinances();
+      },
+    });
   }
 
   public detailFinance(finance?: ITransaction, all = false){

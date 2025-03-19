@@ -19,8 +19,8 @@ export interface IDialogActions {
   action: 'yes' | 'no';
 }
 
-export const DialogConfig: MatDialogConfig = {
-  panelClass: 'dialog_primary',
+export const CONFIG_MODAL_CENTER: MatDialogConfig = {
+  panelClass: 'custom-dialog-center',
   width: '90%',
   maxWidth: '500px',
   height: 'auto',

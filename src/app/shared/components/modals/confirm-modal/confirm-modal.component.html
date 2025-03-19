@@ -1,9 +1,18 @@
-<section class="p-4 flex flex-col justify-center items-center gap-4">
-  <h1 class="text-white text-2xl font-semibold"> {{ data.title }} </h1>
-  <p class="text-white text-base text-center font-light"> {{ data.message }} </p>
+<section class="h-full flex flex-col">
+  <header class="flex justify-between items-center px-5 gap-2 pb-5 border-b border-solid border-White8">
+    <h1 class="text-white text-xl font-semibold"> {{ data.title }} </h1>
 
-  <div class="w-full flex items-center gap-4 mt-4">
-    <button mat-flat-button color="primary" (click)="chance(true)"> {{ data.confirmText }} </button>
-    <button mat-flat-button color="accent" (click)="chance(false)"> {{ data.cancelText }} </button>
+    <i icon="xmark" class="text-white p-1 cursor-pointer" (click)="chance(false)"
+    (keydown)="chance(false)"
+    tabindex="-1"></i>
+  </header>
+
+  <div class="p-4 flex flex-col justify-center items-center gap-4">
+    <p class="text-white text-base text-center font-light" [innerHTML]="data.message"> </p>
+
+    <div class="w-full flex items-center gap-4 mt-4">
+      <button mat-flat-button color="primary" (click)="chance(true)"> {{ data.confirmText }} </button>
+      <button mat-flat-button color="accent" (click)="chance(false)"> {{ data.cancelText }} </button>
+    </div>
   </div>
 </section>

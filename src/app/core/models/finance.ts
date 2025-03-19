@@ -20,6 +20,7 @@ export interface ITransaction {
   current_installment: number;
   installments: number;
   updated_at: string;
+  date_payment: string;
   updated_by: number;
   value: number;
   value_installment: number;
