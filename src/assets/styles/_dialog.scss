@@ -11,6 +11,18 @@
   }
 }
 
+.custom-dialog-center {
+  @apply rounded-default bg-secondary fixed top-0 right-0 transform transition-transform duration-300 ease-out;
+  animation: slideIn 0.3s ease-out;
+
+  .mat-mdc-dialog-container{
+    @apply rounded-default;
+    .mdc-dialog__surface{
+      @apply py-5 rounded-default bg-secondary;
+    }
+  }
+}
+
 /* Defina a animação usando Tailwind para deslizar da direita */
 @keyframes slideIn {
   from {
