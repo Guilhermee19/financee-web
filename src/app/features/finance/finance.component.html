@@ -45,21 +45,6 @@
             </td>
           </ng-container>
 
-          <!-- <ng-container matColumnDef="type">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header (click)="sortData('type')"> Tipo </th>
-            <td mat-cell *matCellDef="let element">
-              <span class="!w-max px-3 flex items-center gap-2 py-1 rounded-full {{element.type === 'INCOME' ? 'bg-primary8 text-primary' : 'bg-Red8 text-Red'}}">
-                @if(element.type === 'INCOME'){
-                  <i icon="arrow_trend_up" class="flex justify-center items-center"></i>
-                }
-                @if(element.type === 'EXPENDITURE'){
-                  <i icon="arrow_trend_down" class="flex justify-center items-center"></i>
-                }
-                {{ element.type | status }}
-              </span>
-            </td>
-          </ng-container> -->
-
           <ng-container matColumnDef="account">
             <th mat-header-cell *matHeaderCellDef mat-sort-header (click)="sortData('account')"> Conta </th>
             <td mat-cell *matCellDef="let element">
@@ -90,13 +75,13 @@
           <ng-container matColumnDef="is_paid">
             <th mat-header-cell *matHeaderCellDef mat-sort-header (click)="sortData('is_paid')"> Status </th>
             <td mat-cell *matCellDef="let element">
-              <span class="!w-max px-3 flex items-center gap-2 py-1 rounded-full cursor-pointer {{element.is_paid ? 'bg-primary8 text-primary' : 'bg-Red8 text-Red'}}"
+              <span class="!w-max px-1 lg:px-3 flex items-center gap-2 py-1 rounded-full cursor-pointer {{element.is_paid ? 'bg-primary8 text-primary' : 'bg-Red8 text-Red'}}"
                 (click)="paidTransaction(element)"
                 (keydown)="paidTransaction(element)"
                 tabindex="-1"
               >
                 <i icon="circle_small" class="flex justify-center items-center"></i>
-                {{ setStatus(element.type, element.is_paid) }}
+                <p class="hidden lg:flex">{{ setStatus(element.type, element.is_paid) }}</p>
               </span>
             </td>
           </ng-container>
@@ -104,11 +89,15 @@
           <ng-container matColumnDef="expiry_date">
             <th mat-header-cell *matHeaderCellDef mat-sort-header (click)="sortData('expiry_date')"> Data </th>
             <td mat-cell *matCellDef="let element" class="opacity-50">
-              <div class="!w-max flex justify-start items-center gap-1">
+              <div class="!w-max justify-start items-center gap-1 hidden lg:flex">
                 <span>  {{ element.expiry_date | date: 'dd' }} </span>
                 <span> de </span>
                 <span class="capitalize"> {{ element.expiry_date | date: 'MMMM' }} </span>
                 <span> {{ element.expiry_date | date: 'yyyy' }} </span>
+              </div>
+
+              <div class="!w-max flex justify-start items-center gap-1 lg:hidden">
+                <span>  {{ element.expiry_date | date: 'dd/MM' }} </span>
               </div>
             </td>
           </ng-container>
