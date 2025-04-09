@@ -21,6 +21,10 @@ export class FinanceService {
       query = query.set('end_date', endDate.toISOString().split('T')[0]);
     }
 
+    if(params?.order_by) query = query.set('order_by', params.order_by);
+    if(params?.order_direction) query = query.set('order_direction', params.order_direction);
+
+
     return this.http.get<ITransaction[]>('core/all-transaction/', query);
   }
 
