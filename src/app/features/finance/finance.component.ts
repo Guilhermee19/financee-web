@@ -8,7 +8,7 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { debounceTime, distinctUntilChanged, startWith } from 'rxjs';
 import { DetailFinanceComponent } from '../../core/components/detail-finance/detail-finance.component';
-import { CONFIG_MODAL_TRANSACTION } from '../../core/constants/utils';
+import { CONFIG_MODAL_CENTER, CONFIG_MODAL_TRANSACTION } from '../../core/constants/utils';
 import { ITransaction, TType } from '../../core/models/finance';
 import { IFilter, TOrderBy } from '../../core/models/utils';
 import { ConfirmModalComponent } from '../../shared/components/modals/confirm-modal/confirm-modal.component';
@@ -112,6 +112,7 @@ export class FinanceComponent implements OnInit {
 
     const isExpenditure = finance.type === 'EXPENDITURE';
     const dialogRef = this.dialog.open(ConfirmModalComponent, {
+      ...CONFIG_MODAL_CENTER,
       data: {
         title: isExpenditure ? 'Pagamento Efetuado?' : 'Valor Recebido?',
         message: `Deseja marcar ${isExpenditure ? 'a conta' : 'o recebimento de'}
@@ -166,6 +167,7 @@ export class FinanceComponent implements OnInit {
   // Excluir transação
   public openDelete(finance: ITransaction, all = false) {
     const dialogRef = this.dialog.open(ConfirmModalComponent, {
+      ...CONFIG_MODAL_CENTER,
       data: {
         title: 'Deletar Transação?',
         message: `Deseja deletar a transação "${finance?.description ?? ''}" ?`,
