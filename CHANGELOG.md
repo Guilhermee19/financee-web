@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.12.1](https://github.com/Guilhermee19/financee-web/compare/v1.12.0...v1.12.1) (2025-04-09)
+
+
+### Bug Fixes
+
+* adicionar configuração central ao modal de confirmação ([b31b47b](https://github.com/Guilhermee19/financee-web/commit/b31b47b76cf39a3140c0f1c186015f2becbbad2f))
+
 ## [1.12.0](https://github.com/Guilhermee19/financee-web/compare/v1.11.0...v1.12.0) (2025-04-09)
 
 
