@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.12.0](https://github.com/Guilhermee19/financee-web/compare/v1.11.0...v1.12.0) (2025-04-09)
+
+
+### Features
+
+* adicionar suporte à ordenação de transações e novos filtros na interface ([caa1851](https://github.com/Guilhermee19/financee-web/commit/caa185199abb2268eaa8f267241bbb10db5c5378))
+* reformular a página de perfil com novo layout e componentes ([967f08e](https://github.com/Guilhermee19/financee-web/commit/967f08e5f9b0ed36240e339b72663cda942eb419))
+
 ## [1.11.0](https://github.com/Guilhermee19/financee-web/compare/v1.10.2...v1.11.0) (2025-03-19)
 
 
