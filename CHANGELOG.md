@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.12.2](https://github.com/Guilhermee19/financee-web/compare/v1.12.1...v1.12.2) (2025-04-16)
+
+
+### Features
+
+* adicionar lógica condicional e melhorias na exibição de componentes financeiros ([52a8e3b](https://github.com/Guilhermee19/financee-web/commit/52a8e3be3d6ae196fe0a29b8f09eac1c0468c308))
+
 ### [1.12.1](https://github.com/Guilhermee19/financee-web/compare/v1.12.0...v1.12.1) (2025-04-09)
 
 

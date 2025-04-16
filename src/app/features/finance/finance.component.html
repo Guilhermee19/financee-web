@@ -106,24 +106,35 @@
             <th mat-header-cell *matHeaderCellDef>  </th>
             <td mat-cell *matCellDef="let element">
               <div class="w-full flex justify-end items-center gap-2">
-                <button mat-mini-fab class="!bg-transparent !p-1 !size-8" [matMenuTriggerFor]="menuEdit">
-                  <i icon="pen_to_square" class="cursor-pointer p-1"></i>
-                </button>
-                <mat-menu #menuEdit="matMenu">
-                  <button mat-menu-item color="primary" (click)="detailFinance(element, false)">editar apenas esse</button>
-                  <!-- <button mat-menu-item (click)="detailFinance(element)">editar esse e próximos</button> -->
-                  <button mat-menu-item color="primary" disabled >editar todos</button>
-                </mat-menu>
+                @if(element.recurrence === 'SINGLE'){
+                  <button mat-mini-fab class="!bg-transparent !p-1 !size-8" (click)="detailFinance(element, false)">
+                    <i icon="pen_to_square" class="cursor-pointer p-1"></i>
+                  </button>
 
-                <button mat-mini-fab class="!bg-transparent !p-1 !size-8" [matMenuTriggerFor]="menuTrash" >
-                  <i icon="trash_can" class="cursor-pointer"></i>
-                </button>
+                  <button mat-mini-fab class="!bg-transparent !p-1 !size-8" (click)="openDelete(element, true)">
+                    <i icon="trash_can" class="cursor-pointer"></i>
+                  </button>
+                }
+                @else {
+                  <button mat-mini-fab class="!bg-transparent !p-1 !size-8" [matMenuTriggerFor]="menuEdit">
+                    <i icon="pen_to_square" class="cursor-pointer p-1"></i>
+                  </button>
+                  <mat-menu #menuEdit="matMenu">
+                    <button mat-menu-item color="primary" (click)="detailFinance(element, false)">editar apenas esse</button>
+                    <!-- <button mat-menu-item (click)="detailFinance(element)">editar esse e próximos</button> -->
+                    <button mat-menu-item color="primary" disabled >editar todos</button>
+                  </mat-menu>
 
-                <mat-menu #menuTrash="matMenu">
-                  <button mat-menu-item (click)="openDelete(element, false)">excluir apenas esse</button>
-                  <!-- <button mat-menu-item (click)="openDelete(element, true)">excluir esse e próximos</button> -->
-                  <button mat-menu-item (click)="openDelete(element, true)">excluir todos</button>
-                </mat-menu>
+                  <button mat-mini-fab class="!bg-transparent !p-1 !size-8" [matMenuTriggerFor]="menuTrash" >
+                    <i icon="trash_can" class="cursor-pointer"></i>
+                  </button>
+
+                  <mat-menu #menuTrash="matMenu">
+                    <button mat-menu-item (click)="openDelete(element, false)">excluir apenas esse</button>
+                    <!-- <button mat-menu-item (click)="openDelete(element, true)">excluir esse e próximos</button> -->
+                    <button mat-menu-item (click)="openDelete(element, true)">excluir todos</button>
+                  </mat-menu>
+                }
               </div>
             </td>
           </ng-container>

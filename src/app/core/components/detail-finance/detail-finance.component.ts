@@ -35,7 +35,7 @@ import { ITransaction } from '../../models/finance';
 })
 export class DetailFinanceComponent implements OnInit {
   private dialogRef = inject(MatDialogRef);
-  public data?: { finance: ITransaction, edit_all: boolean } = inject(MAT_DIALOG_DATA);
+  public data: { finance: ITransaction, edit_all: boolean } = inject(MAT_DIALOG_DATA);
   private fb = inject(FormBuilder);
   private financeService = inject(FinanceService);
   private categoryService = inject(CategoryService);
@@ -49,6 +49,7 @@ export class DetailFinanceComponent implements OnInit {
   public form = this.fb.group({
     description: ['', Validators.required],
     value: [0, Validators.required],
+    value_installment: [0, Validators.required],
     category: [0],
     account: [0],
     expiry_date: ['', Validators.required],
@@ -62,6 +63,8 @@ export class DetailFinanceComponent implements OnInit {
   public recurrence = new FormControl(0);
 
   public ngOnInit(): void {
+    console.log(this.data)
+
     this.getAllCategories();
 
     this.form.reset();
@@ -78,6 +81,7 @@ export class DetailFinanceComponent implements OnInit {
     this.form.patchValue({
       description: this.data.finance.description,
       value: this.data.finance.value,
+      value_installment: this.data.finance.value_installment,
       category: this.data.finance.category,
       account: this.data.finance.account,
       installments: this.data.finance.installments,
@@ -152,7 +156,7 @@ export class DetailFinanceComponent implements OnInit {
 
     if(!body['account']) delete body.account;
     if(!body['category']) delete body.category;
-    if(!body['edit_all']) delete body.edit_all;
+    // if(!body['edit_all']) delete body.edit_all;
 
     if(this.data?.finance?.id){
       this.financeService.patchFinance(this.data.finance.id, body as BodyJson).subscribe({
