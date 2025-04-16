@@ -10,6 +10,54 @@
   --mat-tab-header-active-label-text-color: #55b02e !important;
 }
 
+.mat-mdc-tab.mdc-tab--active{
+  &:hover {
+    .mdc-tab__text-label {
+      --mat-tab-header-active-hover-label-text-color: #55b02e !important;
+    }
+    .mdc-tab-indicator__content--underline {
+      --mat-tab-header-active-hover-indicator-color: #55b02e !important;
+    }
+  }
+  &:focus{
+    .mdc-tab__text-label {
+      --mat-tab-header-active-focus-label-text-color: #55b02e !important;
+    }
+    .mdc-tab-indicator__content--underline {
+      --mat-tab-header-active-focus-indicator-color: #55b02e !important;
+    }
+  }
+}
+
+.group-warn{
+  .mat-mdc-tab .mdc-tab-indicator__content--underline {
+    --mdc-tab-indicator-active-indicator-color: #f44336 !important;
+  }
+
+  .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
+    --mat-tab-header-active-label-text-color: #f44336 !important;
+  }
+
+  .mat-mdc-tab.mdc-tab--active{
+    &:hover {
+      .mdc-tab__text-label {
+        --mat-tab-header-active-hover-label-text-color: #f44336 !important;
+      }
+      .mdc-tab-indicator__content--underline {
+        --mat-tab-header-active-hover-indicator-color: #f44336 !important;
+      }
+    }
+    &:focus{
+      .mdc-tab__text-label {
+        --mat-tab-header-active-focus-label-text-color: #f44336 !important;
+      }
+      .mdc-tab-indicator__content--underline {
+        --mat-tab-header-active-focus-indicator-color: #f44336 !important;
+      }
+    }
+  }
+}
+
 .mat-mdc-tab .mdc-tab__text-label {
   --mat-tab-header-inactive-label-text-color: #fff !important;
 }
@@ -39,21 +87,4 @@
   --mdc-secondary-navigation-tab-container-height: 40px;
 }
 
-.mat-mdc-tab.mdc-tab--active{
-  &:hover {
-    .mdc-tab__text-label {
-      --mat-tab-header-active-hover-label-text-color: #55b02e !important;
-    }
-    .mdc-tab-indicator__content--underline {
-      --mat-tab-header-active-hover-indicator-color: #55b02e !important;
-    }
-  }
-  &:focus{
-    .mdc-tab__text-label {
-      --mat-tab-header-active-focus-label-text-color: #55b02e !important;
-    }
-    .mdc-tab-indicator__content--underline {
-      --mat-tab-header-active-focus-indicator-color: #55b02e !important;
-    }
-  }
-}
+

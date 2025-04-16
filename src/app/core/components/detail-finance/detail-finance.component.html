@@ -8,9 +8,14 @@
   </header>
 
 
-  <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="setSelected($event)">
+  <mat-tab-group
+    [selectedIndex]="selected.value"
+    (selectedIndexChange)="setSelected($event)"
+    [color]="selected.value === 0 ? 'primary' : 'warn'"
+    [ngClass]="selected.value === 0 ? 'group-primary' : 'group-warn'"
+  >
     <mat-tab label="Entrada"></mat-tab>
-    <mat-tab label="Saída"></mat-tab>
+    <mat-tab label="Saída" class="red-color"></mat-tab>
   </mat-tab-group>
 
   <form [formGroup]="form" (ngSubmit)="handleFormSubmit()" class="my-4 px-5 flex flex-col gap-4 max-h-popup overflow-y-auto">
@@ -26,21 +31,40 @@
       </div>
     </div>
 
-    <div class="form-input">
-      <label for="value"> Valor </label>
-      <div class="input_icon">
-        <input
-          type="text"
-          id="value"
-          mask="separator.2"
-          [thousandSeparator]="'.'"
-          [decimalMarker]="','"
-          prefix="R$ "
-          placeholder="R$ 0,00"
-          formControlName="value"
-        />
+    @if(!data?.edit_all){
+      <div class="form-input">
+        <label for="value"> Valor </label>
+        <div class="input_icon">
+          <input
+            type="text"
+            id="value"
+            mask="separator.2"
+            [thousandSeparator]="'.'"
+            [decimalMarker]="','"
+            prefix="R$ "
+            placeholder="R$ 0,00"
+            formControlName="value_installment"
+          />
+        </div>
       </div>
-    </div>
+    }
+    @else{
+      <div class="form-input">
+        <label for="value"> Valor </label>
+        <div class="input_icon">
+          <input
+            type="text"
+            id="value"
+            mask="separator.2"
+            [thousandSeparator]="'.'"
+            [decimalMarker]="','"
+            prefix="R$ "
+            placeholder="R$ 0,00"
+            formControlName="value"
+          />
+        </div>
+      </div>
+    }
 
     <div class="form-input">
       <label for="category"> Categoria </label>
@@ -77,34 +101,36 @@
       <mat-slide-toggle formControlName="edit_all" class="!text-white"> Editar todas as variações </mat-slide-toggle>
     } -->
 
-    <mat-tab-group [selectedIndex]="recurrence.value" (selectedIndexChange)="setRecurrence($event)">
-      <mat-tab label="Único"></mat-tab>
+    @if(!data?.finance?.id){
+      <mat-tab-group [selectedIndex]="recurrence.value" (selectedIndexChange)="setRecurrence($event)">
+        <mat-tab label="Único"></mat-tab>
 
-      <mat-tab label="Recorrente">
-        <div class="form-input mt-4">
-          <label for="recurrence"> Recorrência </label>
-          <mat-select id="recurrence" formControlName="recurrence">
-            <mat-option value="WEEKLY"> Semanal </mat-option>
-            <mat-option value="MONTHLY"> Mensal </mat-option>
-            <mat-option value="ANNUAL"> Anual </mat-option>
-          </mat-select>
-        </div>
-      </mat-tab>
-
-      <mat-tab label="Parcelada">
-        <div class="form-input mt-4">
-          <label for="installments"> Parcelas </label>
-          <div class="input_icon">
-            <input
-              type="number"
-              id="installments"
-              placeholder="Parcelas"
-              formControlName="installments"
-            />
+        <mat-tab label="Recorrente">
+          <div class="form-input mt-4">
+            <label for="recurrence"> Recorrência </label>
+            <mat-select id="recurrence" formControlName="recurrence">
+              <mat-option value="WEEKLY"> Semanal </mat-option>
+              <mat-option value="MONTHLY"> Mensal </mat-option>
+              <mat-option value="ANNUAL"> Anual </mat-option>
+            </mat-select>
           </div>
-        </div>
-      </mat-tab>
-    </mat-tab-group>
+        </mat-tab>
+
+        <mat-tab label="Parcelada">
+          <div class="form-input mt-4">
+            <label for="installments"> Parcelas </label>
+            <div class="input_icon">
+              <input
+                type="number"
+                id="installments"
+                placeholder="Parcelas"
+                formControlName="installments"
+              />
+            </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    }
   </form>
 
   <div class="buttons mt-auto px-5">

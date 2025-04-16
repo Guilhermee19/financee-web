@@ -45,9 +45,9 @@ export class FinanceComponent implements OnInit {
   private toastr = inject(Toastr);
   private fb = inject(FormBuilder);
   readonly dialog = inject(MatDialog);
+  private cdr = inject(ChangeDetectorRef)
 
   public loading = signal(false);
-  private cdRef!: ChangeDetectorRef;
   public displayedColumns: string[] = ['description', 'account', 'category', 'value_installment', 'is_paid', 'expiry_date', 'options'];
   // public dataSource: WritableSignal<ITransaction[]> = signal<ITransaction[]>([]);
   public dataSource!: MatTableDataSource<ITransaction>;
@@ -88,6 +88,7 @@ export class FinanceComponent implements OnInit {
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.sort = this.sort;
         this.loading.set(false);
+        this.cdr.detectChanges();
       },
     });
   }
@@ -148,7 +149,7 @@ export class FinanceComponent implements OnInit {
     });
   }
 
-  public detailFinance(finance?: ITransaction, all = false) {
+  public detailFinance(finance?: ITransaction, all = true) {
     const dialogRef = this.dialog.open(DetailFinanceComponent, {
       ...CONFIG_MODAL_TRANSACTION,
       data: { finance, edit_all: all },

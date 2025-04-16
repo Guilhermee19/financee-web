@@ -8,7 +8,6 @@ export const authGuard: CanActivateFn = () => {
   if (isPlatformServer(platformId)) return true;
 
   const storage = inject(StorageService);
-
   const router = inject(Router);
   const token = storage.token;
   if (!token) {
