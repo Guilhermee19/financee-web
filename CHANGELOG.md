@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.12.3](https://github.com/Guilhermee19/financee-web/compare/v1.12.2...v1.12.3) (2025-04-16)
+
+
+### Features
+
+* adicionar pipe de verificação de planos e melhorias na exibição de componentes ([3d1f81c](https://github.com/Guilhermee19/financee-web/commit/3d1f81c0c3b531f4c018e4c9c2c3fd1845a13dbe))
+
 ### [1.12.2](https://github.com/Guilhermee19/financee-web/compare/v1.12.1...v1.12.2) (2025-04-16)
 
 
