@@ -4,10 +4,10 @@
       <h1 class="text-2xl font-bold text-label"> Assinatura </h1>
     </header>
 
-    <section class="w-full grid sm:grid-cols-3 gap-6 mt-5">
+    <section class="w-full grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-5">
       @if(plans && plans.length > 0){
         @for (plan of plans; track $index) {
-          <div class="relative h-full sm:min-w-96 flex-1 border border-solid border-Gray rounded-default py-8">
+          <div class="relative h-full flex-1 border border-solid border-Gray rounded-default py-8">
             <h2 class="w-full text-White text-2xl font-semibold text-center"> {{ plan.title }} </h2>
 
             <div class="w-full flex justify-center items-center gap-3 my-4">
@@ -24,16 +24,16 @@
 
             <div class="space-y-6 pt-8 px-10 border-t border-solid border-Gray flex flex-col justify-between">
               <div class="flex items-center gap-2">
-                <p class="text-White" [innerHTML]="plan.benefits"> </p>
+                <p class="text-White" [innerHTML]="plan.benefits | plansCheck"> </p>
               </div>
 
-              <!-- @if(user_plan.id === plan.id){
-                <button mat-stroked-button color="primary" class="mt-auto"> Fazer Upgrade </button>
+              @if(user_plan?.id === plan.id){
+                <button mat-stroked-button color="primary" class="mt-auto"> Plano atual </button>
               }
               @else {
                 <button mat-flat-button color="primary" class="mt-auto"> Adquirir plano </button>
-              } -->
-              <button mat-stroked-button color="primary" class="mt-auto"> Plano atual </button>
+              }
+              <!-- <button mat-stroked-button color="primary" class="mt-auto"> Plano atual </button> -->
             </div>
           </div>
         }
