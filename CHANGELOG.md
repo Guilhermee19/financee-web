@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.12.4](https://github.com/Guilhermee19/financee-web/compare/v1.12.3...v1.12.4) (2025-04-17)
+
+
+### Features
+
+* implementar componente de detalhes da conta e melhorias na exibição de contas ([b17b2c4](https://github.com/Guilhermee19/financee-web/commit/b17b2c4898f1c2fe7611de47def83741abf5cf2f))
+
 ### [1.12.3](https://github.com/Guilhermee19/financee-web/compare/v1.12.2...v1.12.3) (2025-04-16)
 
 
