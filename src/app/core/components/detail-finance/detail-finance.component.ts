@@ -65,6 +65,12 @@ export class DetailFinanceComponent implements OnInit {
   public ngOnInit(): void {
     console.log(this.data)
 
+    if(!this.data.finance?.id){
+      const { value_installment } = this.form.controls;
+      value_installment.clearValidators();
+      value_installment.updateValueAndValidity();
+    }
+
     this.getAllCategories();
 
     this.form.reset();

@@ -24,7 +24,7 @@ export class AccountService {
     return this.http.patch<IAccount>(`core/edit-account/${id}/`, body);
   }
 
-  deletAccount(id: number): Observable<IAccount> {
+  deleteAccount(id: number): Observable<IAccount> {
     return this.http.delete<IAccount>(`core/delete-account/${id}/`);
   }
 }
