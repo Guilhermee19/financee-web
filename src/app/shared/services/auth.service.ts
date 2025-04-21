@@ -11,10 +11,10 @@ export class AuthService {
   private http = inject (HttpService)
 
   login(body: BodyJson) {
-    return this.http.post<IToken>('core/auth/', body);
+    return this.http.post<IToken>('core/auth/login/', body);
   }
 
   getMe(): Observable<IUser> {
-    return this.http.get<IUser>('core/get-user/');
+    return this.http.get<IUser>('core/users/me/');
   }
 }
