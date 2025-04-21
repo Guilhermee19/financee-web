@@ -17,19 +17,19 @@ export class CategoryService {
       .set('status', status)               // Filtro de status: 'active', 'inactive', 'all'
       .set('name', name);                  // Filtro de nome (caso haja)
 
-    return this.http.get<IPagedReq<ICategory>>('core/all-categories/', query);
+    return this.http.get<IPagedReq<ICategory>>('core/categories/', query);
   }
 
 
   postCategory(body: BodyJson): Observable<ICategory> {
-    return this.http.post<ICategory>(`core/create-category/`, body);
+    return this.http.post<ICategory>(`core/categories/`, body);
   }
 
   patchCategory(id: number, body: BodyJson): Observable<ICategory> {
-    return this.http.patch<ICategory>(`core/edit-category/${id}/`, body);
+    return this.http.patch<ICategory>(`core/categories/${id}/`, body);
   }
 
   deleteCategory(id: number): Observable<ICategory> {
-    return this.http.delete<ICategory>(`core/delete-category/${id}/`);
+    return this.http.delete<ICategory>(`core/categories/${id}/`);
   }
 }

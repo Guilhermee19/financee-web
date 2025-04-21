@@ -25,26 +25,22 @@ export class FinanceService {
     if(params?.order_direction) query = query.set('order_direction', params.order_direction);
 
 
-    return this.http.get<ITransaction[]>('core/all-transaction/', query);
+    return this.http.get<ITransaction[]>('core/transactions/', query);
   }
 
   postFinance(body: BodyJson): Observable<ITransaction> {
-    return this.http.post<ITransaction>(`core/create-transaction/`, body);
+    return this.http.post<ITransaction>(`core/transactions/`, body);
   }
 
   patchFinance(id: number, body: BodyJson): Observable<ITransaction> {
-    return this.http.patch<ITransaction>(`core/edit-transaction/${id}/`, body);
+    return this.http.patch<ITransaction>(`core/transactions/${id}/`, body);
   }
 
   paymentTransaction(body: BodyJson): Observable<ITransaction> {
-    return this.http.patch<ITransaction>(`core/pay-transaction/`, body);
-  }
-
-  uploadTransactionReceipt(body: BodyJson): Observable<ITransaction> {
-    return this.http.patch<ITransaction>(`core/upload-transaction-image/`, body);
+    return this.http.patch<ITransaction>(`core/transactions/`, body);
   }
 
   deleteFinance(id: number, all = false): Observable<ITransaction> {
-    return this.http.delete<ITransaction>(`core/delete-transaction/${id}/?all_transaction=${all}`);
+    return this.http.delete<ITransaction>(`core/transactions/${id}/?all_transaction=${all}`);
   }
 }

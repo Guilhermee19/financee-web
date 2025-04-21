@@ -7,11 +7,10 @@
     <section class="w-full mt-4 flex flex-col justify-center items-center gap-3">
       <avatar [name]="user.name" class="size-32 text-2xl" color="light" bg="#55b02e" />
 
-      <div class="w-full flex justify-center items-center gap-4 mt-8">
-        <p class="text-white font-lg"> Visão Geral</p>
-        <p class="text-white font-lg"> Plano </p>
-        <p class="text-white font-lg"> Configurações </p>
-      </div>
+      <app-tabs
+      [options]="['Visão Geral', 'Plano', 'Configurações']"
+      [initialSelected]="'Visão Geral'"
+      ></app-tabs>
     </section>
   </div>
 </main>

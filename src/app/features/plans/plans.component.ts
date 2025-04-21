@@ -28,7 +28,7 @@ export class PlansComponent implements OnInit {
   public getAllPlans(){
     this.plansService.getAllPlans().subscribe({
       next: (data) =>{
-        this.plans = data
+        this.plans = data.results
       }
     })
   }

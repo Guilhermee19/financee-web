@@ -13,18 +13,18 @@ export class AccountService {
 
   getAllAccounts(page = 1): Observable<IPagedReq<IAccount>> {
     const query = new HttpParams().set('page', page);
-    return this.http.get<IPagedReq<IAccount>>('core/all-accounts/', query);
+    return this.http.get<IPagedReq<IAccount>>('core/accounts/', query);
   }
 
   postAccount(body: BodyJson): Observable<IAccount> {
-    return this.http.post<IAccount>(`core/create-account/`, body);
+    return this.http.post<IAccount>(`core/accounts/`, body);
   }
 
   patchAccount(id: number, body: BodyJson): Observable<IAccount> {
-    return this.http.patch<IAccount>(`core/edit-account/${id}/`, body);
+    return this.http.patch<IAccount>(`core/accounts/${id}/`, body);
   }
 
-  deletAccount(id: number): Observable<IAccount> {
-    return this.http.delete<IAccount>(`core/delete-account/${id}/`);
+  deleteAccount(id: number): Observable<IAccount> {
+    return this.http.delete<IAccount>(`core/accounts/${id}/`);
   }
 }

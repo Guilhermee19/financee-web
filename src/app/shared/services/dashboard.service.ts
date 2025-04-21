@@ -21,7 +21,7 @@ export class DashboardService {
       query = query.set('end_date', endDate.toISOString().split('T')[0]);
     }
 
-    return this.http.get<IDashbaord>('core/get-dashboard/', query);
+    return this.http.get<IDashbaord>('core/dashboard/resumo/', query);
   }
 
   getDashboardCategory(params: IFilter): Observable<ICategoryPercentages[]> {
@@ -34,7 +34,7 @@ export class DashboardService {
       query = query.set('end_date', endDate.toISOString().split('T')[0]);
     }
 
-    return this.http.get<ICategoryPercentages[]>('core/get-dashboard-category/', query);
+    return this.http.get<ICategoryPercentages[]>('core/dashboard/categorias/', query);
   }
 
 
@@ -48,7 +48,7 @@ export class DashboardService {
       query = query.set('end_date', endDate.toISOString().split('T')[0]);
     }
 
-    return this.http.get<IDashbaordTransaction>('core/get-dashboard-upcoming-and-unpaid-transactions/', query);
+    return this.http.get<IDashbaordTransaction>('core/dashboard/transacoes_futuras_vencidas/', query);
   }
 
 }
