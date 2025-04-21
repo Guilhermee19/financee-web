@@ -22,7 +22,7 @@
     }
 
     thead {
-      @apply rounded-t-xl bg-White3;
+      @apply rounded-t-xl bg-White3 dark:bg-dark-White3;
 
       /* background: transparent; */
 
@@ -33,7 +33,7 @@
         background: transparent !important;
 
         th {
-          @apply  bg-White3;
+          @apply  bg-White3 dark:bg-dark-White3;
 
           &:first-child {
             @apply rounded-tl-xl;
@@ -72,7 +72,7 @@
     }
 
     tbody{
-      @apply border border-solid border-White8;
+      @apply border border-solid border-White8 dark:border-dark-White8 ;
       border-radius: 0 var(--br) var(--br) 0;
 
       tr{
@@ -83,7 +83,7 @@
         } */
 
         td {
-          @apply text-black dark:text-white font-normal border-t border-solid border-White8;
+          @apply text-black dark:text-white font-normal border-t border-solid border-White8 dark:border-dark-White8 ;
 
           font-weight: 500;
           border-bottom: none; // Remove a borda inferior padrão das células
