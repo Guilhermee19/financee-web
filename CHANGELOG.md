@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.13.0](https://github.com/Guilhermee19/financee-web/compare/v1.12.4...v1.13.0) (2025-04-21)
+
 ### [1.12.4](https://github.com/Guilhermee19/financee-web/compare/v1.12.3...v1.12.4) (2025-04-17)
 
 
