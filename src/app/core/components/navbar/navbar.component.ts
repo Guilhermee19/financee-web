@@ -4,19 +4,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { RouterModule } from '@angular/router';
 import { AvatarComponent } from '../../../shared/components/avatar/avatar.component';
+import { ToggleThemeComponent } from "../../../shared/components/toggle-theme/toggle-theme.component";
 import { IconDirective } from '../../../shared/directives/icon.directive';
 import { AuthService } from '../../../shared/services/auth.service';
 import { StorageService } from '../../../shared/services/storage.service';
 import { NAVBAR_PAGES } from '../../constants/navbar';
-// import { AvatarComponent } from '../../shared/components/avatar/avatar.component';
-// import { IconDirective } from '../../shared/directives/icon.directive';
-// import { AuthService } from '../../shared/services/auth.service';
-// import { StorageService } from '../../shared/services/storage.service';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, RouterModule, MatButtonModule, AvatarComponent, IconDirective, MatMenuModule],
+  imports: [CommonModule, RouterModule, MatButtonModule, AvatarComponent, IconDirective, MatMenuModule, ToggleThemeComponent],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })

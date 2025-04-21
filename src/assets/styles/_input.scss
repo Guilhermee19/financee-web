@@ -6,7 +6,7 @@
   @apply w-full flex flex-col gap-2;
 
   label {
-    @apply text-white text-sm;
+    @apply text-black dark:text-white text-sm;
   }
 
   textarea{
@@ -17,7 +17,7 @@
   textarea,
   select,
   .mat-mdc-select-trigger {
-    @apply relative w-full rounded-xl py-2 px-3 bg-transparent border-2 border-solid border-DarkGray text-white;
+    @apply relative w-full rounded-xl py-2 px-3 bg-transparent border-2 border-solid border-DarkGray dark:border-dark-DarkGray text-black dark:text-white;
 
 
 
@@ -26,14 +26,14 @@
     }
 
     .mat-mdc-select-value-text{
-      @apply text-white;
+      @apply text-black dark:text-white;
       span{
-        @apply text-white;
+        @apply text-black dark:text-white;
       }
     }
 
     .mat-mdc-select-arrow{
-      @apply text-white;
+      @apply text-black dark:text-white;
     }
 
     &:read-only {
@@ -66,7 +66,7 @@
     @apply relative w-full flex justify-center items-center;
 
     input{
-      @apply relative w-full rounded-xl py-2 px-3 bg-transparent border-2 border-solid border-DarkGray text-white;
+      @apply relative w-full rounded-xl py-2 px-3 bg-transparent border-2 border-solid border-DarkGray dark:border-dark-DarkGray text-black dark:text-white;
 
       &:placeholder{
         @apply text-DarkGray;
@@ -74,7 +74,7 @@
     }
 
     i{
-      @apply absolute right-3 text-white text-base cursor-pointer p-1;
+      @apply absolute right-3 text-black dark:text-white text-base cursor-pointer p-1;
     }
   }
 
@@ -92,7 +92,7 @@
 
   input[type="date"],
   input[type="month"] {
-    @apply pr-8 pl-2 py-2  text-white focus:outline-none; /* Estilos para o input */
+    @apply pr-8 pl-2 py-2  text-black dark:text-white focus:outline-none; /* Estilos para o input */
 
     /* Deixe espaço para o ícone personalizado */
     padding-right: .7rem;
@@ -105,8 +105,7 @@
   }
 
   .custom-calendar-icon {
-    @apply absolute bottom-[.6rem] right-4 transform text-white z-10; /* Posicionamento do ícone */
+    @apply absolute bottom-[.6rem] right-4 transform text-black dark:text-white z-10; /* Posicionamento do ícone */
     pointer-events: none; /* Evita interferência na interação do input */
-    color: #fff; /* Cor do ícone */
   }
 }

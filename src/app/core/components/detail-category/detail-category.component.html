@@ -1,8 +1,8 @@
 <section class="h-full flex flex-col">
   <header class="flex justify-between items-center px-5 gap-2 pb-5 border-b border-solid border-White8">
-    <h1 class="text-white text-xl font-semibold"> Categoria </h1>
+    <h1 class="text-black dark:text-white text-xl font-semibold"> Categoria </h1>
 
-    <i icon="xmark" class="text-white p-1 cursor-pointer" (click)="chance(false)"
+    <i icon="xmark" class="text-black dark:text-white p-1 cursor-pointer" (click)="chance(false)"
     (keydown)="chance(false)"
     tabindex="-1"></i>
   </header>
@@ -27,7 +27,7 @@
     </div>
 
     <div class="form-input">
-      <mat-slide-toggle formControlName="is_active" class="!text-white"> {{ form.value.is_active ? 'Ativar' : 'Desativar' }} </mat-slide-toggle>
+      <mat-slide-toggle formControlName="is_active" class="!text-black dark:text-white"> {{ form.value.is_active ? 'Ativar' : 'Desativar' }} </mat-slide-toggle>
     </div>
 
   </form>

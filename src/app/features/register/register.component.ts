@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { Md5 } from 'md5-typescript';
 import { environment } from '../../../environments/environment';
 import { IRegister } from '../../core/models/user';
+import { ToggleThemeComponent } from "../../shared/components/toggle-theme/toggle-theme.component";
 import { IconDirective } from '../../shared/directives/icon.directive';
 import { LoadingStateDirective } from '../../shared/directives/loading.directive';
 import { AuthService } from '../../shared/services/auth.service';
@@ -24,8 +25,9 @@ import { UserService } from '../../shared/services/user.service';
     FormsModule,
     IconDirective,
     ReactiveFormsModule,
-    LoadingStateDirective
-  ],
+    LoadingStateDirective,
+    ToggleThemeComponent
+],
   templateUrl: './register.component.html'
 })
 export class RegisterComponent {

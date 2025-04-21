@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .mat-mdc-slide-toggle .mdc-switch:enabled+.mdc-label {
-  @apply text-white ml-1;
+  @apply text-black dark:text-white ml-1;
 }
 
 .mdc-switch:enabled .mdc-switch__track::after {

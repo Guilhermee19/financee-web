@@ -21,7 +21,7 @@ export class GraphicPieComponent implements OnChanges{
   public array: {label: string, icon: keyof IconDirective['icon'], color: string, value: number, percentage: number }[] = [
     // { label: "Ganhos", icon: 'arrow_trend_up', color: 'text-primary', value: 0, percentage: 0 },
     // { label: "Gastos", icon: 'arrow_trend_down', color: 'text-Red', value: 0, percentage: 0 },
-    // { label: "Saldo", icon: 'piggy_bank', color: 'text-white', value: 0, percentage: 0 }
+    // { label: "Saldo", icon: 'piggy_bank', color: 'text-black dark:text-white', value: 0, percentage: 0 }
   ]
 
   public donut_chart = {

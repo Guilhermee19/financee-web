@@ -1,4 +1,7 @@
-<main class="w-full min-h-dvh grid grid-cols-1 md:grid-cols-2 bg-secondary">
+<main class="w-full min-h-dvh grid grid-cols-1 md:grid-cols-2 bg-secondary dark:bg-dark-secondary">
+  <div class="absolute top-0 right-0">
+    <toggle-theme />
+  </div>
 
   <figure class="w-full h-dvh overflow-hidden hidden md:block">
     <img class="w-full h-dvh object-cover rotate-12 scale-125" src="../../../assets/images/realistic-blur-background-store-department-store-supermarket-grocery-store-ai-generated-image 2.png" alt="">
@@ -8,7 +11,7 @@
     (ngSubmit)="handleFormSubmit()" [formGroup]="form"
   >
     <div class="w-full max-w-80">
-      <h1 class="w-full text-label text-center text-4xl font-bold mb-4"> Registrar </h1>
+      <h1 class="w-full text-label dark:text-dark-label text-center text-4xl font-bold mb-4"> Registrar </h1>
 
       <div class="form-input">
         <label for="name"> Nome </label>
@@ -61,10 +64,10 @@
     <div class="w-full max-w-80 h-px bg-DarkGray mt-6 mb-5"></div>
 
     <div class="flex justify-center items-center">
-      <p class="m-0 text-sm text-label mr-1"> Já tem uma conta?</p>
-      <a class="m-0 text-sm text-label font-extrabold cursor-pointer" routerLink="/login"> Fazer login </a>
+      <p class="m-0 text-sm text-label dark:text-dark-label mr-1"> Já tem uma conta?</p>
+      <a class="m-0 text-sm text-label dark:text-dark-label font-extrabold cursor-pointer" routerLink="/login"> Fazer login </a>
     </div>
   </form>
 
-  <p class="fixed bottom-0 right-0 text-White opacity-10 text-sm m-2"> v{{ version }} </p>
+  <p class="fixed bottom-0 right-0 text-black dark:text-dark-White opacity-10 text-xs m-2"> v{{ version }} </p>
 </main>

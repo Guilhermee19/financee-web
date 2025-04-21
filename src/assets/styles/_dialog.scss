@@ -1,24 +1,24 @@
 /* Classe personalizada para o diálogo com Tailwind */
 .custom-dialog {
-  @apply rounded-default bg-secondary fixed top-0 right-0 transform transition-transform duration-300 ease-out;
+  @apply rounded-default bg-secondary dark:bg-dark-secondary fixed top-0 right-0 transform transition-transform duration-300 ease-out;
   animation: slideIn 0.3s ease-out;
 
   .mat-mdc-dialog-container{
     @apply rounded-default;
     .mdc-dialog__surface{
-      @apply py-5 rounded-default bg-secondary;
+      @apply py-5 rounded-default bg-secondary dark:bg-dark-secondary;
     }
   }
 }
 
 .custom-dialog-center {
-  @apply rounded-default bg-secondary fixed top-0 right-0 transform transition-transform duration-300 ease-out;
+  @apply rounded-default bg-secondary dark:bg-dark-secondary fixed top-0 right-0 transform transition-transform duration-300 ease-out;
   animation: slideIn 0.3s ease-out;
 
   .mat-mdc-dialog-container{
     @apply rounded-default;
     .mdc-dialog__surface{
-      @apply py-5 rounded-default bg-secondary;
+      @apply py-5 rounded-default bg-secondary dark:bg-dark-secondary;
     }
   }
 }
