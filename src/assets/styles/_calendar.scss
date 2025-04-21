@@ -5,14 +5,26 @@
 
 .notPaid{
   @apply bg-Red8 border-Red rounded-lg px-1 #{!important};
+
+  div > *{
+    @apply text-label dark:text-dark-label;
+  }
 }
 
 .isPaid{
-  @apply bg-primary8 border-primary rounded-lg px-1 #{!important};
+  @apply bg-primary8 border-primary  rounded-lg px-1 #{!important};
+
+  div > *{
+    @apply text-label dark:text-dark-label;
+  }
 }
 
 .isDefault{
-  @apply bg-secondary border-White8 rounded-lg px-1 #{!important};
+  @apply bg-secondary dark:bg-dark-secondary border-White8 dark:border-White8  rounded-lg px-1 #{!important};
+
+  div > *{
+    @apply text-label dark:text-dark-label;
+  }
 }
 
 // ? calendar angular
@@ -26,23 +38,29 @@
 
 .mat-calendar-body-today,
 .mat-calendar-body-selected {
-  --mat-datepicker-calendar-date-selected-state-text-color: #fff !important;
+  /* --mat-datepicker-calendar-date-selected-state-text-color: #fff !important; */
+  @apply text-label dark:text-dark-label;
 }
 
 .mat-calendar-body-cell-content{
-  --mat-datepicker-calendar-date-text-color: #fff !important;
+  /* --mat-datepicker-calendar-date-text-color: #fff !important; */
+  @apply text-label dark:text-dark-label;
+
 
   /* @apply text-label #{!important}; */
 }
 
 .mat-calendar-table-header th{
-  --mat-datepicker-calendar-header-text-color: #fff !important;
+  /* --mat-datepicker-calendar-header-text-color: #fff !important; */
+  @apply text-label dark:text-dark-label;
 
   /* @apply text-label #{!important}; */
 }
 
 .mat-calendar-table-header-divider::after{
-  --mat-datepicker-calendar-header-divider-color: rgba(255,255,255,.5) !important
+  /* --mat-datepicker-calendar-header-divider-color: rgba(255,255,255,.5) !important; */
+  @apply text-[rgba(0,0,0,.5)] dark:text-[rgba(255,255,255,.5)];
+
 }
 
 .mat-mdc-button-base.mdc-button .mdc-button__label {
@@ -54,7 +72,7 @@
 }
 
 .mat-calendar-body-selected {
-  @apply text-label bg-primary8;
+  @apply text-label dark:text-dark-label bg-primary8;
   /* background-color: rgba(226, 182, 51, 0.5); */
   /* color: var(--text-color); */
 }
@@ -82,7 +100,7 @@
 }
 
 .fc .fc-col-header-cell-cushion {
-  @apply text-label;
+  @apply text-label dark:text-dark-label;
 
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -111,7 +129,7 @@
 }
 
 .fc .fc-daygrid-day-frame {
-  @apply p-1 border-4 border-solid border-tertiary  rounded-2xl shadow-border transition-all;
+  @apply p-1 border-4 border-solid border-tertiary dark:border-dark-tertiary rounded-2xl shadow-border transition-all;
 
   /* &:hover{
     @apply bg-White8;
@@ -157,7 +175,7 @@
   margin-bottom: 5px;
 
   a {
-    @apply text-label;
+    @apply text-label dark:text-dark-label;
 
     width: 30px;
     height: 30px;
@@ -213,7 +231,7 @@
 .fc-daygrid-event-harness {
   a {
     background-color: transparent;
-    @apply text-label;
+    @apply text-label dark:text-dark-label;
     /* color: var(--text-color); */
   }
 }

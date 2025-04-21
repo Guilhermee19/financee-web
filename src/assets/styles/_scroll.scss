@@ -15,5 +15,5 @@
 
 ::-webkit-scrollbar-track {
   border-radius: 6px;
-  @apply bg-secondary;
+  @apply bg-secondary dark:bg-dark-secondary;
 }

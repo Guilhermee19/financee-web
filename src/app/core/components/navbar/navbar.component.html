@@ -1,4 +1,4 @@
-<nav id="top-navbar" class="fixed top-0 px-6 z-50 w-full bg-tertiary">
+<nav id="top-navbar" class="fixed top-0 px-6 z-50 w-full bg-tertiary dark:bg-dark-tertiary">
   <div class="container mx-auto">
     <div
       class="flex flex-wrap items-center justify-between py-2 md:flex-nowrap"
@@ -10,7 +10,7 @@
       <div class="flex ml-auto md:hidden">
         <button
           mat-icon-button
-          class="my-0 ml-auto mr-0 text-label transition {{
+          class="my-0 ml-auto mr-0 text-label dark:text-dark-label transition {{
             isMenuOpen() ? 'rotate-90' : ''
           }}"
           (click)="toggleMenuOpened()"
@@ -20,8 +20,9 @@
       </div>
 
       @if(!loading() && user){
-        <div class="relative flex md:hidden cursor-pointer"  [matMenuTriggerFor]="beforeMenu">
+        <div class="relative flex md:hidden cursor-pointer items-center"  [matMenuTriggerFor]="beforeMenu">
           <avatar [name]="user.name" class="text-xs" color="light" bg="#55b02e" />
+          <toggle-theme />
         </div>
       }
 
@@ -56,13 +57,17 @@
       </div>
 
       @if(!loading() && user){
-        <div class="relative ml-auto hidden md:flex items-center gap-3 border border-solid border-DarkGray px-5 pr-2 py-2 rounded-lg cursor-pointer"
+        <div class="relative ml-auto hidden md:flex items-center gap-3 border border-solid border-DarkGray dark:border-dark-DarkGray px-5 pr-2 py-2 rounded-lg cursor-pointer"
           [matMenuTriggerFor]="beforeMenu">
-          <p class="w-max text-label text-sm"> {{ user.name }} </p>
+          <p class="w-max text-label dark:text-dark-label text-sm"> {{ user.name }} </p>
 
           <avatar [name]="user.name" class="text-xs" color="light" bg="#55b02e" />
         </div>
       }
+      <div class="hidden md:flex">
+        <toggle-theme />
+      </div>
+
     </div>
   </div>
 </nav>
@@ -71,13 +76,13 @@
   <a mat-menu-item class="py-1" routerLink="/profile"> Perfil </a>
   <a mat-menu-item class="py-1" routerLink="/account"> Contas </a>
   <a mat-menu-item class="py-1" routerLink="/category"> Categorias </a>
-  <a mat-menu-item class="py-1"> Configuração </a>
+  <a mat-menu-item class="py-1" routerLink="/settings"> Configuração </a>
   <br>
   <button mat-menu-item class="py-1"(click)="logout()"> Logof </button>
 </mat-menu>
 
 @if (!loading()) {
-  <div class="relative w-full min-h-dvh pt-20 pb-10 bg-tertiary px-6">
+  <div class="relative w-full min-h-dvh pt-20 pb-10 bg-tertiary dark:bg-dark-tertiary px-6">
     <router-outlet />
   </div>
 }

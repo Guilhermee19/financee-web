@@ -1,8 +1,8 @@
 <section class="h-full flex flex-col">
   <header class="flex justify-between items-center px-5 gap-2 pb-5 border-b border-solid border-White8">
-    <h1 class="text-white text-xl font-semibold"> Transação </h1>
+    <h1 class="text-black dark:text-white text-xl font-semibold"> Transação </h1>
 
-    <i icon="xmark" class="text-white p-1 cursor-pointer" (click)="chance(false)"
+    <i icon="xmark" class="text-black dark:text-white p-1 cursor-pointer" (click)="chance(false)"
     (keydown)="chance(false)"
     tabindex="-1"></i>
   </header>
@@ -98,7 +98,7 @@
     </div>
 
     <!-- @if(data?.finance?.id){
-      <mat-slide-toggle formControlName="edit_all" class="!text-white"> Editar todas as variações </mat-slide-toggle>
+      <mat-slide-toggle formControlName="edit_all" class="!text-black dark:text-white"> Editar todas as variações </mat-slide-toggle>
     } -->
 
     @if(!data?.finance?.id){

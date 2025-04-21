@@ -14,18 +14,35 @@ module.exports = {
       colors: {
         primary: '#55b02e',
         primary8: 'rgba(85,176,46,.08)',
-        secondary: '#141414',
-        tertiary: '#0f0e11',
-        DarkGreen: '#161716',
         Red: '#e93030',
         Red8: 'rgba(246,53,46,.08)',
-        DarkGray: '#1f1f21',
-        label: '#fff',
-        Gray: '#71717a',
-        LightGray: '#B8B8B8',
-        White: '#fff',
-        White8: 'rgba(255,255,255,.08)',
-        White3: 'rgba(255,255,255,.03)',
+        Yellow: '#efe121',
+
+        //light
+        secondary: '#f2f2f2',
+        tertiary: '#fafafa',
+        DarkGreen: '#e6ffe6',
+        DarkGray: '#e5e5e5',
+        label: '#000',
+        Gray: '#4d4d4d',
+        LightGray: '#999999',
+        White: '#000',
+        White8: 'rgba(0,0,0,.08)',
+        White3: 'rgba(0,0,0,.03)',
+
+        //dark
+        dark: {
+          secondary: '#141414',
+          tertiary: '#0f0e11',
+          DarkGreen: '#161716',
+          DarkGray: '#1f1f21',
+          label: '#fff',
+          Gray: '#71717a',
+          LightGray: '#B8B8B8',
+          White: '#fff',
+          White8: 'rgba(255,255,255,.08)',
+          White3: 'rgba(255,255,255,.03)',
+        },
       },
       maxHeight:{
         popup: 'calc(95vh - 100px)'
@@ -79,4 +96,6 @@ module.exports = {
     },
   },
   plugins: [],
+  darkMode: 'class', // ✅ Adicionado aqui
 }
+1

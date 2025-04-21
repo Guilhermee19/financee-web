@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 nav {
-  @apply border border-x-0 border-t-0 border-solid border-DarkGray;
+  @apply border border-x-0 border-t-0 border-solid border-DarkGray dark:border-dark-DarkGray;
 
   ul{
 

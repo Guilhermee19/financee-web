@@ -68,6 +68,12 @@ export const routes: Routes = [
           import('./features/profile/profile.component').then((m) => m.ProfileComponent),
       },
       {
+        path: 'settings',
+        title: 'Configuração | financee.me',
+        loadComponent: () =>
+          import('./features/settings/settings.component').then((m) => m.SettingsComponent),
+      },
+      {
         path: '**',
         redirectTo: 'overview',
       },

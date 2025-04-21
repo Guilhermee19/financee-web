@@ -6,6 +6,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
 import { Md5 } from 'md5-typescript';
+import { ToggleThemeComponent } from "../../shared/components/toggle-theme/toggle-theme.component";
 import { LoadingStateDirective } from '../../shared/directives/loading.directive';
 import { AuthService } from '../../shared/services/auth.service';
 import { BodyJson } from '../../shared/services/http.service';
@@ -24,8 +25,9 @@ import { environment } from './../../../environments/environment';
     ReactiveFormsModule,
     MatInputModule,
     MatCheckboxModule,
-    LoadingStateDirective
-  ],
+    LoadingStateDirective,
+    ToggleThemeComponent
+],
   templateUrl: './login.component.html',
 })
 export class LoginComponent {

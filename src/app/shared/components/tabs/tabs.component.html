@@ -13,7 +13,7 @@
       #textElement
       class="relative mb-1 cursor-pointer text-Gray text-base z-10"
       [ngClass]="{
-        '!text-white': setFocus() === option
+        '!text-black dark:text-white': setFocus() === option
       }"
       (click)="changeFocus(option)"
       (keydown)="changeFocus(option)"

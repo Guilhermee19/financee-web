@@ -10,14 +10,15 @@
 .mat-mdc-unelevated-button {
   --mdc-text-button-label-text-color: #fff;
   --mdc-filled-button-container-shape: 12px;
-  @apply w-full text-sm;
+  @apply w-full text-sm text-label dark:text-dark-label;
+
 
   &.mat-primary{
     --mdc-filled-button-disabled-container-color: #55b02e !important;
     --mdc-filled-button-container-color: #55b02e !important;
     --mdc-filled-button-label-text-color: #fff !important;
 
-    @apply bg-primary;
+    @apply bg-primary  ;
 
     &.mat-mdc-button-disabled {
       --mdc-filled-button-disabled-label-text-color: #fff !important;
@@ -26,7 +27,7 @@
     }
 
     &:disabled{
-      @apply opacity-40 ;
+      @apply opacity-40 text-label dark:text-dark-label;
     }
   }
 
@@ -34,7 +35,7 @@
     --mdc-filled-button-container-color: #1f1f21 !important;
     --mdc-filled-button-label-text-color: #fff !important;
 
-    @apply bg-primary;
+    @apply bg-primary ;
 
     &.mat-mdc-button-disabled {
       --mdc-filled-button-disabled-label-text-color: #fff !important;
@@ -65,7 +66,7 @@
     @apply bg-transparent border border-solid border-primary;
 
     .mdc-button__label{
-      @apply text-primary;
+      @apply text-primary ;
     }
 
     &.mat-mdc-button-disabled {
@@ -102,7 +103,7 @@
 .mat-mdc-outlined-button,
 .mat-mdc-menu-item{
   .mdc-button__label{
-    @apply flex items-center gap-2;
+    @apply flex items-center gap-2 ;
   }
 }
 .mat-mdc-outlined-button:not(:disabled) {

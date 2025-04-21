@@ -30,7 +30,7 @@
 .mat-mdc-checkbox {
   .mdc-form-field{
     label{
-      @apply text-white;
+      @apply text-black dark:text-white;
     }
   }
 }

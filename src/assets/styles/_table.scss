@@ -27,7 +27,7 @@
       /* background: transparent; */
 
       tr {
-        @apply text-White font-extralight;
+        @apply text-black dark:text-white font-extralight;
 
         height: 45px;
         background: transparent !important;
@@ -65,7 +65,7 @@
         }
 
         th.mat-mdc-header-cell{
-          @apply text-white;
+          @apply text-black dark:text-white;
         }
       }
 
@@ -83,7 +83,7 @@
         } */
 
         td {
-          @apply text-White font-normal border-t border-solid border-White8;
+          @apply text-black dark:text-white font-normal border-t border-solid border-White8;
 
           font-weight: 500;
           border-bottom: none; // Remove a borda inferior padrão das células

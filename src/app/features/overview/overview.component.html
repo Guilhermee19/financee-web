@@ -1,7 +1,7 @@
 <main>
   <div class="container mx-auto">
     <header class="w-full flex justify-between flex-wrap items-center gap-4">
-      <h1 class="w-full sm:w-max text-2xl font-bold text-label"> Overview </h1>
+      <h1 class="w-full sm:w-max text-2xl font-bold text-label dark:text-dark-label"> Overview </h1>
 
       <div class="buttons justify-between sm:justify-end w-full sm:w-max flex-row-reverse sm:flex-row">
         <form [formGroup]="form" class="form-input max-w-52">
@@ -25,31 +25,31 @@
     <section class="w-full mt-4 flex-wrap gap-3 grid grid-cols-10">
 
       <!-- CARD SALDO -->
-      <div class="col-span-10 md:col-span-7 order-1 lg:order-1 lg:col-span-7 card bg-DarkGreen border border-solid border-Gray rounded-default p-5">
+      <div class="col-span-10 md:col-span-7 order-1 lg:order-1 lg:col-span-7 card bg-DarkGreen dark:bg-dark-DarkGreen border border-solid border-Gray dark:border-dark-Gray rounded-default p-5">
        <div class="flex justify-between items-center gap-3">
         <div class="w-max flex items-center gap-2">
-          <div class="w-max aspect-square px-2 flex justify-center items-center rounded-md bg-black text-white">
+          <div class="w-max aspect-square px-2 flex justify-center items-center rounded-md bg-white dark:bg-black text-black dark:text-white">
             <i icon="wallet"></i>
           </div>
-          <h3 class="text-sm text-white opacity-70"> Saldo Atual </h3>
+          <h3 class="text-sm text-black dark:text-white opacity-70"> Saldo Atual </h3>
         </div>
 
         <button (click)="modeView()">
-          <i [icon]="view_values() ? 'eye' : 'eye_slash'" class="text-white text-sm lg:text-lg cursor-pointer p-1"></i>
+          <i [icon]="view_values() ? 'eye' : 'eye_slash'" class="text-black dark:text-white text-sm lg:text-lg cursor-pointer p-1"></i>
         </button>
 
        </div>
 
         <div class="mt-3 flex justify-between items-center gap-4">
-          <h1 class="text-white text-2xl lg:text-4xl font-semibold"> {{ view_values() ? (dashboard.balance| currency:'BRL') : 'R$ •••••' }} </h1>
+          <h1 class="text-black dark:text-white text-2xl lg:text-4xl font-semibold"> {{ view_values() ? (dashboard.balance| currency:'BRL') : 'R$ •••••' }} </h1>
 
           <button mat-flat-button color="primary" class="w-max" (click)="createFinance()"> <span class="hidden sm:block">Adicionar Transação</span> <i icon="arrow_up_arrow_down"></i> </button>
         </div>
       </div>
 
       <!-- CARD TRANSATION -->
-      <div class="col-span-10 sm:col-span-5 md:col-span-4 order-4 sm:order-3 md:order-5 lg:order-2 lg:col-span-3 row-span-3 card bg-tertiary border border-solid border-Gray rounded-default p-5">
-        <h1 class="w-full text-White text-base font-semibold"> Transações </h1>
+      <div class="col-span-10 sm:col-span-5 md:col-span-4 order-4 sm:order-3 md:order-5 lg:order-2 lg:col-span-3 row-span-3 card bg-tertiary dark:bg-dark-tertiary border border-solid border-Gray dark:border-dark-Gray rounded-default p-5">
+        <h1 class="w-full text-black dark:text-white text-base font-semibold"> Transações </h1>
         <div class="w-full h-px bg-White8 my-4"></div>
 
 
@@ -58,19 +58,19 @@
             <div class="w-full flex justify-between pr-2 items-center gap-2 rounded-lg bg-Red8">
               <div class="size-11 flex justify-center items-center aspect-square rounded-lg p-2 bg-White3">
                 @if(item.category_obj?.icon){
-                  <i [innerHTML]="item.category_obj?.icon | safe: 'html'" class="text-white text-sm lg:text-lg opacity-50"></i>
+                  <i [innerHTML]="item.category_obj?.icon | safe: 'html'" class="text-black dark:text-white text-sm lg:text-lg opacity-50"></i>
                 }
                 @else{
-                  <i icon="paperclip" class="text-white text-sm lg:text-lg opacity-50"></i>
+                  <i icon="paperclip" class="text-black dark:text-white text-sm lg:text-lg opacity-50"></i>
                 }
               </div>
 
               <div class="w-max flex flex-col gap-2 mr-auto">
-                <h2 class="text-sm m-0 leading-none text-white"> {{ item.description }} </h2>
-                <p class="text-xs m-0 leading-none text-white opacity-50"> {{ item.expiry_date | date: 'dd MMM, yyyy' }} </p>
+                <h2 class="text-sm m-0 leading-none text-black dark:text-white"> {{ item.description }} </h2>
+                <p class="text-xs m-0 leading-none text-black dark:text-white opacity-50"> {{ item.expiry_date | date: 'dd MMM, yyyy' }} </p>
               </div>
 
-              <h1 class="m-0 leading-none text-white"
+              <h1 class="m-0 leading-none text-black dark:text-white"
               [ngClass]="{
                 '!text-primary': item.type === 'INCOME',
                 '!text-Red': item.type === 'EXPENDITURE'
@@ -81,19 +81,19 @@
             <div class="w-full flex justify-between pr-2 items-center gap-2">
               <div class="size-11 flex justify-center items-center aspect-square rounded-lg p-2 bg-White3">
                 @if(item.category_obj?.icon){
-                  <i [innerHTML]="item.category_obj?.icon| safe: 'html'" class="text-white text-sm lg:text-lg opacity-50"></i>
+                  <i [innerHTML]="item.category_obj?.icon| safe: 'html'" class="text-black dark:text-white text-sm lg:text-lg opacity-50"></i>
                 }
                 @else{
-                  <i icon="paperclip" class="text-white text-sm lg:text-lg opacity-50"></i>
+                  <i icon="paperclip" class="text-black dark:text-white text-sm lg:text-lg opacity-50"></i>
                 }
               </div>
 
               <div class="w-max flex flex-col gap-2 mr-auto">
-                <h2 class="text-sm m-0 leading-none text-white"> {{ item.description }} </h2>
-                <p class="text-xs m-0 leading-none text-white opacity-50"> {{ item.expiry_date | date: 'dd MMM, yyyy' }} </p>
+                <h2 class="text-sm m-0 leading-none text-black dark:text-white"> {{ item.description }} </h2>
+                <p class="text-xs m-0 leading-none text-black dark:text-white opacity-50"> {{ item.expiry_date | date: 'dd MMM, yyyy' }} </p>
               </div>
 
-              <h1 class="m-0 leading-none text-white"
+              <h1 class="m-0 leading-none text-black dark:text-white"
               [ngClass]="{
                 '!text-primary': item.type === 'INCOME',
                 '!text-Red': item.type === 'EXPENDITURE'
@@ -105,9 +105,9 @@
       </div>
 
       <!-- CARD INVESTMENT -->
-      <div class="col-span-5 hidden sm:block md:col-span-3 order-2 md:order-2 lg:order-3 lg:col-span-3 card bg-White3 border border-solid border-Gray rounded-default p-5">
+      <div class="col-span-5 hidden sm:block md:col-span-3 order-2 md:order-2 lg:order-3 lg:col-span-3 card bg-White3 border border-solid border-Gray dark:border-dark-Gray rounded-default p-5">
         <div class="w-max flex items-center gap-2">
-          <div class="w-max aspect-square px-2 flex justify-center items-center rounded-md bg-White8 text-white">
+          <div class="w-max aspect-square px-2 flex justify-center items-center rounded-md bg-White8 text-black dark:text-white">
             <i icon="piggy_bank"></i>
           </div>
           <h3 class="text-sm text-Gray opacity-70"> Saldo do Mês </h3>
@@ -115,14 +115,14 @@
 
         <div class="mt-3 flex justify-between items-center gap-4">
           <div class="flex items-center gap-3">
-            <!-- <h1 class="text-white text-2xl font-semibold">  {{ view_values() ? (investment | currency:'BRL') : 'R$ •••••' }} </h1> -->
-            <h1 class="text-white text-lg lg:text-2xl font-semibold">  {{ view_values() ? (dashboard.total_income - dashboard.total_expenditure| currency:'BRL') : 'R$ •••••' }} </h1>
+            <!-- <h1 class="text-black dark:text-white text-2xl font-semibold">  {{ view_values() ? (investment | currency:'BRL') : 'R$ •••••' }} </h1> -->
+            <h1 class="text-black dark:text-white text-lg lg:text-2xl font-semibold">  {{ view_values() ? (dashboard.total_income - dashboard.total_expenditure| currency:'BRL') : 'R$ •••••' }} </h1>
           </div>
         </div>
       </div>
 
       <!-- CARD REVENUE -->
-      <div class="col-span-5 md:col-span-3 order-2 sm:order-4 md:order-3 lg:order-4 lg:col-span-2 card bg-tertiary border border-solid border-Gray rounded-default p-5">
+      <div class="col-span-5 md:col-span-3 order-2 sm:order-4 md:order-3 lg:order-4 lg:col-span-2 card bg-tertiary dark:bg-dark-tertiary border border-solid border-Gray dark:border-dark-Gray rounded-default p-5">
         <div class="w-max flex items-center gap-2">
           <div class="w-max aspect-square px-2 flex justify-center items-center rounded-md bg-primary8 text-primary">
             <i icon="arrow_trend_up"></i>
@@ -132,7 +132,7 @@
 
         <div class="mt-3 flex justify-between items-center gap-4">
           <div class="flex items-center gap-3">
-            <h1 class="text-white text-lg lg:text-2xl font-semibold">
+            <h1 class="text-black dark:text-white text-lg lg:text-2xl font-semibold">
               {{ view_values() ? (dashboard.total_income | currency:'BRL') : 'R$ •••••' }}
             </h1>
           </div>
@@ -140,7 +140,7 @@
       </div>
 
       <!-- CARD EXPENSES -->
-      <div class="col-span-5 md:col-span-3 order-3 sm:order-5 md:order-4 lg:order-5 lg:col-span-2 card bg-tertiary border border-solid border-Gray rounded-default p-5">
+      <div class="col-span-5 md:col-span-3 order-3 sm:order-5 md:order-4 lg:order-5 lg:col-span-2 card bg-tertiary dark:bg-dark-tertiary border border-solid border-Gray dark:border-dark-Gray rounded-default p-5">
         <div class="w-max flex items-center gap-2">
           <div class="w-max aspect-square px-2 flex justify-center items-center rounded-md bg-Red8 text-Red">
             <i icon="arrow_trend_down"></i>
@@ -150,7 +150,7 @@
 
         <div class="mt-3 flex justify-between items-center gap-4">
           <div class="flex items-center gap-3">
-            <h1 class="text-white text-lg lg:text-2xl font-semibold">
+            <h1 class="text-black dark:text-white text-lg lg:text-2xl font-semibold">
               {{ view_values() ? (dashboard.total_expenditure | currency:'BRL') : 'R$ •••••' }}
             </h1>
           </div>
@@ -158,27 +158,27 @@
       </div>
 
       <!-- CARD GRAPHIC -->
-      <div class="col-span-10 sm:col-span-5 md:col-span-6 order-7 md:order-7 lg:order-7 lg:col-span-4 card bg-tertiary border border-solid border-Gray rounded-default p-5">
+      <div class="col-span-10 sm:col-span-5 md:col-span-6 order-7 md:order-7 lg:order-7 lg:col-span-4 card bg-tertiary dark:bg-dark-tertiary border border-solid border-Gray dark:border-dark-Gray rounded-default p-5">
         <!-- <app-graphic-pie [dashboard]="dashboard" /> -->
       </div>
 
       <!-- CARD PORCENT CATEGORY -->
-      <div class="col-span-10 sm:col-span-5 md:col-span-6 order-6 md:order-6 lg:order-6 lg:col-span-3 card bg-tertiary border border-solid border-Gray rounded-default p-5">
-        <h1 class="w-full text-White text-base font-semibold"> Gastos por categoria </h1>
+      <div class="col-span-10 sm:col-span-5 md:col-span-6 order-6 md:order-6 lg:order-6 lg:col-span-3 card bg-tertiary dark:bg-dark-tertiary border border-solid border-Gray dark:border-dark-Gray rounded-default p-5">
+        <h1 class="w-full text-black dark:text-white text-base font-semibold"> Gastos por categoria </h1>
         <div class="w-full h-px bg-White8 my-4"></div>
 
 
         @for (category of category_percentages; track $index){
           <div class="py-2">
             <div class="flex justify-between items-center">
-              <p class="text-White text-xs font-semibold"> {{ category.name }} </p>
+              <p class="text-black dark:text-white text-xs font-semibold"> {{ category.name }} </p>
 
-              <p class="text-White text-xs font-semibold"> {{ category.percentage }}% </p>
+              <p class="text-black dark:text-white text-xs font-semibold"> {{ category.percentage }}% </p>
             </div>
 
             <mat-progress-bar mode="determinate" class="my-1" [value]="category.percentage"></mat-progress-bar>
 
-            <p class="text-White text-xs opacity-30"> {{ view_values() ? (category.total_spent| currency:'BRL') : 'R$ •••••' }} </p>
+            <p class="text-black dark:text-white text-xs opacity-30"> {{ view_values() ? (category.total_spent| currency:'BRL') : 'R$ •••••' }} </p>
           </div>
         }
       </div>
