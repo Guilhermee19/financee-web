@@ -4,7 +4,7 @@
   <ng-container *ngFor="let option of options; let i = index">
     <span
       #underline
-      class="absolute bottom-0 left-0 h-8 rounded-full rou bg-White3 transition-all z-5"
+      class="absolute bottom-0 left-0 h-8 rounded-full rou bg-White3 dark:bg-dark-White3 transition-all z-5"
       [ngStyle]="styleLine"
     ></span>
 
@@ -13,7 +13,7 @@
       #textElement
       class="relative mb-1 cursor-pointer text-Gray text-base z-10"
       [ngClass]="{
-        '!text-black dark:text-white': setFocus() === option
+        '!text-black dark:!text-white': setFocus() === option
       }"
       (click)="changeFocus(option)"
       (keydown)="changeFocus(option)"
