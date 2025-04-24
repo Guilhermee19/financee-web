@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.13.1](https://github.com/Guilhermee19/financee-web/compare/v1.13.0...v1.13.1) (2025-04-24)
+
+
+### Features
+
+* implement dark mode toggle and settings component ([07247ee](https://github.com/Guilhermee19/financee-web/commit/07247ee5ef8d644929e2d556f7f8d9ba68f82b69))
+
+
+### Bug Fixes
+
+* adicionar suporte a tema escuro nas tabelas ([006c13f](https://github.com/Guilhermee19/financee-web/commit/006c13f40e8af69f0773b068ae47008f27247041))
+
 ## [1.13.0](https://github.com/Guilhermee19/financee-web/compare/v1.12.4...v1.13.0) (2025-04-21)
 
 ### [1.12.4](https://github.com/Guilhermee19/financee-web/compare/v1.12.3...v1.12.4) (2025-04-17)
