@@ -37,7 +37,7 @@ export class FinanceService {
   }
 
   paymentTransaction(body: BodyJson): Observable<ITransaction> {
-    return this.http.patch<ITransaction>(`core/transactions/`, body);
+    return this.http.patch<ITransaction>(`core/transactions/pay/`, body);
   }
 
   deleteFinance(id: number, all = false): Observable<ITransaction> {
