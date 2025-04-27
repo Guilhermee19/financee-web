@@ -83,7 +83,11 @@ export class OverviewComponent implements OnInit{
 
   public createFinance(){
     const dialogRef = this.dialog.open(DetailFinanceComponent,{
-      ...CONFIG_MODAL_TRANSACTION
+      ...CONFIG_MODAL_TRANSACTION,
+      data: {
+        finance: null,
+        edit_all: false,
+      },
     });
 
     dialogRef.afterClosed().subscribe(result => {
