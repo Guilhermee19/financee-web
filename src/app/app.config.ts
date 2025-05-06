@@ -1,4 +1,4 @@
-import { ApplicationConfig, DEFAULT_CURRENCY_CODE, LOCALE_ID } from '@angular/core';
+import { ApplicationConfig, DEFAULT_CURRENCY_CODE, LOCALE_ID, isDevMode } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { DatePipe, registerLocaleData } from '@angular/common';
@@ -10,6 +10,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { provideEnvironmentNgxMask } from 'ngx-mask';
 import { provideToastr } from 'ngx-toastr';
 import { routes } from './app.routes';
+import { provideServiceWorker } from '@angular/service-worker';
 
 registerLocaleData(localePt);
 
@@ -39,8 +40,12 @@ export const appConfig: ApplicationConfig = {
     { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
     { provide: LOCALE_ID, useValue: 'pt-BR' },
     {
-      provide: DEFAULT_CURRENCY_CODE,
-      useValue: 'BRL',
+        provide: DEFAULT_CURRENCY_CODE,
+        useValue: 'BRL',
     },
-  ],
+    provideServiceWorker('ngsw-worker.js', {
+        enabled: !isDevMode(),
+        registrationStrategy: 'registerWhenStable:30000'
+    })
+],
 };

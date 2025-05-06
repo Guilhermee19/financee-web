@@ -1,8 +1,8 @@
 {
-  "name": "Financee",
+  "name": "Financee.me",
   "short_name": "Financee",
-  "theme_color": "#f5c738",
-  "background_color": "#5cb336",
+  "theme_color": "#5cb336",
+  "background_color": "#141414",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
