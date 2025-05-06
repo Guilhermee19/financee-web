@@ -21,7 +21,7 @@
     </form>
 
     @if( !loading() ){
-      <section class="container-tablet mt-6">
+      <section class="container-tablet mt-6 hidden md:block">
         <table mat-table [dataSource]="dataSource" matSort>
 
           <ng-container matColumnDef="description">
@@ -148,6 +148,97 @@
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
+      </section>
+
+      <section class="w-full md:hidden">
+        @if(dataSource.data.length === 0){
+          <p class="w-full p-5 text-center text-xl opacity-50 font-light text-white/50">Nenhum resultado encontrado</p>
+        }
+        @else {
+          <div class="flex flex-col gap-4">
+            @for (item of dataSource.data; track $index) {
+              @if($index >0){
+                <div class="w-full h-px bg-white/10"></div>
+              }
+              <div class="w-full grid grid-cols-3 items-center gap-2 p-2">
+                <!-- DESCRIPTION -->
+                <div class="w-max flex items-center gap-2">
+
+                  <div class="flex flex-col justify-start items-start gap-1">
+                    <p class="!text-base leading-none text-white flex items-center gap-1">
+                      <span class="!w-max p-1 flex items-center gap-2 rounded-full {{item.type === 'INCOME' ? ' text-primary' : ' text-Red'}}">
+                        @if(item.type === 'INCOME'){
+                          <i icon="arrow_trend_up" class="flex text-xs justify-center items-center"></i>
+                        }
+                        @if(item.type === 'EXPENDITURE'){
+                          <i icon="arrow_trend_down" class="flex text-xs justify-center items-center"></i>
+                        }
+                      </span>
+                      {{ item.description }}
+                    </p>
+                    <p class="w-max text-xs opacity-50 font-light leading-none text-white"> ( {{ item.recurrence === 'INSTALLMENTS' ? (item.current_installment+'/'+item.installments) : (item.recurrence | status)}} ) </p>
+                  </div>
+                </div>
+
+
+                <div class="flex flex-col justify-center items-start gap-1">
+                  <p class="text-white text-base"> {{ item.value_installment | currency }} </p>
+
+                  <!-- DATA -->
+                  <div class="opacity-50">
+                    <div class="!w-max justify-start items-center gap-1 flex text-white text-xs">
+                      <span>  {{ item.expiry_date | date: 'dd' }} </span>
+                      <span> de </span>
+                      <span class="capitalize"> {{ item.expiry_date | date: 'MMMM' }} </span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- OPTIONS -->
+                <div class="w-full flex justify-end items-center gap-1">
+                  <!-- STATUS -->
+                  <button class="!w-max px-3 flex items-center gap-2 py-1 rounded-full cursor-pointer {{item.is_paid ? 'bg-primary8 text-primary' : 'bg-Red8 text-Red'}}"
+                    (click)="paidTransaction(item)"
+                    (keydown)="paidTransaction(item)"
+                    tabindex="-1"
+                  >
+                    <i icon="circle_small" class="flex justify-center items-center"></i>
+                  </button>
+
+                  @if(item.recurrence === 'SINGLE'){
+                    <button mat-mini-fab class="!bg-transparent !shadow-none !p-1 !size-8" (click)="detailFinance(item, false)">
+                      <i icon="pen_to_square" class="cursor-pointer p-1 text-black dark:text-white"></i>
+                    </button>
+
+                    <button mat-mini-fab class="!bg-transparent !shadow-none !p-1 !size-8" (click)="openDelete(item, true)">
+                      <i icon="trash_can" class="cursor-pointer text-black dark:text-white"></i>
+                    </button>
+                  }
+                  @else {
+                    <button mat-mini-fab class="!bg-transparent !shadow-none !p-1 !size-8" [matMenuTriggerFor]="menuEdit">
+                      <i icon="pen_to_square" class="cursor-pointer p-1 text-black dark:text-white"></i>
+                    </button>
+                    <mat-menu #menuEdit="matMenu">
+                      <button mat-menu-item color="primary" (click)="detailFinance(item, false)">editar apenas esse</button>
+                      <!-- <button mat-menu-item (click)="detailFinance(item)">editar esse e próximos</button> -->
+                      <button mat-menu-item color="primary" disabled >editar todos</button>
+                    </mat-menu>
+
+                    <button mat-mini-fab class="!bg-transparent !shadow-none !p-1 !size-8" [matMenuTriggerFor]="menuTrash" >
+                      <i icon="trash_can" class="cursor-pointer text-black dark:text-white"></i>
+                    </button>
+
+                    <mat-menu #menuTrash="matMenu">
+                      <button mat-menu-item (click)="openDelete(item, false)">excluir apenas esse</button>
+                      <!-- <button mat-menu-item (click)="openDelete(item, true)">excluir esse e próximos</button> -->
+                      <button mat-menu-item (click)="openDelete(item, true)">excluir todos</button>
+                    </mat-menu>
+                  }
+                </div>
+              </div>
+            }
+          </div>
+        }
       </section>
     }
   </div>

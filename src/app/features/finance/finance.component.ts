@@ -118,8 +118,8 @@ export class FinanceComponent implements OnInit {
         title: isExpenditure ? 'Pagamento Efetuado?' : 'Valor Recebido?',
         message: `Deseja marcar ${isExpenditure ? 'a conta' : 'o recebimento de'}
                   <strong class='!font-bold'>${finance.description}</strong>
-                  no valor de <strong class='!font-bold'>R$ ${finance.value_installment}</strong> como concluído?`,
-        confirmText: isExpenditure ? 'Confirmar Pagamento' : 'Confirmar Recebimento',
+                  no valor de <strong class='!font-bold'>R$ ${finance.value_installment}</strong> como ${isExpenditure ? 'pago' : 'recebido'}?`,
+        confirmText: 'Confirmar',
         cancelText: 'Voltar',
       }
     });
