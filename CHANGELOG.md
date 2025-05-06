@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.14.0](https://github.com/Guilhermee19/financee-web/compare/v1.13.3...v1.14.0) (2025-05-06)
+
+
+### Features
+
+* **finance:** improve transaction confirmation messages and update HTML structure ([02dd244](https://github.com/Guilhermee19/financee-web/commit/02dd24442d5fbf0ae91955965f5ac0a3636b6626))
+
 ### [1.13.3](https://github.com/Guilhermee19/financee-web/compare/v1.13.2...v1.13.3) (2025-05-05)
 
 ### [1.13.2](https://github.com/Guilhermee19/financee-web/compare/v1.13.1...v1.13.2) (2025-04-24)
