@@ -45,7 +45,8 @@ export class StorageService {
   }
 
   public get cookies() {
-    return localStorage.getItem('cookies') === 'true';
+    // return localStorage.getItem('cookies') === 'true';
+    return true
   }
 
   public set cookies(value: boolean) {
