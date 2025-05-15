@@ -35,7 +35,7 @@ import { ITransaction } from '../../models/finance';
 })
 export class DetailFinanceComponent implements OnInit {
   private dialogRef = inject(MatDialogRef);
-  public data: { finance: ITransaction, edit_all: boolean } = inject(MAT_DIALOG_DATA);
+  public data: { finance: ITransaction, edit_all?: boolean } = inject(MAT_DIALOG_DATA);
   private fb = inject(FormBuilder);
   private financeService = inject(FinanceService);
   private categoryService = inject(CategoryService);

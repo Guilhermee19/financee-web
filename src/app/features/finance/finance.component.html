@@ -160,7 +160,7 @@
               @if($index >0){
                 <div class="w-full h-px bg-white/10"></div>
               }
-              <div class="w-full grid grid-cols-3 items-center gap-2 p-2">
+              <div class="w-full grid grid-cols-2 items-center gap-2 p-2">
                 <!-- DESCRIPTION -->
                 <div class="w-max flex items-center gap-2">
 
@@ -176,20 +176,20 @@
                       </span>
                       {{ item.description }}
                     </p>
-                    <p class="w-max text-xs opacity-50 font-light leading-none text-white"> ( {{ item.recurrence === 'INSTALLMENTS' ? (item.current_installment+'/'+item.installments) : (item.recurrence | status)}} ) </p>
-                  </div>
-                </div>
+
+                    <div class="flex items-center gap-1">
+                      <p class="text-white text-base"> {{ item.value_installment | currency }} </p>
+                      <p class="w-max text-xs opacity-50 font-light leading-none text-white"> ( {{ item.recurrence === 'INSTALLMENTS' ? (item.current_installment+'/'+item.installments) : (item.recurrence | status)}} ) </p>
+                    </div>
 
 
-                <div class="flex flex-col justify-center items-start gap-1">
-                  <p class="text-white text-base"> {{ item.value_installment | currency }} </p>
-
-                  <!-- DATA -->
-                  <div class="opacity-50">
-                    <div class="!w-max justify-start items-center gap-1 flex text-white text-xs">
-                      <span>  {{ item.expiry_date | date: 'dd' }} </span>
-                      <span> de </span>
-                      <span class="capitalize"> {{ item.expiry_date | date: 'MMMM' }} </span>
+                    <!-- DATA -->
+                    <div class="opacity-50">
+                      <div class="!w-max justify-start items-center gap-1 flex text-white text-xs">
+                        <span>  {{ item.expiry_date | date: 'dd' }} </span>
+                        <span> de </span>
+                        <span class="capitalize"> {{ item.expiry_date | date: 'MMMM' }} </span>
+                      </div>
                     </div>
                   </div>
                 </div>
