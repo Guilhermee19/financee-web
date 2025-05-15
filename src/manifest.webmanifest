@@ -1,11 +1,15 @@
 {
   "name": "Financee.me",
   "short_name": "Financee",
+  "description": "Gerencie suas finanças pessoais com facilidade, controle de gastos, metas e alertas inteligentes.",
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
   "theme_color": "#5cb336",
   "background_color": "#141414",
-  "display": "standalone",
-  "scope": "./",
-  "start_url": "./",
   "icons": [
     {
       "src": "assets/icons/icon-72x72.png",
@@ -55,5 +59,35 @@
       "type": "image/png",
       "purpose": "maskable any"
     }
-  ]
+  ],
+  "screenshots": [
+    {
+      "src": "assets/screenshots/finance.png",
+      "sizes": "1080x1920",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/screenshots/overview.png",
+      "sizes": "1080x1920",
+      "type": "image/png"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Transações",
+      "short_name": "Transações",
+      "description": "Adicione uma nova entrada ou despesa rapidamente.",
+      "url": "/finance",
+      "icons": [{ "src": "assets/icons/icon-96x96.png", "sizes": "96x96", "type": "image/png" }]
+    },
+    {
+      "name": "Overview",
+      "short_name": "Overview",
+      "description": "Veja gráficos e relatórios de suas finanças.",
+      "url": "/overview",
+      "icons": [{ "src": "assets/icons/icon-96x96.png", "sizes": "96x96", "type": "image/png" }]
+    }
+  ],
+  "categories": ["finance", "productivity", "utilities"],
+  "iarc_rating_id": "eC0b4TnWj72p"
 }
