@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.14.3](https://github.com/Guilhermee19/financee-web/compare/v1.14.2...v1.14.3) (2025-05-15)
+
+
+### Bug Fixes
+
+* **detail-finance:** update label to 'Valor Parcela' and adjust edit_all property to optional ([bef25ae](https://github.com/Guilhermee19/financee-web/commit/bef25ae96e2f94cbb56195acdd00bf126dddc22a))
+* **finance:** adjust layout of transaction table to better display data ([f89ab72](https://github.com/Guilhermee19/financee-web/commit/f89ab720013225b6afa25962c1d8ca8bf55337ba))
+* **navbar:** update logo display for responsive design and remove unused icon file ([bdf8e9a](https://github.com/Guilhermee19/financee-web/commit/bdf8e9a2a038a06494f29bd9f7971fd80d9f2145))
+
 ### [1.14.2](https://github.com/Guilhermee19/financee-web/compare/v1.14.1...v1.14.2) (2025-05-07)
 
 ### [1.14.1](https://github.com/Guilhermee19/financee-web/compare/v1.14.0...v1.14.1) (2025-05-06)
