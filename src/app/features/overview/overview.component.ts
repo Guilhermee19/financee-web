@@ -85,8 +85,7 @@ export class OverviewComponent implements OnInit{
     const dialogRef = this.dialog.open(DetailFinanceComponent,{
       ...CONFIG_MODAL_TRANSACTION,
       data: {
-        finance: null,
-        edit_all: false,
+        edit_all: true,
       },
     });
 
