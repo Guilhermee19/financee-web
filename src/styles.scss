@@ -61,3 +61,7 @@ body {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.container{
+  @apply w-11/12 max-w-7xl mx-auto #{!important};
+}
