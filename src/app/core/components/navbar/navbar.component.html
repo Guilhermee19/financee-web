@@ -1,4 +1,4 @@
-<nav id="top-navbar" class="fixed top-0 px-6 z-50 w-full bg-tertiary dark:bg-dark-tertiary">
+<nav id="top-navbar" class="fixed top-0 md:px-6 z-50 w-full bg-tertiary dark:bg-dark-tertiary">
   <div class="container mx-auto">
     <div
       class="flex flex-wrap items-center justify-between py-2 md:flex-nowrap"
@@ -37,7 +37,7 @@
         }"
       >
         <ul
-          class="m-0 flex list-none flex-col gap-x-4 p-0 pt-2 md:flex-row md:items-center md:justify-end md:pt-0"
+          class="m-0 flex list-none flex-col gap-4 p-0 pt-2 md:flex-row md:items-center md:justify-end md:pt-0"
           (click)="onResize()"
           (keydown)="onResize()"
           tabindex="-1"
@@ -48,7 +48,7 @@
               mat-button
               [routerLink]="item.router"
               routerLinkActive="active"
-              class="w-full"
+              class="w-full !text-lg md:!text-base"
             >
               {{ item.label }}
             </a>
@@ -83,7 +83,7 @@
 </mat-menu>
 
 @if (!loading()) {
-  <div class="relative w-full min-h-dvh pt-20 pb-10 bg-tertiary dark:bg-dark-tertiary px-6">
+  <div class="relative w-full min-h-dvh pt-20 pb-10 bg-tertiary dark:bg-dark-tertiary md:px-6">
     <router-outlet />
   </div>
 }
