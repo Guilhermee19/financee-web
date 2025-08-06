@@ -129,7 +129,7 @@
 }
 
 .fc .fc-daygrid-day-frame {
-  @apply p-1 border-4 border-solid border-tertiary dark:border-dark-tertiary rounded-2xl shadow-border transition-all;
+  @apply p-1 border-x-0 border-y-2 md:border-4 border-solid border-tertiary dark:border-dark-tertiary md:rounded-2xl md:shadow-border transition-all;
 
   /* &:hover{
     @apply bg-White8;
