@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.15.0](https://github.com/Guilhermee19/financee-web/compare/v1.14.4...v1.15.0) (2025-08-06)
+
+
+### Features
+
+* mobile calendar ([7b65a2c](https://github.com/Guilhermee19/financee-web/commit/7b65a2cf993710e5358e0058e979ec754dc95fc5))
+* mobile navigation bar ([d669281](https://github.com/Guilhermee19/financee-web/commit/d669281cdf2d29ece78a9b7b24c37c4f33838efc))
+
+
+### Bug Fixes
+
+* **navbar:** adjust spacing and padding sizes on components ([a72f6fb](https://github.com/Guilhermee19/financee-web/commit/a72f6fbe65e247113b1eab3657a77825461a7ebe))
+
 ### [1.14.4](https://github.com/Guilhermee19/financee-web/compare/v1.14.3...v1.14.4) (2025-05-15)
 
 
