@@ -1,8 +1,10 @@
+import { IconDirective } from "../../shared/directives/icon.directive";
+
 export type TypeProfile = 'Desenvolvedor' | 'Admin';
 
 export const NAVBAR_PAGES: {
   label: string;
-  icon: string;
+  icon: keyof IconDirective['icon'];
   router: string;
   roles: TypeProfile[];
 }[] = [

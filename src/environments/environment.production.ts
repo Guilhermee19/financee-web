@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
   base_url: 'https://finance-api.iamgui.dev/',
-  version: '1.14.4',
+  version: '1.15.0',
 };

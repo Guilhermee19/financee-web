@@ -8,7 +8,7 @@
         <img src="../../../assets/simbolo.png" alt="Logo" class="size-full object-contain lg:hidden" />
       </a>
 
-      <div class="flex ml-auto md:hidden">
+      <!-- <div class="flex ml-auto md:hidden">
         <button
           mat-icon-button
           class="my-0 ml-auto mr-0 text-label dark:text-dark-label transition {{
@@ -18,7 +18,7 @@
         >
           <i [icon]="isMenuOpen() ? 'xmark' : 'bars'"></i>
         </button>
-      </div>
+      </div> -->
 
       @if(!loading() && user){
         <div class="relative flex md:hidden cursor-pointer items-center"  [matMenuTriggerFor]="beforeMenu">
@@ -73,6 +73,26 @@
   </div>
 </nav>
 
+<ul
+  class="w-full fixed bottom-0 z-30 bg-tertiary dark:bg-dark-tertiary border-0 border-t border-solid border-Gray/50 dark:border-dark-Gray/50 p-2 flex list-none gap-4 flex-row items-center justify-center md:hidden"
+  (click)="onResize()"
+  (keydown)="onResize()"
+  tabindex="-1"
+>
+@for (item of navbars; track $index) {
+  <li>
+    <a
+      mat-button
+      [routerLink]="item.router"
+      routerLinkActive="active"
+      class="w-full !text-lg md:!text-base"
+    >
+      <i [icon]="item.icon" class="text-label dark:text-dark-label"></i>
+    </a>
+  </li>
+}
+</ul>
+
 <mat-menu #beforeMenu="matMenu" xPosition="before">
   <a mat-menu-item class="py-1" routerLink="/profile"> Perfil </a>
   <a mat-menu-item class="py-1" routerLink="/account"> Contas </a>
@@ -83,7 +103,7 @@
 </mat-menu>
 
 @if (!loading()) {
-  <div class="relative w-full min-h-dvh pt-20 pb-10 bg-tertiary dark:bg-dark-tertiary md:px-6">
+  <div class="relative w-full min-h-dvh pt-20 pb-20 md:pb-10 bg-tertiary dark:bg-dark-tertiary md:px-6">
     <router-outlet />
   </div>
 }
