@@ -25,6 +25,12 @@ export class AppComponent implements OnInit{
   }
 
   private async initializeNotifications(): Promise<void> {
+    // Verificar se estamos no ambiente do navegador
+    if (typeof window === 'undefined' || typeof navigator === 'undefined') {
+      console.log('Notificações não disponíveis no ambiente SSR');
+      return;
+    }
+
     try {
       // Solicitar permissão para notificações
       const hasPermission = await this.notificationService.requestPermission();

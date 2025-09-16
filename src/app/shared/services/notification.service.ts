@@ -47,9 +47,14 @@ export class NotificationService {
    * Verifica se o navegador suporta notificações
    */
   private checkSupport(): void {
-    this.isSupported = 'Notification' in window && 'serviceWorker' in navigator;
-    if (this.isSupported) {
-      this.permission = Notification.permission;
+    // Verificar se estamos no ambiente do navegador (não SSR)
+    if (typeof window !== 'undefined' && typeof navigator !== 'undefined') {
+      this.isSupported = 'Notification' in window && 'serviceWorker' in navigator;
+      if (this.isSupported) {
+        this.permission = Notification.permission;
+      }
+    } else {
+      this.isSupported = false;
     }
   }
 
@@ -71,7 +76,7 @@ export class NotificationService {
    * Solicita permissão para enviar notificações
    */
   async requestPermission(): Promise<boolean> {
-    if (!this.isSupported) {
+    if (!this.isSupported || typeof window === 'undefined') {
       console.warn('Notificações não são suportadas neste navegador');
       return false;
     }
@@ -122,7 +127,7 @@ export class NotificationService {
    * Envia notificação via Service Worker
    */
   private async showServiceWorkerNotification(payload: NotificationPayload): Promise<void> {
-    if ('serviceWorker' in navigator) {
+    if (typeof navigator !== 'undefined' && 'serviceWorker' in navigator) {
       const registration = await navigator.serviceWorker.ready;
 
       const options: CustomNotificationOptions = {
@@ -145,6 +150,11 @@ export class NotificationService {
    * Envia notificação via API do navegador (fallback)
    */
   private showBrowserNotification(payload: NotificationPayload): void {
+    if (typeof window === 'undefined' || typeof Notification === 'undefined') {
+      console.warn('Notificações não disponíveis no ambiente atual');
+      return;
+    }
+
     const notification = new Notification(payload.title, {
       body: payload.body,
       icon: payload.icon || '/assets/icons/icon-192x192.png',
@@ -192,10 +202,10 @@ export class NotificationService {
    * Foca na janela do aplicativo
    */
   private focusWindow(): void {
-    if ('clients' in self) {
+    if (typeof self !== 'undefined' && 'clients' in self) {
       // No contexto do Service Worker
       (self as any).clients.openWindow('/finance');
-    } else {
+    } else if (typeof window !== 'undefined') {
       // No contexto principal
       window.focus();
     }
@@ -205,8 +215,10 @@ export class NotificationService {
    * Navega para a página de transações
    */
   private navigateToTransactions(): void {
-    // Implementar navegação usando Router se necessário
-    window.location.href = '/finance';
+    if (typeof window !== 'undefined') {
+      // Implementar navegação usando Router se necessário
+      window.location.href = '/finance';
+    }
   }
 
   /**
@@ -326,7 +338,7 @@ export class NotificationService {
    * Limpa todas as notificações
    */
   async clearAllNotifications(): Promise<void> {
-    if ('serviceWorker' in navigator) {
+    if (typeof navigator !== 'undefined' && 'serviceWorker' in navigator) {
       const registration = await navigator.serviceWorker.ready;
       const notifications = await registration.getNotifications();
       notifications.forEach(notification => notification.close());
