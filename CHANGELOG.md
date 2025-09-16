@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/Guilhermee19/financee-web/compare/v1.15.0...v2.0.0) (2025-09-16)
+
+
+### Features
+
+* enhance notification service to check for browser environment before accessing window and navigator ([97a9e30](https://github.com/Guilhermee19/financee-web/commit/97a9e30aeddf37bdddc17052bf9c4a4884899a5f))
+* implement PWA notification system with service worker and notification service ([33c72df](https://github.com/Guilhermee19/financee-web/commit/33c72df731e4478bd95190e3995ef8cc0d75de3f))
+
 ## [1.15.0](https://github.com/Guilhermee19/financee-web/compare/v1.14.4...v1.15.0) (2025-08-06)
 
 

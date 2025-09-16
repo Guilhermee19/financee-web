@@ -16,6 +16,7 @@ import { IconDirective } from '../../shared/directives/icon.directive';
 import { ConvertStatusPipe } from '../../shared/pipes/convert-status.pipe';
 import { SafePipe } from '../../shared/pipes/safe.pipe';
 import { FinanceService } from '../../shared/services/finance.service';
+import { NotificationService } from '../../shared/services/notification.service';
 import { Toastr } from '../../shared/services/toastr.service';
 
 @Component({
@@ -42,6 +43,7 @@ export class FinanceComponent implements OnInit {
   @ViewChild(MatSort) public sort!: MatSort;
 
   private financeService = inject(FinanceService);
+  private notificationService = inject(NotificationService);
   private toastr = inject(Toastr);
   private fb = inject(FormBuilder);
   readonly dialog = inject(MatDialog);
@@ -63,6 +65,13 @@ export class FinanceComponent implements OnInit {
   ngOnInit() {
     this.loading.set(true);
 
+    // Solicitar permissão para notificações
+    this.notificationService.requestPermission().then(granted => {
+      if (granted) {
+        console.log('Permissão para notificações concedida');
+      }
+    });
+
     this.getAllFinances();
 
     this.form.controls.date.valueChanges
@@ -70,6 +79,14 @@ export class FinanceComponent implements OnInit {
       .subscribe(() => {
         this.getAllFinances();
       });
+
+    // Escutar cliques em notificações
+    this.notificationService.getNotificationClicks().subscribe(action => {
+      if (action === 'view-transactions' || action === 'default') {
+        // Já estamos na página de transações, apenas atualizar dados
+        this.getAllFinances();
+      }
+    });
   }
 
   // Lógica de obtenção de finanças com parâmetros de ordenação
@@ -89,9 +106,26 @@ export class FinanceComponent implements OnInit {
         this.dataSource.sort = this.sort;
         this.loading.set(false);
         this.cdr.detectChanges();
+
+        // Verificar transações que vencem hoje e agendar notificações
+        this.checkAndScheduleNotifications(data);
       },
     });
   }
+
+  // Método para verificar e agendar notificações de transações que vencem
+  private checkAndScheduleNotifications(transactions: ITransaction[]): void {
+    // Verificar transações que vencem hoje
+    this.notificationService.checkDueTransactions(transactions);
+
+    // Agendar verificação diária apenas uma vez por sessão
+    if (!this.hasScheduledDailyCheck) {
+      this.notificationService.scheduleDailyCheck(transactions);
+      this.hasScheduledDailyCheck = true;
+    }
+  }
+
+  private hasScheduledDailyCheck = false;
 
   // Função para alterar a ordenação ao clicar no título da coluna
   public sortData(column: TOrderBy): void {
