@@ -58,9 +58,19 @@ module.exports = {
         'up-down': 'up-down 1.2s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94)',
         'blink-smooth': 'blink-smooth 1s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94)',
         'shake': 'shake 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-        'fade-in': 'fade-in 0.5s ease-in-out forwards'
+        'fade-in': 'fade-in 0.5s ease-in-out forwards',
+        shimmer: 'shimmer 2s linear infinite',
+        pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
       keyframes: {
+         shimmer: {
+          '0%': {
+            'background-position': '-200% 0'
+          },
+          '100%': {
+            'background-position': '200% 0'
+          }
+        },
         'pulse-notification': {
           '100%': { transform: 'scale(2)', opacity: '0' }
         },

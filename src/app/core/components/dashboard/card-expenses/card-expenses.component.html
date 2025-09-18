@@ -1,0 +1,23 @@
+@if(loading()) {
+<div class="card bg-tertiary dark:bg-dark-tertiary border border-solid border-Gray dark:border-dark-Gray rounded-default p-3 md:p-5">
+  <app-loading-cards [type]="'CARD'" />
+</div>
+}
+@else {
+<div class="card bg-tertiary dark:bg-dark-tertiary border border-solid border-Gray dark:border-dark-Gray rounded-default p-3 md:p-5">
+  <div class="w-max flex items-center gap-2">
+    <div class="w-max aspect-square px-2 flex justify-center items-center rounded-md bg-Red8 text-Red">
+      <i icon="arrow_trend_down"></i>
+    </div>
+    <h3 class="text-sm text-Gray opacity-70"> Despesas </h3>
+  </div>
+
+  <div class="mt-3 flex justify-between items-center gap-4">
+    <div class="flex items-center gap-3">
+      <h1 class="text-black dark:text-white text-lg lg:text-2xl font-semibold">
+        {{  dashboard.total_expenditure | hiddenValue }}
+      </h1>
+    </div>
+  </div>
+</div>
+}

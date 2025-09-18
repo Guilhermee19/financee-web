@@ -1,0 +1,66 @@
+@if(loading()) {
+<div class="card bg-tertiary dark:bg-dark-tertiary border border-solid border-Gray dark:border-dark-Gray rounded-default p-3 md:p-5">
+  <app-loading-cards [count]="6" [type]="'LIST'" />
+</div>
+}
+@else {
+<div class="h-full card bg-tertiary dark:bg-dark-tertiary border border-solid border-Gray dark:border-dark-Gray rounded-default p-3 md:p-5">
+  <h1 class="w-full text-black dark:text-white text-base font-semibold"> Transações </h1>
+  <div class="w-full h-px bg-White8 my-4"></div>
+
+
+  <div class="w-full flex flex-col gap-4">
+    @for (item of transactions_overdue_unpaid(); track $index){
+      <div class="w-full flex justify-between pr-2 items-center gap-2 rounded-lg bg-Red8">
+        <div class="size-11 flex justify-center items-center aspect-square rounded-lg p-2 bg-White3">
+          @if(item.category_obj?.icon){
+            <i [innerHTML]="item.category_obj?.icon | safe: 'html'" class="text-black dark:text-white text-sm lg:text-lg opacity-50"></i>
+          }
+          @else{
+            <i icon="paperclip" class="text-black dark:text-white text-sm lg:text-lg opacity-50"></i>
+          }
+        </div>
+
+        <div class="w-max flex flex-col gap-2 mr-auto">
+          <h2 class="text-sm m-0 leading-none text-black dark:text-white"> {{ item.description }} </h2>
+          <p class="text-xs m-0 leading-none text-black dark:text-white opacity-50"> {{ item.expiry_date | date: 'dd MMM, yyyy' }} </p>
+        </div>
+
+        <h1 class="m-0 leading-none text-black dark:text-white"
+        [ngClass]="{
+          '!text-primary': item.type === 'INCOME',
+          '!text-Red': item.type === 'EXPENDITURE'
+        }"> {{ item.type === 'INCOME' ? '+' : '-' }} {{ item.value_installment | hiddenValue }} </h1>
+      </div>
+    }
+    @for (item of transactions_upcoming(); track $index){
+      <div class="w-full flex justify-between pr-2 items-center gap-2">
+        <div class="size-11 flex justify-center items-center aspect-square rounded-lg p-2 bg-White3">
+          @if(item.category_obj?.icon){
+            <i [innerHTML]="item.category_obj?.icon| safe: 'html'" class="text-black dark:text-white text-sm lg:text-lg opacity-50"></i>
+          }
+          @else{
+            <i icon="paperclip" class="text-black dark:text-white text-sm lg:text-lg opacity-50"></i>
+          }
+        </div>
+
+        <div class="w-max flex flex-col gap-2 mr-auto">
+          <h2 class="text-sm m-0 leading-none text-black dark:text-white"> {{ item.description }} </h2>
+          <p class="text-xs m-0 leading-none text-black dark:text-white opacity-50"> {{ item.expiry_date | date: 'dd MMM, yyyy' }} </p>
+        </div>
+
+        <h1 class="m-0 leading-none text-black dark:text-white"
+        [ngClass]="{
+          '!text-primary': item.type === 'INCOME',
+          '!text-Red': item.type === 'EXPENDITURE'
+        }">
+        {{ item.type === 'INCOME' ? '+' : '-' }} {{ item.value_installment | hiddenValue }} </h1>
+      </div>
+    }
+
+    @if(transactions_overdue_unpaid().length === 0 && transactions_upcoming().length === 0){
+      <p class="text-white text-center opacity-50 min-h-40 flex justify-center items-center"> Nenhuma transação pendente <br> para essa data. </p>
+    }
+  </div>
+</div>
+}
