@@ -51,6 +51,7 @@
               "src/manifest.webmanifest"
             ],
             "styles": [
+              "node_modules/swiper/swiper-bundle.min.css",
               "src/styles.scss"
             ],
             "scripts": [],
@@ -124,6 +125,7 @@
               "src/manifest.webmanifest"
             ],
             "styles": [
+              "node_modules/swiper/swiper-bundle.min.css",
               "src/styles.scss"
             ],
             "scripts": []

@@ -1,0 +1,46 @@
+/* Customização do Swiper para cartões de crédito */
+swiper-container {
+
+  --swiper-pagination-color: #55b02e;
+  --swiper-navigation-color: #55b02e;
+  --swiper-navigation-size: 24px;
+  /* --swiper-pagination-bullet-size: 8px; */
+  --swiper-pagination-bullet-inactive-color: rgba(255, 255, 255, 0.3);
+  --swiper-pagination-bullet-inactive-opacity: 1;
+
+  --swiper-pagination-bullet-width: 20px !important;
+  --swiper-pagination-bullet-height: 8px !important;
+  --swiper-pagination-bullet-border-radius: 20px;
+}
+
+swiper-slide {
+  height: auto;
+}
+
+/* Estilo para navegação em tema escuro */
+:host-context(.dark) swiper-container {
+  --swiper-pagination-color: #55b02e;
+  --swiper-navigation-color: #55b02e;
+  --swiper-pagination-bullet-inactive-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Ajustes para botões de navegação */
+swiper-container::part(button-prev),
+swiper-container::part(button-next) {
+  border-radius: 50%;
+  background: rgba(99, 102, 241, 0.1);
+  backdrop-filter: blur(10px);
+  width: 40px;
+  height: 40px;
+}
+
+swiper-container::part(button-prev):hover,
+swiper-container::part(button-next):hover {
+  background: rgba(99, 102, 241, 0.2);
+}
+
+.swiper-pagination-bullet{
+  border-radius: 20px !important;
+  width: 20px !important;
+  height: 8px !important;
+}

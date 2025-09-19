@@ -1,10 +1,10 @@
 @if(loading()) {
 <div class="card bg-tertiary dark:bg-dark-tertiary border border-solid border-Gray dark:border-dark-Gray rounded-default p-3 md:p-5">
-  <app-loading-cards [type]="'CARD'" />
+  <app-loading-cards [count]="4" [type]="'CARD'" />
 </div>
 }
 @else {
-<div class="card bg-tertiary dark:bg-dark-tertiary border border-solid border-Gray dark:border-dark-Gray rounded-default p-3 md:p-5">
+<div class="h-full card bg-tertiary dark:bg-dark-tertiary border border-solid border-Gray dark:border-dark-Gray rounded-default p-3 md:p-5">
   <h1 class="w-full text-black dark:text-white text-base font-semibold"> Gastos por categoria </h1>
   <div class="w-full h-px bg-White8 my-4"></div>
 

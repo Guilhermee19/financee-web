@@ -1,3 +1,38 @@
-<div class="card bg-tertiary dark:bg-dark-tertiary border border-solid border-Gray dark:border-dark-Gray rounded-default p-3 md:p-5">
-  <!-- <app-graphic-pie [dashboard]="dashboard" /> -->
+<div class="h-full card bg-tertiary dark:bg-dark-tertiary border border-solid border-Gray dark:border-dark-Gray rounded-default p-3 md:p-5">
+  <h1 class="w-full text-black dark:text-white text-base font-semibold"> Cartão de Credito </h1>
+
+  <swiper-container
+    slides-per-view="1"
+    space-between="16"
+    pagination="true"
+    pagination-clickable="true"
+    navigation="false"
+    class="mt-4">
+
+    @for (item of creditCardNumber; track $index) {
+      <swiper-slide class="pb-6">
+        <div class="w-full rounded-xl bg-[#1e1d1f] border border-solid border-secondary/20 p-4 mb-4">
+          <header class="w-full flex justify-between items-center">
+            <p class="text-black dark:text-white ">{{ item.name }}</p>
+            <p class="text-black dark:text-white opacity-80 font-light text-xs">{{ item.brand }}</p>
+          </header>
+
+          <div class="w-full flex justify-between items-center my-4">
+            <div>
+              <p class="text-black dark:text-white">Usado:</p>
+              <p class="text-black dark:text-white">{{ item.used | hiddenValue }}</p>
+            </div>
+
+            <div>
+              <p class="text-black dark:text-white">Disponível:</p>
+              <p class="text-black dark:text-white">{{ item.limit - item.used | hiddenValue }}</p>
+            </div>
+          </div>
+
+          <mat-progress-bar mode="determinate" class="my-1" [value]="item.progress"></mat-progress-bar>
+          <p class="text-black dark:text-white text-xs text-center opacity-30"> {{ item.progress }}% utilizado </p>
+        </div>
+      </swiper-slide>
+    }
+  </swiper-container>
 </div>
